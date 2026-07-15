@@ -182,6 +182,40 @@
         "CHILE_SERMIG_RENTISTA_2026",
         "CHILE_SERMIG_INVESTOR_2026"
       ]
+    },
+    "regular_remote_worker_recheck_2026": {
+      "date": "2026-07-15",
+      "scope": "First careful correction pass for countries whose captured route is skilled/startup/investor/golden/IT-Park-specific rather than ordinary foreign-contract remote work.",
+      "downgraded_to_not_eligible": [
+        "Australia",
+        "Finland",
+        "Lithuania",
+        "Paraguay",
+        "Qatar",
+        "Bahrain",
+        "Uzbekistan"
+      ],
+      "rule": "valid_for_selection must be false when the only captured route is skilled migration, startup/founder, investor/golden residence, or route-specific IT Park structure rather than ordinary remote work for a foreign employer/client."
+    },
+    "regular_remote_worker_recheck_2026_second_pass": {
+      "date": "2026-07-15",
+      "downgraded_to_not_eligible": [
+        "Andorra",
+        "Netherlands",
+        "Norway"
+      ],
+      "removed_from_fully_matched_pending_manual_filing_check": [
+        "Belgium",
+        "France",
+        "Germany",
+        "Sweden"
+      ],
+      "rule": "Routes requiring local economic interest/local client/assignment, passive residence, or business/startup setup are not fully matched for ordinary foreign-contract remote work."
+    },
+    "regular_remote_worker_fit_field_completion_2026": {
+      "date": "2026-07-15",
+      "scope": "Filled regular_foreign_contract_remote_work_fit for remaining eligible countries after stricter route-profile audit.",
+      "note": "Countries downgraded or removed from fully matched in earlier passes were not auto-marked true."
     }
   },
   "results": [
@@ -801,6 +835,21 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "ALBANI_UNCERTAIN_DEEP_2026",
+            "AL1"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
         }
       }
     },
@@ -927,13 +976,14 @@
       "data": {
         "country": "Andorra",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Detailed re-check: Andorra is not a digital nomad country, but independent residence can be possible through active self-employment/business or passive residence. This is valid only for high-resource/self-employed planning, not a simple foreign-contract nomad route.",
-        "best_routes": [
+        "valid_for_selection": false,
+        "selection_summary": "Careful re-check 2026: Andorra should not be eligible for this regular foreign-contract remote-worker profile. The captured route is passive/self-employed/business-style residence, not a dedicated or clearly confirmed foreign-client remote-work route.",
+        "best_routes": [],
+        "rejected_routes": [
           {
             "route_name": "Active self-employment / business or passive residence permit",
             "route_type": "self_employed_or_independent_means_residence",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": false,
@@ -1015,13 +1065,15 @@
             },
             "notes": "Detailed re-check: Andorra is not a digital nomad country, but independent residence can be possible through active self-employment/business or passive residence. This is valid only for high-resource/self-employed planning, not a simple foreign-contract nomad route.",
             "source_ids": [
-              "ANDORR_UNCERTAIN_DEEP_2026"
-            ]
+              "ANDORR_UNCERTAIN_DEEP_2026",
+              "ANDORRA_REMOTE_WORK_PROFILE_RECHECK_2026"
+            ],
+            "rejection_reason": "Passive/self-employed/business-style residence, not ordinary foreign-contract remote work."
           },
           {
             "route_name": "Residence permit over 90 days / possible non-lucrative or self-employed paths",
             "route_type": "other",
-            "valid_for_selection": "uncertain",
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": false,
@@ -1099,11 +1151,12 @@
             },
             "notes": "Andorra may be attractive for tax/residence planning, but the prompt criteria require confirmation of self-sponsored route without local employer.",
             "source_ids": [
-              "AD1"
-            ]
+              "AD1",
+              "ANDORRA_REMOTE_WORK_PROFILE_RECHECK_2026"
+            ],
+            "rejection_reason": "Passive/self-employed/business-style residence, not ordinary foreign-contract remote work."
           }
         ],
-        "rejected_routes": [],
         "taxes": {
           "income_tax_rate_percent": {
             "value": 10,
@@ -1144,19 +1197,16 @@
           },
           "digital_nomad_taxation": {
             "value": "Andorra: freelance_or_self_employed_residence. 10% top/screening PIT rate. 10% top/screening PIT rate. Indicative top/standard personal income-tax rate for screening only; effective tax depends on residence, deductions, self-employment/company setup and treaties.. Residence: Usually day-count/center-of-interests/residence-permit based; confirm before exceeding 183 days or registering a business locally.. Income scope: Foreign-income treatment is not fully captured; verify whether residents are taxed on worldwide income, remittance basis, or source/territorial rules.. Special regimes: No special digital-nomad/freelancer tax regime confirmed in the current dataset.. Social/payroll: Depends on employment/self-employment/company setup and whether route creates local social-insurance obligations. Tax residence: Usually day-count/center-of-interests/residence-permit based; confirm before exceeding 183 days or registering a business locally.. Foreign income: Foreign-income treatment not captured.. Digital-nomad/special regimes: No special digital-nomad regime confirmed in dataset.. Fixed payments: not_confirmed_in_dataset; No fixed tax/social payment amount is confirmed in the current dataset; do not assume zero. Check official tax/social-security pages before planning.",
-            "route_tax_category": "freelance_or_self_employed_residence",
+            "route_tax_category": "not_applicable_no_regular_remote_work_route",
             "top_or_screening_pit_rate_percent": 10,
             "income_tax_display": "10% top/screening PIT rate. Indicative top/standard personal income-tax rate for screening only; effective tax depends on residence, deductions, self-employment/company setup and treaties.. Residence: Usually day-count/center-of-interests/residence-permit based; confirm before exceeding 183 days or registering a business locally.. Income scope: Foreign-income treatment is not fully captured; verify whether residents are taxed on worldwide income, remittance basis, or source/territorial rules.. Special regimes: No special digital-nomad/freelancer tax regime confirmed in the current dataset.. Social/payroll: Depends on employment/self-employment/company setup and whether route creates local social-insurance obligations.",
             "tax_residency_rule": "Usually day-count/center-of-interests/residence-permit based; confirm before exceeding 183 days or registering a business locally.",
-            "foreign_income_treatment": null,
-            "special_digital_nomad_or_inbound_regime": null,
-            "social_security_and_payroll": "Depends on employment/self-employment/company setup and whether route creates local social-insurance obligations.",
+            "foreign_income_treatment": "Not applicable: no confirmed route for ordinary foreign-contract remote work under the selected profile.",
+            "special_digital_nomad_or_inbound_regime": "Not applicable",
+            "social_security_and_payroll": "Not applicable under this profile; depends on a different route if used.",
             "fixed_payments": {
-              "status": "not_confirmed_in_dataset",
-              "social_security_or_payroll": "Depends on employment/self-employment/company setup and whether route creates local social-insurance obligations.",
-              "visa_or_state_fees": "Not captured in tax fields. Visa/application/card fees may still apply and should be checked on the official route page.",
-              "other_fixed_or_transaction_taxes": "No separate fixed/transaction taxes captured in the normalized dataset.",
-              "notes": "No fixed tax/social payment amount is confirmed in the current dataset; do not assume zero. Check official tax/social-security pages before planning."
+              "status": "Not applicable",
+              "notes": "No applicable digital-nomad/regular remote-worker route confirmed."
             },
             "practical_scenarios": {
               "under_tax_residency_threshold": "Often lower risk of residence-based taxation, but local-source income, local work, PE risk, VAT, visa conditions and treaty rules still need review.",
@@ -1165,10 +1215,10 @@
             },
             "confidence": "medium",
             "source_ids": [
-              "ANDORR_UNCERTAIN_DEEP_2026"
+              "ANDORRA_REMOTE_WORK_PROFILE_RECHECK_2026"
             ],
             "reviewed_at": "2026-07-15",
-            "notes": "Screening summary for a foreign-contract remote worker/digital nomad. It is not tax advice. Verify official tax, social-security and immigration fee pages before relying on any amount."
+            "notes": "Excluded from eligible set after careful route-profile audit: Passive/self-employed/business-style residence, not ordinary foreign-contract remote work."
           }
         },
         "timeline": {
@@ -1225,21 +1275,30 @@
             "url": "https://en.wikipedia.org/wiki/Henley_Passport_Index",
             "date_accessed": "2026-07-15",
             "note": "Used to fill missing passport rank and visa-free destination counts for eligible countries."
+          },
+          {
+            "id": "ANDORRA_REMOTE_WORK_PROFILE_RECHECK_2026",
+            "title": "Andorra residence route profile re-check",
+            "publisher": "Current route audit",
+            "url": "https://en.wikipedia.org/wiki/Visa_policy_of_Andorra",
+            "date_accessed": "2026-07-15",
+            "note": "Current captured route is passive/self-employed/business residence, not an ordinary foreign-contract remote-worker route."
           }
         ],
         "confidence": "medium_low",
         "notes": "Needs official Andorran immigration-source verification.",
         "settlement_track": {
-          "classification": "weak_or_uncertain_citizenship_track",
+          "classification": "not_valid_no_regular_remote_work_route",
           "can_lead_to_citizenship_from_this_route": "uncertain",
           "citizenship_track_strength": "low",
           "requires_switch_to_another_status": true,
           "nomad_only_warning": null,
           "summary": "Detailed re-check: Andorra is not a digital nomad country, but independent residence can be possible through active self-employment/business or passive residence. This is valid only for high-resource/self-employed planning, not a simple foreign-contract nomad route.",
           "source_ids": [
-            "ANDORR_UNCERTAIN_DEEP_2026"
+            "ANDORRA_REMOTE_WORK_PROFILE_RECHECK_2026"
           ],
-          "reviewed_at": "2026-07-15"
+          "reviewed_at": "2026-07-15",
+          "notes": "Passive/self-employed/business-style residence, not ordinary foreign-contract remote work."
         },
         "marriage": {
           "years_to_citizenship_via_marriage": {
@@ -1373,7 +1432,24 @@
             "ANDORR_UNCERTAIN_DEEP_2026"
           ]
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": false,
+          "source_ids": [
+            "ANDORRA_REMOTE_WORK_PROFILE_RECHECK_2026"
+          ],
+          "notes": "Passive/self-employed/business-style residence, not ordinary foreign-contract remote work."
+        },
+        "audit": {
+          "regular_remote_worker_recheck_2026_second_pass": {
+            "date": "2026-07-15",
+            "updated_valid_for_selection": false,
+            "reason": "Passive/self-employed/business-style residence, not ordinary foreign-contract remote work.",
+            "source_ids": [
+              "ANDORRA_REMOTE_WORK_PROFILE_RECHECK_2026"
+            ]
+          }
+        }
       }
     },
     {
@@ -1895,7 +1971,21 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "EE1"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -2484,7 +2574,22 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "AG1",
+            "AG2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -3002,6 +3107,21 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "AR1",
+            "AR2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
         }
       }
     },
@@ -3508,6 +3628,20 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "AM1"
+          ],
+          "notes": "Eligible under current dataset only if used as a genuine self-sponsored/freelance/foreign-income setup without local employer sponsorship; not a founder/investor/golden route."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
         }
       }
     },
@@ -3517,104 +3651,9 @@
       "data": {
         "country": "Australia",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Australia has no simple digital-nomad visa, but it is valid under the prompt because the Skilled Independent visa subclass 189 is a points-tested permanent residence route that does not require employer sponsorship.",
-        "best_routes": [
-          {
-            "route_name": "Skilled Independent visa subclass 189",
-            "route_type": "points_based_or_talent",
-            "valid_for_selection": true,
-            "independent_application_possible": true,
-            "local_employer_required": false,
-            "foreign_contract_or_income_required": false,
-            "direct_temporary_residence_possible": false,
-            "direct_permanent_residence_possible": true,
-            "minimum_monthly_income_usd": {
-              "value": null,
-              "source_ids": [
-                "AUSTRA_INCOME_TRACK_2026"
-              ],
-              "notes": "This is not a digital nomad income route; it is a PR skilled migration route."
-            },
-            "minimum_income_local_currency": {
-              "value": "No monthly-income threshold for subclass 189; points, occupation, skills assessment, English, invitation and PR criteria apply.",
-              "source_ids": [
-                "AUSTRA_INCOME_TRACK_2026"
-              ],
-              "notes": "This is not a digital nomad income route; it is a PR skilled migration route."
-            },
-            "income_proof_months": {
-              "value": null,
-              "source_ids": [
-                "AU1"
-              ],
-              "notes": null
-            },
-            "key_requirements": [
-              {
-                "requirement": "Skilled independent permanent visa; applicant must meet skilled migration points/occupation requirements.",
-                "source_ids": [
-                  "AU1"
-                ]
-              },
-              {
-                "requirement": "No local employer sponsorship required for subclass 189.",
-                "source_ids": [
-                  "AU1"
-                ]
-              }
-            ],
-            "initial_validity": {
-              "value": "Permanent residence",
-              "source_ids": [
-                "AU1"
-              ],
-              "notes": null
-            },
-            "extension_rules": {
-              "value": "Permanent residence with travel facility rules; citizenship later if eligible.",
-              "source_ids": [
-                "AU1"
-              ],
-              "notes": "Details not expanded in this batch."
-            },
-            "path_to_temporary_residence": {
-              "value": null,
-              "source_ids": [
-                "AU1"
-              ],
-              "notes": "Direct PR route, not temporary."
-            },
-            "path_to_permanent_residence": {
-              "value": "Direct permanent residence if granted.",
-              "source_ids": [
-                "AU1"
-              ],
-              "notes": "Settlement-track review: The selected route is PR/residence-oriented or can plausibly be converted/maintained as qualifying residence for naturalisation if the applicant actually relocates and satisfies residence, language, tax and continuity rules."
-            },
-            "path_to_citizenship": {
-              "value": "Potentially yes, if this status is maintained/converted as qualifying residence and all ordinary naturalisation requirements are met.",
-              "source_ids": [
-                "AUSTRA_INCOME_TRACK_2026"
-              ],
-              "notes": "The selected route is PR/residence-oriented or can plausibly be converted/maintained as qualifying residence for naturalisation if the applicant actually relocates and satisfies residence, language, tax and continuity rules."
-            },
-            "notes": "Very competitive and occupation/points dependent.",
-            "source_ids": [
-              "AU1"
-            ],
-            "income_requirement_display": {
-              "value": "No monthly-income threshold for subclass 189; points, occupation, skills assessment, English, invitation and PR criteria apply.",
-              "currency_basis": "local_currency_or_formula",
-              "usd_monthly_value": null,
-              "local_or_formula_value": "No monthly-income threshold for subclass 189; points, occupation, skills assessment, English, invitation and PR criteria apply.",
-              "notes": "This is not a digital nomad income route; it is a PR skilled migration route.",
-              "source_ids": [
-                "AUSTRA_INCOME_TRACK_2026"
-              ]
-            }
-          }
-        ],
+        "valid_for_selection": false,
+        "selection_summary": "Careful re-check 2026: Australia should not be eligible for this regular foreign-contract remote-worker profile. Subclass 189 is an independent skilled migration/permanent residence route based on occupation/points/invitation, not a digital-nomad or foreign-client remote-work route.",
+        "best_routes": [],
         "taxes": {
           "income_tax_rate_percent": {
             "value": 45,
@@ -3665,19 +3704,16 @@
           },
           "digital_nomad_taxation": {
             "value": "Australia: other_independent_route_not_pure_digital_nomad. 45% top/screening PIT rate. 45% top/screening PIT rate. Top/indicative personal income-tax rate for screening, not effective rate. Exact liability depends on residency, deductions, contractor/company setup and treaty relief.. Residence: Tax residence usually depends on day count, habitual home/center of interests, residence permit and treaty facts. For remote contractors, confirm before crossing 183 days or registering locally.. Income scope: Foreign-income treatment is not fully captured; verify whether residents are taxed on worldwide income, remittance basis, or source/territorial rules.. Special regimes: Check whether digital nomad exemption, territorial taxation, non-dom/inbound worker regime or freelancer small-business regime applies. Do not assume foreign income is tax-free.. Social/payroll: Depends on whether income is treated as employment, self-employment, local business income or foreign-source remote work. Digital nomad permits often do not equal local social-insurance coverage. Tax residence: Tax residence usually depends on day count, habitual home/center of interests, residence permit and treaty facts. For remote contractors, confirm before crossing 183 days or registering locally.. Foreign income: Foreign-income treatment not captured.. Digital-nomad/special regimes: Check whether digital nomad exemption, territorial taxation, non-dom/inbound worker regime or freelancer small-business regime applies. Do not assume foreign income is tax-free.. Fixed payments: not_confirmed_in_dataset; No fixed tax/social payment amount is confirmed in the current dataset; do not assume zero. Check official tax/social-security pages before planning.",
-            "route_tax_category": "other_independent_route_not_pure_digital_nomad",
+            "route_tax_category": "not_applicable_no_regular_remote_work_route",
             "top_or_screening_pit_rate_percent": 45,
             "income_tax_display": "45% top/screening PIT rate. Top/indicative personal income-tax rate for screening, not effective rate. Exact liability depends on residency, deductions, contractor/company setup and treaty relief.. Residence: Tax residence usually depends on day count, habitual home/center of interests, residence permit and treaty facts. For remote contractors, confirm before crossing 183 days or registering locally.. Income scope: Foreign-income treatment is not fully captured; verify whether residents are taxed on worldwide income, remittance basis, or source/territorial rules.. Special regimes: Check whether digital nomad exemption, territorial taxation, non-dom/inbound worker regime or freelancer small-business regime applies. Do not assume foreign income is tax-free.. Social/payroll: Depends on whether income is treated as employment, self-employment, local business income or foreign-source remote work. Digital nomad permits often do not equal local social-insurance coverage.",
             "tax_residency_rule": "Tax residence usually depends on day count, habitual home/center of interests, residence permit and treaty facts. For remote contractors, confirm before crossing 183 days or registering locally.",
-            "foreign_income_treatment": null,
-            "special_digital_nomad_or_inbound_regime": "Check whether digital nomad exemption, territorial taxation, non-dom/inbound worker regime or freelancer small-business regime applies. Do not assume foreign income is tax-free.",
-            "social_security_and_payroll": "Depends on whether income is treated as employment, self-employment, local business income or foreign-source remote work. Digital nomad permits often do not equal local social-insurance coverage.",
+            "foreign_income_treatment": "Not applicable: no confirmed route for ordinary foreign-contract remote work under the selected profile.",
+            "special_digital_nomad_or_inbound_regime": "Not applicable",
+            "social_security_and_payroll": "Not applicable under this profile; depends on a different route if used.",
             "fixed_payments": {
-              "status": "not_confirmed_in_dataset",
-              "social_security_or_payroll": "Depends on whether income is treated as employment, self-employment, local business income or foreign-source remote work. Digital nomad permits often do not equal local social-insurance coverage.",
-              "visa_or_state_fees": "Not captured in tax fields. Visa/application/card fees may still apply and should be checked on the official route page.",
-              "other_fixed_or_transaction_taxes": "No separate fixed/transaction taxes captured in the normalized dataset.",
-              "notes": "No fixed tax/social payment amount is confirmed in the current dataset; do not assume zero. Check official tax/social-security pages before planning."
+              "status": "Not applicable",
+              "notes": "No applicable digital-nomad/regular remote-worker route confirmed."
             },
             "practical_scenarios": {
               "under_tax_residency_threshold": "Often lower risk of residence-based taxation, but local-source income, local work, PE risk, VAT, visa conditions and treaty rules still need review.",
@@ -3686,15 +3722,10 @@
             },
             "confidence": "medium",
             "source_ids": [
-              "AUSTRA_PROMPT_FILL_2026",
-              "AUSTRALIA_PWC_PIT_2026",
-              "AUSTRALIA_PWC_RESIDENCE_2026",
-              "AUSTRALIA_PWC_OTHER_TAXES_2026",
-              "AUSTRA_INCOME_TRACK_2026",
-              "AU1"
+              "AUSTRALIA_HOMEAFFAIRS_189_RECHECK_2026"
             ],
             "reviewed_at": "2026-07-15",
-            "notes": "Screening summary for a foreign-contract remote worker/digital nomad. It is not tax advice. Verify official tax, social-security and immigration fee pages before relying on any amount."
+            "notes": "Excluded from eligible set after careful route-profile audit: Independent skilled migration, not ordinary foreign-contract remote work."
           }
         },
         "timeline": {
@@ -3819,11 +3850,116 @@
             "url": "https://taxsummaries.pwc.com/australia/individual/other-taxes",
             "date_accessed": "2026-07-15",
             "note": "Used as standardized social-security/other-tax verification source for eligible-country tax audit."
+          },
+          {
+            "id": "AUSTRALIA_HOMEAFFAIRS_189_RECHECK_2026",
+            "title": "Skilled Independent visa (subclass 189)",
+            "publisher": "Australian Department of Home Affairs",
+            "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-independent-189",
+            "date_accessed": "2026-07-15",
+            "note": "Official subclass 189 page. Route is skilled migration, not a digital-nomad/foreign-contract remote-work route."
           }
         ],
         "confidence": "high",
         "notes": "Official page was sparse in captured text but current and official.",
-        "rejected_routes": [],
+        "rejected_routes": [
+          {
+            "route_name": "Skilled Independent visa subclass 189",
+            "route_type": "points_based_or_talent",
+            "valid_for_selection": false,
+            "independent_application_possible": true,
+            "local_employer_required": false,
+            "foreign_contract_or_income_required": false,
+            "direct_temporary_residence_possible": false,
+            "direct_permanent_residence_possible": true,
+            "minimum_monthly_income_usd": {
+              "value": null,
+              "source_ids": [
+                "AUSTRA_INCOME_TRACK_2026"
+              ],
+              "notes": "This is not a digital nomad income route; it is a PR skilled migration route."
+            },
+            "minimum_income_local_currency": {
+              "value": "No monthly-income threshold for subclass 189; points, occupation, skills assessment, English, invitation and PR criteria apply.",
+              "source_ids": [
+                "AUSTRA_INCOME_TRACK_2026"
+              ],
+              "notes": "This is not a digital nomad income route; it is a PR skilled migration route."
+            },
+            "income_proof_months": {
+              "value": null,
+              "source_ids": [
+                "AU1"
+              ],
+              "notes": null
+            },
+            "key_requirements": [
+              {
+                "requirement": "Skilled independent permanent visa; applicant must meet skilled migration points/occupation requirements.",
+                "source_ids": [
+                  "AU1"
+                ]
+              },
+              {
+                "requirement": "No local employer sponsorship required for subclass 189.",
+                "source_ids": [
+                  "AU1"
+                ]
+              }
+            ],
+            "initial_validity": {
+              "value": "Permanent residence",
+              "source_ids": [
+                "AU1"
+              ],
+              "notes": null
+            },
+            "extension_rules": {
+              "value": "Permanent residence with travel facility rules; citizenship later if eligible.",
+              "source_ids": [
+                "AU1"
+              ],
+              "notes": "Details not expanded in this batch."
+            },
+            "path_to_temporary_residence": {
+              "value": null,
+              "source_ids": [
+                "AU1"
+              ],
+              "notes": "Direct PR route, not temporary."
+            },
+            "path_to_permanent_residence": {
+              "value": "Direct permanent residence if granted.",
+              "source_ids": [
+                "AU1"
+              ],
+              "notes": "Settlement-track review: The selected route is PR/residence-oriented or can plausibly be converted/maintained as qualifying residence for naturalisation if the applicant actually relocates and satisfies residence, language, tax and continuity rules."
+            },
+            "path_to_citizenship": {
+              "value": "Potentially yes, if this status is maintained/converted as qualifying residence and all ordinary naturalisation requirements are met.",
+              "source_ids": [
+                "AUSTRA_INCOME_TRACK_2026"
+              ],
+              "notes": "The selected route is PR/residence-oriented or can plausibly be converted/maintained as qualifying residence for naturalisation if the applicant actually relocates and satisfies residence, language, tax and continuity rules."
+            },
+            "notes": "Very competitive and occupation/points dependent.",
+            "source_ids": [
+              "AU1",
+              "AUSTRALIA_HOMEAFFAIRS_189_RECHECK_2026"
+            ],
+            "income_requirement_display": {
+              "value": "No monthly-income threshold for subclass 189; points, occupation, skills assessment, English, invitation and PR criteria apply.",
+              "currency_basis": "local_currency_or_formula",
+              "usd_monthly_value": null,
+              "local_or_formula_value": "No monthly-income threshold for subclass 189; points, occupation, skills assessment, English, invitation and PR criteria apply.",
+              "notes": "This is not a digital nomad income route; it is a PR skilled migration route.",
+              "source_ids": [
+                "AUSTRA_INCOME_TRACK_2026"
+              ]
+            },
+            "rejection_reason": "Independent skilled migration, not ordinary foreign-contract remote work."
+          }
+        ],
         "marriage": {
           "years_to_citizenship_via_marriage": {
             "value": null,
@@ -3979,18 +4115,19 @@
           }
         },
         "settlement_track": {
-          "classification": "strong_citizenship_track",
+          "classification": "not_valid_no_regular_remote_work_route",
           "can_lead_to_citizenship_from_this_route": true,
           "citizenship_track_strength": "high",
           "requires_switch_to_another_status": false,
           "nomad_only_warning": null,
           "summary": "The selected route is PR/residence-oriented or can plausibly be converted/maintained as qualifying residence for naturalisation if the applicant actually relocates and satisfies residence, language, tax and continuity rules.",
           "source_ids": [
-            "AUSTRA_INCOME_TRACK_2026"
+            "AUSTRALIA_HOMEAFFAIRS_189_RECHECK_2026"
           ],
-          "reviewed_at": "2026-07-15"
+          "reviewed_at": "2026-07-15",
+          "notes": "Independent skilled migration, not ordinary foreign-contract remote work."
         },
-        "fully_matched": true,
+        "fully_matched": false,
         "full_match_recheck": {
           "reviewed_at": "2026-07-15",
           "status": "checked_required_fields_present",
@@ -4009,11 +4146,22 @@
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
         },
         "regular_foreign_contract_remote_work_fit": {
-          "value": "needs_manual_review",
+          "value": false,
           "source_ids": [
-            "AU1"
+            "AUSTRALIA_HOMEAFFAIRS_189_RECHECK_2026"
           ],
-          "notes": "Route may be independent but not necessarily a regular foreign-contract remote-work route. Recheck under stricter profile before treating as fully matched."
+          "notes": "Independent skilled migration, not ordinary foreign-contract remote work."
+        },
+        "audit": {
+          "regular_remote_worker_recheck_2026": {
+            "date": "2026-07-15",
+            "previous_status": "eligible_or_manual_review_route",
+            "updated_valid_for_selection": false,
+            "reason": "Independent skilled migration, not ordinary foreign-contract remote work.",
+            "source_ids": [
+              "AUSTRALIA_HOMEAFFAIRS_189_RECHECK_2026"
+            ]
+          }
         }
       }
     },
@@ -4885,7 +5033,21 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "BS1"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -4894,13 +5056,14 @@
       "data": {
         "country": "Bahrain",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Rechecked from false: Bahrain has a 10-year renewable Golden Residency Visa with property/investor/talent/income-style categories. It is independent of a local employer but is not a digital-nomad visa and is weak for citizenship.",
-        "best_routes": [
+        "valid_for_selection": false,
+        "selection_summary": "Careful re-check 2026: Bahrain should not be eligible for this regular foreign-contract remote-worker profile. The captured route is Golden Residency, not a digital-nomad or ordinary foreign-client remote-work route.",
+        "best_routes": [],
+        "rejected_routes": [
           {
             "route_name": "Golden Residency Visa",
             "route_type": "golden_residence_investor_or_income",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": false,
@@ -4988,11 +5151,12 @@
             },
             "notes": "Rechecked from false: Bahrain has a 10-year renewable Golden Residency Visa with property/investor/talent/income-style categories. It is independent of a local employer but is not a digital-nomad visa and is weak for citizenship.",
             "source_ids": [
-              "BAHRAI_FALSE_RECHECK_2026"
-            ]
+              "BAHRAI_FALSE_RECHECK_2026",
+              "BAHRAIN_GOLDEN_RESIDENCY_RECHECK_2026"
+            ],
+            "rejection_reason": "Golden residency route, not ordinary foreign-contract remote work."
           }
         ],
-        "rejected_routes": [],
         "taxes": {
           "income_tax_rate_percent": {
             "value": 0,
@@ -5036,19 +5200,16 @@
           },
           "digital_nomad_taxation": {
             "value": "Bahrain: other_independent_route_not_pure_digital_nomad. 0% top/screening PIT rate. 0% top/screening PIT rate. Indicative top/standard rate for screening; exact treatment depends on tax residence and investment/business structure.. Residence: Tax residence depends on day count, residence status, center of interests and local rules; verify before relocating or investing.. Income scope: Foreign-income treatment is not fully captured; verify whether residents are taxed on worldwide income, remittance basis, or source/territorial rules.. Special regimes: No special digital-nomad/freelancer tax regime confirmed in the current dataset.. Social/payroll: Depends on investment/business/self-employment structure; verify locally. Tax residence: Tax residence depends on day count, residence status, center of interests and local rules; verify before relocating or investing.. Foreign income: Foreign-income treatment not captured.. Digital-nomad/special regimes: No special digital-nomad regime confirmed in dataset.. Fixed payments: not_confirmed_in_dataset; No fixed tax/social payment amount is confirmed in the current dataset; do not assume zero. Check official tax/social-security pages before planning.",
-            "route_tax_category": "other_independent_route_not_pure_digital_nomad",
+            "route_tax_category": "not_applicable_no_regular_remote_work_route",
             "top_or_screening_pit_rate_percent": 0,
             "income_tax_display": "0% top/screening PIT rate. Indicative top/standard rate for screening; exact treatment depends on tax residence and investment/business structure.. Residence: Tax residence depends on day count, residence status, center of interests and local rules; verify before relocating or investing.. Income scope: Foreign-income treatment is not fully captured; verify whether residents are taxed on worldwide income, remittance basis, or source/territorial rules.. Special regimes: No special digital-nomad/freelancer tax regime confirmed in the current dataset.. Social/payroll: Depends on investment/business/self-employment structure; verify locally.",
             "tax_residency_rule": "Tax residence depends on day count, residence status, center of interests and local rules; verify before relocating or investing.",
-            "foreign_income_treatment": null,
-            "special_digital_nomad_or_inbound_regime": null,
-            "social_security_and_payroll": "Depends on investment/business/self-employment structure; verify locally.",
+            "foreign_income_treatment": "Not applicable: no confirmed route for ordinary foreign-contract remote work under the selected profile.",
+            "special_digital_nomad_or_inbound_regime": "Not applicable",
+            "social_security_and_payroll": "Not applicable under this profile; depends on a different route if used.",
             "fixed_payments": {
-              "status": "not_confirmed_in_dataset",
-              "social_security_or_payroll": "Depends on investment/business/self-employment structure; verify locally.",
-              "visa_or_state_fees": "Not captured in tax fields. Visa/application/card fees may still apply and should be checked on the official route page.",
-              "other_fixed_or_transaction_taxes": "No separate fixed/transaction taxes captured in the normalized dataset.",
-              "notes": "No fixed tax/social payment amount is confirmed in the current dataset; do not assume zero. Check official tax/social-security pages before planning."
+              "status": "Not applicable",
+              "notes": "No applicable digital-nomad/regular remote-worker route confirmed."
             },
             "practical_scenarios": {
               "under_tax_residency_threshold": "Often lower risk of residence-based taxation, but local-source income, local work, PE risk, VAT, visa conditions and treaty rules still need review.",
@@ -5057,13 +5218,10 @@
             },
             "confidence": "medium",
             "source_ids": [
-              "BAHRAI_FALSE_RECHECK_2026",
-              "BAHRAIN_PWC_PIT_2026",
-              "BAHRAIN_PWC_RESIDENCE_2026",
-              "BAHRAIN_PWC_OTHER_TAXES_2026"
+              "BAHRAIN_GOLDEN_RESIDENCY_RECHECK_2026"
             ],
             "reviewed_at": "2026-07-15",
-            "notes": "Screening summary for a foreign-contract remote worker/digital nomad. It is not tax advice. Verify official tax, social-security and immigration fee pages before relying on any amount."
+            "notes": "Excluded from eligible set after careful route-profile audit: Golden residency route, not ordinary foreign-contract remote work."
           }
         },
         "timeline": {
@@ -5152,21 +5310,30 @@
             "url": "https://taxsummaries.pwc.com/bahrain/individual/other-taxes",
             "date_accessed": "2026-07-15",
             "note": "Used as standardized social-security/other-tax verification source for eligible-country tax audit."
+          },
+          {
+            "id": "BAHRAIN_GOLDEN_RESIDENCY_RECHECK_2026",
+            "title": "Golden Residency Visa route re-check",
+            "publisher": "Current 2026 route audit",
+            "url": "https://www.goldenresidency.gov.bh/",
+            "date_accessed": "2026-07-15",
+            "note": "Golden residency is property/investor/talent/retirement/income-style residence, not a general remote-worker route."
           }
         ],
         "confidence": "medium",
         "notes": "Needs official NPRA golden-residency verification if investment paths are later included.",
         "settlement_track": {
-          "classification": "weak_or_uncertain_citizenship_track",
+          "classification": "not_valid_no_regular_remote_work_route",
           "can_lead_to_citizenship_from_this_route": false,
           "citizenship_track_strength": "low",
           "requires_switch_to_another_status": true,
           "nomad_only_warning": null,
           "summary": "Rechecked from false: Bahrain has a 10-year renewable Golden Residency Visa with property/investor/talent/income-style categories. It is independent of a local employer but is not a digital-nomad visa and is weak for citizenship.",
           "source_ids": [
-            "BAHRAI_FALSE_RECHECK_2026"
+            "BAHRAIN_GOLDEN_RESIDENCY_RECHECK_2026"
           ],
-          "reviewed_at": "2026-07-15"
+          "reviewed_at": "2026-07-15",
+          "notes": "Golden residency route, not ordinary foreign-contract remote work."
         },
         "marriage": {
           "requirements_and_risks": {
@@ -5289,7 +5456,25 @@
             "notes": null
           }
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": false,
+          "source_ids": [
+            "BAHRAIN_GOLDEN_RESIDENCY_RECHECK_2026"
+          ],
+          "notes": "Golden residency route, not ordinary foreign-contract remote work."
+        },
+        "audit": {
+          "regular_remote_worker_recheck_2026": {
+            "date": "2026-07-15",
+            "previous_status": "eligible_or_manual_review_route",
+            "updated_valid_for_selection": false,
+            "reason": "Golden residency route, not ordinary foreign-contract remote work.",
+            "source_ids": [
+              "BAHRAIN_GOLDEN_RESIDENCY_RECHECK_2026"
+            ]
+          }
+        }
       }
     },
     {
@@ -5892,7 +6077,21 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "BB1"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -6023,7 +6222,7 @@
         "country": "Belgium",
         "researched_at": "2026-07-15",
         "valid_for_selection": true,
-        "selection_summary": "Detailed re-check: Belgium is upgraded to valid for self-employed/freelance/business applicants. It is not a digital nomad visa and requires regional professional-card approval, but no local employer is required.",
+        "selection_summary": "Detailed re-check: Belgium is upgraded to valid for self-employed/freelance/business applicants. It is not a digital nomad visa and requires regional professional-card approval, but no local employer is required. Careful profile re-check: keep as eligible only for a real self-employed/freelance/business setup; do not treat as fully matched for a simple foreign-employee remote-work profile without filing-level verification.",
         "best_routes": [
           {
             "route_name": "Professional card + self-employed residence",
@@ -6345,6 +6544,14 @@
             "url": "https://taxsummaries.pwc.com/belgium/individual/other-taxes",
             "date_accessed": "2026-07-15",
             "note": "Used as standardized social-security/other-tax verification source for eligible-country tax audit."
+          },
+          {
+            "id": "BELGIUM_SELF_EMPLOYED_PROFILE_RECHECK_2026",
+            "title": "Professional card/self-employed route profile re-check",
+            "publisher": "Current route audit",
+            "url": "https://economy-employment.brussels/professional-card-non-european-foreign-nationals",
+            "date_accessed": "2026-07-15",
+            "note": "Professional-card route may work for genuine self-employed business activity, but is not a plain digital-nomad/foreign-employee route."
           }
         ],
         "confidence": "medium",
@@ -6495,7 +6702,7 @@
             "BELGIU_UNCERTAIN_DEEP_2026"
           ]
         },
-        "fully_matched": true,
+        "fully_matched": false,
         "full_match_recheck": {
           "reviewed_at": "2026-07-15",
           "status": "checked_required_fields_present",
@@ -6512,6 +6719,23 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": "needs_manual_review",
+          "source_ids": [
+            "BELGIUM_SELF_EMPLOYED_PROFILE_RECHECK_2026"
+          ],
+          "notes": "Professional-card route may require regionally approved self-employed business activity; not enough to treat as fully matched for ordinary foreign-contract remote work."
+        },
+        "audit": {
+          "regular_remote_worker_recheck_2026_second_pass": {
+            "date": "2026-07-15",
+            "updated_fully_matched": false,
+            "reason": "Professional-card route may require regionally approved self-employed business activity; not enough to treat as fully matched for ordinary foreign-contract remote work.",
+            "source_ids": [
+              "BELGIUM_SELF_EMPLOYED_PROFILE_RECHECK_2026"
+            ]
+          }
         }
       }
     },
@@ -7897,6 +8121,20 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "BR1"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
         }
       }
     },
@@ -8512,6 +8750,20 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "BG1"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
         }
       }
     },
@@ -9192,7 +9444,21 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "CV1"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -11019,6 +11285,21 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "CO1",
+            "CO2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
         }
       }
     },
@@ -11826,7 +12107,22 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "CR1",
+            "CR2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -12484,7 +12780,22 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "HR1",
+            "HR2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -13160,6 +13471,21 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "CY1",
+            "CY2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
         }
       }
     },
@@ -13688,6 +14014,21 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "CZ1",
+            "CZ2"
+          ],
+          "notes": "Eligible under current dataset only if used as a genuine self-sponsored/freelance/foreign-income setup without local employer sponsorship; not a founder/investor/golden route."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
         }
       }
     },
@@ -14630,7 +14971,22 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "DM1",
+            "DM2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -15307,6 +15663,21 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "EC1",
+            "EC2"
+          ],
+          "notes": "Eligible under current dataset only if used as a genuine self-sponsored/freelance/foreign-income setup without local employer sponsorship; not a founder/investor/golden route."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
         }
       }
     },
@@ -16345,13 +16716,14 @@
       "data": {
         "country": "Finland",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Detailed re-check: Finland is valid only for a founder/startup profile, not a pure foreign employee. It fits the prompt under entrepreneur route, not digital nomad route.",
-        "best_routes": [
+        "valid_for_selection": false,
+        "selection_summary": "Careful re-check 2026: Finland should not be eligible for this regular foreign-contract remote-worker profile. The captured route is a start-up entrepreneur permit requiring a startup business basis and Business Finland eligibility statement, not ordinary remote work for foreign clients/employer.",
+        "best_routes": [],
+        "rejected_routes": [
           {
             "route_name": "Finnish Startup Permit / entrepreneur residence",
             "route_type": "startup_or_entrepreneur_residence",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": false,
@@ -16433,11 +16805,12 @@
             },
             "notes": "Detailed re-check: Finland is valid only for a founder/startup profile, not a pure foreign employee. It fits the prompt under entrepreneur route, not digital nomad route.",
             "source_ids": [
-              "FINLAN_UNCERTAIN_DEEP_2026"
-            ]
+              "FINLAN_UNCERTAIN_DEEP_2026",
+              "FINLAND_MIGRI_STARTUP_RECHECK_2026"
+            ],
+            "rejection_reason": "Startup/founder route, not ordinary foreign-contract remote work."
           }
         ],
-        "rejected_routes": [],
         "taxes": {
           "income_tax_rate_percent": {
             "value": 44,
@@ -16486,19 +16859,16 @@
           },
           "digital_nomad_taxation": {
             "value": "Finland: other_independent_route_not_pure_digital_nomad. 44% top/screening PIT rate. 44% top/screening PIT rate. Indicative top/standard personal income-tax rate for screening only; effective tax depends on residence, deductions, self-employment/company setup and treaties.. Residence: Usually day-count/center-of-interests/residence-permit based; confirm before exceeding 183 days or registering a business locally.. Income scope: Foreign-income treatment is not fully captured; verify whether residents are taxed on worldwide income, remittance basis, or source/territorial rules.. Special regimes: No special digital-nomad/freelancer tax regime confirmed in the current dataset.. Social/payroll: Depends on employment/self-employment/company setup and whether route creates local social-insurance obligations. Tax residence: Usually day-count/center-of-interests/residence-permit based; confirm before exceeding 183 days or registering a business locally.. Foreign income: Foreign-income treatment not captured.. Digital-nomad/special regimes: No special digital-nomad regime confirmed in dataset.. Fixed payments: possible_or_route_dependent_fixed_payments; Fixed payments may exist, but treatment depends on residence, self-employment registration, local payroll, health insurance and whether income is local-source or foreign-source.",
-            "route_tax_category": "other_independent_route_not_pure_digital_nomad",
+            "route_tax_category": "not_applicable_no_regular_remote_work_route",
             "top_or_screening_pit_rate_percent": 44,
             "income_tax_display": "44% top/screening PIT rate. Indicative top/standard personal income-tax rate for screening only; effective tax depends on residence, deductions, self-employment/company setup and treaties.. Residence: Usually day-count/center-of-interests/residence-permit based; confirm before exceeding 183 days or registering a business locally.. Income scope: Foreign-income treatment is not fully captured; verify whether residents are taxed on worldwide income, remittance basis, or source/territorial rules.. Special regimes: No special digital-nomad/freelancer tax regime confirmed in the current dataset.. Social/payroll: Depends on employment/self-employment/company setup and whether route creates local social-insurance obligations.",
             "tax_residency_rule": "Usually day-count/center-of-interests/residence-permit based; confirm before exceeding 183 days or registering a business locally.",
-            "foreign_income_treatment": null,
-            "special_digital_nomad_or_inbound_regime": null,
-            "social_security_and_payroll": "Depends on employment/self-employment/company setup and whether route creates local social-insurance obligations.",
+            "foreign_income_treatment": "Not applicable: no confirmed route for ordinary foreign-contract remote work under the selected profile.",
+            "special_digital_nomad_or_inbound_regime": "Not applicable",
+            "social_security_and_payroll": "Not applicable under this profile; depends on a different route if used.",
             "fixed_payments": {
-              "status": "possible_or_route_dependent_fixed_payments",
-              "social_security_or_payroll": "Depends on employment/self-employment/company setup and whether route creates local social-insurance obligations.",
-              "visa_or_state_fees": "Not captured in tax fields. Visa/application/card fees may still apply and should be checked on the official route page.",
-              "other_fixed_or_transaction_taxes": "No separate fixed/transaction taxes captured in the normalized dataset.",
-              "notes": "Fixed payments may exist, but treatment depends on residence, self-employment registration, local payroll, health insurance and whether income is local-source or foreign-source."
+              "status": "Not applicable",
+              "notes": "No applicable digital-nomad/regular remote-worker route confirmed."
             },
             "practical_scenarios": {
               "under_tax_residency_threshold": "Often lower risk of residence-based taxation, but local-source income, local work, PE risk, VAT, visa conditions and treaty rules still need review.",
@@ -16507,13 +16877,10 @@
             },
             "confidence": "medium",
             "source_ids": [
-              "FINLAN_UNCERTAIN_DEEP_2026",
-              "FINLAND_PWC_PIT_2026",
-              "FINLAND_PWC_RESIDENCE_2026",
-              "FINLAND_PWC_OTHER_TAXES_2026"
+              "FINLAND_MIGRI_STARTUP_RECHECK_2026"
             ],
             "reviewed_at": "2026-07-15",
-            "notes": "Screening summary for a foreign-contract remote worker/digital nomad. It is not tax advice. Verify official tax, social-security and immigration fee pages before relying on any amount."
+            "notes": "Excluded from eligible set after careful route-profile audit: Startup/founder route, not ordinary foreign-contract remote work."
           }
         },
         "timeline": {
@@ -16702,21 +17069,30 @@
             "url": "https://taxsummaries.pwc.com/finland/individual/other-taxes",
             "date_accessed": "2026-07-15",
             "note": "Used as standardized social-security/other-tax verification source for eligible-country tax audit."
+          },
+          {
+            "id": "FINLAND_MIGRI_STARTUP_RECHECK_2026",
+            "title": "Residence permit application for a start-up entrepreneur",
+            "publisher": "Finnish Immigration Service (Migri)",
+            "url": "https://migri.fi/en/start-up-entrepreneur",
+            "date_accessed": "2026-07-15",
+            "note": "Official Migri page says this route is for start-up entrepreneurs and requires Business Finland eligibility statement and startup resources."
           }
         ],
         "confidence": "medium",
         "research_notes": "Chat/web batch pass; verify current official portal before filing.",
         "settlement_track": {
-          "classification": "possible_with_conversion",
+          "classification": "not_valid_no_regular_remote_work_route",
           "can_lead_to_citizenship_from_this_route": "uncertain",
           "citizenship_track_strength": "medium",
           "requires_switch_to_another_status": true,
           "nomad_only_warning": null,
           "summary": "Detailed re-check: Finland is valid only for a founder/startup profile, not a pure foreign employee. It fits the prompt under entrepreneur route, not digital nomad route.",
           "source_ids": [
-            "FINLAN_UNCERTAIN_DEEP_2026"
+            "FINLAND_MIGRI_STARTUP_RECHECK_2026"
           ],
-          "reviewed_at": "2026-07-15"
+          "reviewed_at": "2026-07-15",
+          "notes": "Startup/founder route, not ordinary foreign-contract remote work."
         },
         "child_citizenship": {
           "birthright_citizenship": {
@@ -16757,7 +17133,7 @@
             "FINLAN_UNCERTAIN_DEEP_2026"
           ]
         },
-        "fully_matched": true,
+        "fully_matched": false,
         "full_match_recheck": {
           "reviewed_at": "2026-07-15",
           "status": "checked_required_fields_present",
@@ -16776,11 +17152,22 @@
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
         },
         "regular_foreign_contract_remote_work_fit": {
-          "value": "needs_manual_review",
+          "value": false,
           "source_ids": [
-            "FINLAN_UNCERTAIN_DEEP_2026"
+            "FINLAND_MIGRI_STARTUP_RECHECK_2026"
           ],
-          "notes": "Route may be independent but not necessarily a regular foreign-contract remote-work route. Recheck under stricter profile before treating as fully matched."
+          "notes": "Startup/founder route, not ordinary foreign-contract remote work."
+        },
+        "audit": {
+          "regular_remote_worker_recheck_2026": {
+            "date": "2026-07-15",
+            "previous_status": "eligible_or_manual_review_route",
+            "updated_valid_for_selection": false,
+            "reason": "Startup/founder route, not ordinary foreign-contract remote work.",
+            "source_ids": [
+              "FINLAND_MIGRI_STARTUP_RECHECK_2026"
+            ]
+          }
         }
       }
     },
@@ -16791,7 +17178,7 @@
         "country": "France",
         "researched_at": "2026-07-15",
         "valid_for_selection": true,
-        "selection_summary": "Detailed re-check: France is valid for self-employed/liberal-profession or entrepreneur setup. It is not valid for someone who only wants to sit in France on foreign payroll with no French activity basis.",
+        "selection_summary": "Detailed re-check: France is valid for self-employed/liberal-profession or entrepreneur setup. It is not valid for someone who only wants to sit in France on foreign payroll with no French activity basis. Careful profile re-check: keep as eligible only for a real self-employed/freelance/business setup; do not treat as fully matched for a simple foreign-employee remote-work profile without filing-level verification.",
         "best_routes": [
           {
             "route_name": "Entrepreneur / profession liberale long-stay visa and residence",
@@ -17248,6 +17635,14 @@
             "url": "https://taxsummaries.pwc.com/france/individual/other-taxes",
             "date_accessed": "2026-07-15",
             "note": "Used as standardized social-security/other-tax verification source for eligible-country tax audit."
+          },
+          {
+            "id": "FRANCE_PROFESSION_LIBERALE_PROFILE_RECHECK_2026",
+            "title": "Entrepreneur/profession liberale profile re-check",
+            "publisher": "Current route audit",
+            "url": "https://france-visas.gouv.fr/",
+            "date_accessed": "2026-07-15",
+            "note": "Self-employed/profession-liberale route can be plausible for real freelance activity, but requires route-specific verification before fully matched."
           }
         ],
         "confidence": "medium",
@@ -17303,7 +17698,7 @@
             "FRANCE_UNCERTAIN_DEEP_2026"
           ]
         },
-        "fully_matched": true,
+        "fully_matched": false,
         "full_match_recheck": {
           "reviewed_at": "2026-07-15",
           "status": "checked_required_fields_present",
@@ -17320,6 +17715,23 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": "needs_manual_review",
+          "source_ids": [
+            "FRANCE_PROFESSION_LIBERALE_PROFILE_RECHECK_2026"
+          ],
+          "notes": "Self-employed/profession-liberale route is plausible only with a genuine freelance setup, not a simple foreign-employee remote job."
+        },
+        "audit": {
+          "regular_remote_worker_recheck_2026_second_pass": {
+            "date": "2026-07-15",
+            "updated_fully_matched": false,
+            "reason": "Self-employed/profession-liberale route is plausible only with a genuine freelance setup, not a simple foreign-employee remote job.",
+            "source_ids": [
+              "FRANCE_PROFESSION_LIBERALE_PROFILE_RECHECK_2026"
+            ]
+          }
         }
       }
     },
@@ -17803,7 +18215,7 @@
         "country": "Germany",
         "researched_at": "2026-07-15",
         "valid_for_selection": true,
-        "selection_summary": "Detailed re-check: Germany is valid for genuine freelancers/self-employed professionals, but not as a pure digital nomad visa. A tangible German business/client/economic connection is usually needed.",
+        "selection_summary": "Detailed re-check: Germany is valid for genuine freelancers/self-employed professionals, but not as a pure digital nomad visa. A tangible German business/client/economic connection is usually needed. Careful profile re-check: keep as eligible only for a real self-employed/freelance/business setup; do not treat as fully matched for a simple foreign-employee remote-work profile without filing-level verification.",
         "best_routes": [
           {
             "route_name": "Freelance/self-employment residence permit",
@@ -18260,6 +18672,14 @@
             "url": "https://taxsummaries.pwc.com/germany/individual/other-taxes",
             "date_accessed": "2026-07-15",
             "note": "Used as standardized social-security/other-tax verification source for eligible-country tax audit."
+          },
+          {
+            "id": "GERMANY_FREELANCE_PROFILE_RECHECK_2026",
+            "title": "Freelance/self-employment route profile re-check",
+            "publisher": "Current route audit",
+            "url": "https://www.make-it-in-germany.com/en/visa-residence/types/self-employment",
+            "date_accessed": "2026-07-15",
+            "note": "Freelance/self-employment route can be plausible, but often depends on economic interest, financing and clients/contracts; not enough to treat as fully matched for ordinary foreign remote employment."
           }
         ],
         "confidence": "medium",
@@ -18315,7 +18735,7 @@
             "GERMAN_UNCERTAIN_DEEP_2026"
           ]
         },
-        "fully_matched": true,
+        "fully_matched": false,
         "full_match_recheck": {
           "reviewed_at": "2026-07-15",
           "status": "checked_required_fields_present",
@@ -18332,6 +18752,23 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": "needs_manual_review",
+          "source_ids": [
+            "GERMANY_FREELANCE_PROFILE_RECHECK_2026"
+          ],
+          "notes": "Freelance/self-employment route is plausible only with a genuine freelance setup and route-specific evidence, not a simple foreign-employee remote job."
+        },
+        "audit": {
+          "regular_remote_worker_recheck_2026_second_pass": {
+            "date": "2026-07-15",
+            "updated_fully_matched": false,
+            "reason": "Freelance/self-employment route is plausible only with a genuine freelance setup and route-specific evidence, not a simple foreign-employee remote job.",
+            "source_ids": [
+              "GERMANY_FREELANCE_PROFILE_RECHECK_2026"
+            ]
+          }
         }
       }
     },
@@ -19007,6 +19444,21 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "GR1",
+            "GR2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
         }
       }
     },
@@ -20547,7 +20999,22 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "HU1",
+            "HU2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -21058,7 +21525,22 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "IS1",
+            "IS2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -21735,6 +22217,21 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "ID1",
+            "ID2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
         }
       }
     },
@@ -22851,6 +23348,21 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "IT1",
+            "IT2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
         }
       }
     },
@@ -23503,7 +24015,22 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "JP1",
+            "JP2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -24063,7 +24590,21 @@
             "KAZAKH_UNCERTAIN_DEEP_2026"
           ]
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "KAZAKH_UNCERTAIN_DEEP_2026"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -24566,7 +25107,22 @@
             "KENYA_UNCERTAIN_DEEP_2026"
           ]
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "KENYA_UNCERTAIN_DEEP_2026",
+            "KE1"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -25261,7 +25817,21 @@
             "KYRGYZ_UNCERTAIN_DEEP_2026"
           ]
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "KYRGYZ_UNCERTAIN_DEEP_2026"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -25936,6 +26506,21 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "LV1",
+            "LV2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
         }
       }
     },
@@ -26680,13 +27265,14 @@
       "data": {
         "country": "Lithuania",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Detailed re-check: Lithuania is valid only for startup/business route, not a general digital nomad or foreign-payroll route.",
-        "best_routes": [
+        "valid_for_selection": false,
+        "selection_summary": "Careful re-check 2026: Lithuania should not be eligible for this regular foreign-contract remote-worker profile. The captured route is startup/business/high-skilled oriented, not a general digital-nomad or foreign-contract remote-work residence route.",
+        "best_routes": [],
+        "rejected_routes": [
           {
             "route_name": "Startup visa / business temporary residence",
             "route_type": "startup_or_business_residence",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": false,
@@ -26768,13 +27354,15 @@
             },
             "notes": "Detailed re-check: Lithuania is valid only for startup/business route, not a general digital nomad or foreign-payroll route.",
             "source_ids": [
-              "LITHUA_UNCERTAIN_DEEP_2026"
-            ]
+              "LITHUA_UNCERTAIN_DEEP_2026",
+              "LITHUANIA_STARTUP_VISA_RECHECK_2026"
+            ],
+            "rejection_reason": "Startup/business route, not ordinary foreign-contract remote work."
           },
           {
             "route_name": "Startup/business/high-skilled temporary residence routes",
             "route_type": "startup_or_business_residence",
-            "valid_for_selection": "uncertain",
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": false,
@@ -26858,11 +27446,12 @@
             },
             "notes": "Potentially useful for founder/business profile, not a pure digital-nomad route.",
             "source_ids": [
-              "LT1"
-            ]
+              "LT1",
+              "LITHUANIA_STARTUP_VISA_RECHECK_2026"
+            ],
+            "rejection_reason": "Startup/business route, not ordinary foreign-contract remote work."
           }
         ],
-        "rejected_routes": [],
         "taxes": {
           "income_tax_rate_percent": {
             "value": 32,
@@ -26911,19 +27500,16 @@
           },
           "digital_nomad_taxation": {
             "value": "Lithuania: other_independent_route_not_pure_digital_nomad. 32% top/screening PIT rate. 32% top/screening PIT rate. Indicative top/standard personal income-tax rate for screening only; effective tax depends on residence, deductions, self-employment/company setup and treaties.. Residence: Usually day-count/center-of-interests/residence-permit based; confirm before exceeding 183 days or registering a business locally.. Income scope: Foreign-income treatment is not fully captured; verify whether residents are taxed on worldwide income, remittance basis, or source/territorial rules.. Special regimes: No special digital-nomad/freelancer tax regime confirmed in the current dataset.. Social/payroll: Depends on employment/self-employment/company setup and whether route creates local social-insurance obligations. Tax residence: Usually day-count/center-of-interests/residence-permit based; confirm before exceeding 183 days or registering a business locally.. Foreign income: Foreign-income treatment not captured.. Digital-nomad/special regimes: No special digital-nomad regime confirmed in dataset.. Fixed payments: not_confirmed_in_dataset; No fixed tax/social payment amount is confirmed in the current dataset; do not assume zero. Check official tax/social-security pages before planning.",
-            "route_tax_category": "other_independent_route_not_pure_digital_nomad",
+            "route_tax_category": "not_applicable_no_regular_remote_work_route",
             "top_or_screening_pit_rate_percent": 32,
             "income_tax_display": "32% top/screening PIT rate. Indicative top/standard personal income-tax rate for screening only; effective tax depends on residence, deductions, self-employment/company setup and treaties.. Residence: Usually day-count/center-of-interests/residence-permit based; confirm before exceeding 183 days or registering a business locally.. Income scope: Foreign-income treatment is not fully captured; verify whether residents are taxed on worldwide income, remittance basis, or source/territorial rules.. Special regimes: No special digital-nomad/freelancer tax regime confirmed in the current dataset.. Social/payroll: Depends on employment/self-employment/company setup and whether route creates local social-insurance obligations.",
             "tax_residency_rule": "Usually day-count/center-of-interests/residence-permit based; confirm before exceeding 183 days or registering a business locally.",
-            "foreign_income_treatment": null,
-            "special_digital_nomad_or_inbound_regime": null,
-            "social_security_and_payroll": "Depends on employment/self-employment/company setup and whether route creates local social-insurance obligations.",
+            "foreign_income_treatment": "Not applicable: no confirmed route for ordinary foreign-contract remote work under the selected profile.",
+            "special_digital_nomad_or_inbound_regime": "Not applicable",
+            "social_security_and_payroll": "Not applicable under this profile; depends on a different route if used.",
             "fixed_payments": {
-              "status": "not_confirmed_in_dataset",
-              "social_security_or_payroll": "Depends on employment/self-employment/company setup and whether route creates local social-insurance obligations.",
-              "visa_or_state_fees": "Not captured in tax fields. Visa/application/card fees may still apply and should be checked on the official route page.",
-              "other_fixed_or_transaction_taxes": "No separate fixed/transaction taxes captured in the normalized dataset.",
-              "notes": "No fixed tax/social payment amount is confirmed in the current dataset; do not assume zero. Check official tax/social-security pages before planning."
+              "status": "Not applicable",
+              "notes": "No applicable digital-nomad/regular remote-worker route confirmed."
             },
             "practical_scenarios": {
               "under_tax_residency_threshold": "Often lower risk of residence-based taxation, but local-source income, local work, PE risk, VAT, visa conditions and treaty rules still need review.",
@@ -26932,13 +27518,10 @@
             },
             "confidence": "medium",
             "source_ids": [
-              "LITHUA_UNCERTAIN_DEEP_2026",
-              "LITHUANIA_PWC_PIT_2026",
-              "LITHUANIA_PWC_RESIDENCE_2026",
-              "LITHUANIA_PWC_OTHER_TAXES_2026"
+              "LITHUANIA_STARTUP_VISA_RECHECK_2026"
             ],
             "reviewed_at": "2026-07-15",
-            "notes": "Screening summary for a foreign-contract remote worker/digital nomad. It is not tax advice. Verify official tax, social-security and immigration fee pages before relying on any amount."
+            "notes": "Excluded from eligible set after careful route-profile audit: Startup/business route, not ordinary foreign-contract remote work."
           }
         },
         "timeline": {
@@ -27118,21 +27701,30 @@
             "url": "https://taxsummaries.pwc.com/lithuania/individual/other-taxes",
             "date_accessed": "2026-07-15",
             "note": "Used as standardized social-security/other-tax verification source for eligible-country tax audit."
+          },
+          {
+            "id": "LITHUANIA_STARTUP_VISA_RECHECK_2026",
+            "title": "Startup Visa Lithuania",
+            "publisher": "Startup Visa Lithuania / Lithuanian startup migration program",
+            "url": "https://startupvisalithuania.com/",
+            "date_accessed": "2026-07-15",
+            "note": "Startup route for innovative founders/business relocation, not a general remote-worker/digital-nomad route."
           }
         ],
         "confidence": "medium",
         "research_notes": "Chat/web batch pass; official portal cleanup recommended before filing.",
         "settlement_track": {
-          "classification": "possible_with_conversion",
+          "classification": "not_valid_no_regular_remote_work_route",
           "can_lead_to_citizenship_from_this_route": "uncertain",
           "citizenship_track_strength": "medium",
           "requires_switch_to_another_status": true,
           "nomad_only_warning": null,
           "summary": "Detailed re-check: Lithuania is valid only for startup/business route, not a general digital nomad or foreign-payroll route.",
           "source_ids": [
-            "LITHUA_UNCERTAIN_DEEP_2026"
+            "LITHUANIA_STARTUP_VISA_RECHECK_2026"
           ],
-          "reviewed_at": "2026-07-15"
+          "reviewed_at": "2026-07-15",
+          "notes": "Startup/business route, not ordinary foreign-contract remote work."
         },
         "child_citizenship": {
           "birthright_citizenship": {
@@ -27173,7 +27765,7 @@
             "LITHUA_UNCERTAIN_DEEP_2026"
           ]
         },
-        "fully_matched": true,
+        "fully_matched": false,
         "full_match_recheck": {
           "reviewed_at": "2026-07-15",
           "status": "checked_required_fields_present",
@@ -27192,11 +27784,22 @@
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
         },
         "regular_foreign_contract_remote_work_fit": {
-          "value": "needs_manual_review",
+          "value": false,
           "source_ids": [
-            "LITHUA_UNCERTAIN_DEEP_2026"
+            "LITHUANIA_STARTUP_VISA_RECHECK_2026"
           ],
-          "notes": "Route may be independent but not necessarily a regular foreign-contract remote-work route. Recheck under stricter profile before treating as fully matched."
+          "notes": "Startup/business route, not ordinary foreign-contract remote work."
+        },
+        "audit": {
+          "regular_remote_worker_recheck_2026": {
+            "date": "2026-07-15",
+            "previous_status": "eligible_or_manual_review_route",
+            "updated_valid_for_selection": false,
+            "reason": "Startup/business route, not ordinary foreign-contract remote work.",
+            "source_ids": [
+              "LITHUANIA_STARTUP_VISA_RECHECK_2026"
+            ]
+          }
         }
       }
     },
@@ -28151,7 +28754,22 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "MY1",
+            "MY2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -28975,7 +29593,23 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "MT1",
+            "MT2",
+            "MT3"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -29798,7 +30432,23 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "MU1",
+            "MU2",
+            "MU3"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -30326,6 +30976,21 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "MX1",
+            "MX2"
+          ],
+          "notes": "Eligible under current dataset only if used as a genuine self-sponsored/freelance/foreign-income setup without local employer sponsorship; not a founder/investor/golden route."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
         }
       }
     },
@@ -30975,7 +31640,22 @@
             "MOLDOV_UNCERTAIN_DEEP_2026"
           ]
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "MOLDOV_UNCERTAIN_DEEP_2026",
+            "MD1"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -31780,7 +32460,22 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "ME1",
+            "ME2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -32704,7 +33399,22 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "NA1",
+            "NA2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -33007,13 +33717,14 @@
       "data": {
         "country": "Netherlands",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Detailed re-check: Netherlands is valid for startup/self-employed applicants with Dutch business basis/facilitator/points. Not valid as simple foreign employee digital nomad route.",
-        "best_routes": [
+        "valid_for_selection": false,
+        "selection_summary": "Careful re-check 2026: Netherlands should not be eligible for this regular foreign-contract remote-worker profile. The self-employed/freelance residence route requires essential Dutch economic interest and, for freelancers, commissions in the Netherlands; the startup path is a founder route. That is not ordinary foreign-client remote work.",
+        "best_routes": [],
+        "rejected_routes": [
           {
             "route_name": "Startup visa / self-employed residence permit",
             "route_type": "startup_or_self_employed_residence",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": false,
@@ -33095,11 +33806,12 @@
             },
             "notes": "Detailed re-check: Netherlands is valid for startup/self-employed applicants with Dutch business basis/facilitator/points. Not valid as simple foreign employee digital nomad route.",
             "source_ids": [
-              "NETHER_UNCERTAIN_DEEP_2026"
-            ]
+              "NETHER_UNCERTAIN_DEEP_2026",
+              "NETHERLANDS_IND_SELF_EMPLOYED_RECHECK_2026"
+            ],
+            "rejection_reason": "Freelancer/self-employed route requires Dutch economic interest and Dutch commissions; startup path is founder-oriented."
           }
         ],
-        "rejected_routes": [],
         "taxes": {
           "income_tax_rate_percent": {
             "value": 49.5,
@@ -33148,19 +33860,16 @@
           },
           "digital_nomad_taxation": {
             "value": "Netherlands: freelance_or_self_employed_residence. 49.5% top/screening PIT rate. 49.5% top/screening PIT rate. Indicative top/standard personal income-tax rate for screening only; effective tax depends on residence, deductions, self-employment/company setup and treaties.. Residence: Usually day-count/center-of-interests/residence-permit based; confirm before exceeding 183 days or registering a business locally.. Income scope: Foreign-income treatment is not fully captured; verify whether residents are taxed on worldwide income, remittance basis, or source/territorial rules.. Special regimes: No special digital-nomad/freelancer tax regime confirmed in the current dataset.. Social/payroll: Depends on employment/self-employment/company setup and whether route creates local social-insurance obligations. Tax residence: Usually day-count/center-of-interests/residence-permit based; confirm before exceeding 183 days or registering a business locally.. Foreign income: Foreign-income treatment not captured.. Digital-nomad/special regimes: No special digital-nomad regime confirmed in dataset.. Fixed payments: possible_or_route_dependent_fixed_payments; Fixed payments may exist, but treatment depends on residence, self-employment registration, local payroll, health insurance and whether income is local-source or foreign-source.",
-            "route_tax_category": "freelance_or_self_employed_residence",
+            "route_tax_category": "not_applicable_no_regular_remote_work_route",
             "top_or_screening_pit_rate_percent": 49.5,
             "income_tax_display": "49.5% top/screening PIT rate. Indicative top/standard personal income-tax rate for screening only; effective tax depends on residence, deductions, self-employment/company setup and treaties.. Residence: Usually day-count/center-of-interests/residence-permit based; confirm before exceeding 183 days or registering a business locally.. Income scope: Foreign-income treatment is not fully captured; verify whether residents are taxed on worldwide income, remittance basis, or source/territorial rules.. Special regimes: No special digital-nomad/freelancer tax regime confirmed in the current dataset.. Social/payroll: Depends on employment/self-employment/company setup and whether route creates local social-insurance obligations.",
             "tax_residency_rule": "Usually day-count/center-of-interests/residence-permit based; confirm before exceeding 183 days or registering a business locally.",
-            "foreign_income_treatment": null,
-            "special_digital_nomad_or_inbound_regime": null,
-            "social_security_and_payroll": "Depends on employment/self-employment/company setup and whether route creates local social-insurance obligations.",
+            "foreign_income_treatment": "Not applicable: no confirmed route for ordinary foreign-contract remote work under the selected profile.",
+            "special_digital_nomad_or_inbound_regime": "Not applicable",
+            "social_security_and_payroll": "Not applicable under this profile; depends on a different route if used.",
             "fixed_payments": {
-              "status": "possible_or_route_dependent_fixed_payments",
-              "social_security_or_payroll": "Depends on employment/self-employment/company setup and whether route creates local social-insurance obligations.",
-              "visa_or_state_fees": "Not captured in tax fields. Visa/application/card fees may still apply and should be checked on the official route page.",
-              "other_fixed_or_transaction_taxes": "No separate fixed/transaction taxes captured in the normalized dataset.",
-              "notes": "Fixed payments may exist, but treatment depends on residence, self-employment registration, local payroll, health insurance and whether income is local-source or foreign-source."
+              "status": "Not applicable",
+              "notes": "No applicable digital-nomad/regular remote-worker route confirmed."
             },
             "practical_scenarios": {
               "under_tax_residency_threshold": "Often lower risk of residence-based taxation, but local-source income, local work, PE risk, VAT, visa conditions and treaty rules still need review.",
@@ -33169,13 +33878,10 @@
             },
             "confidence": "medium",
             "source_ids": [
-              "NETHER_UNCERTAIN_DEEP_2026",
-              "NETHERLANDS_PWC_PIT_2026",
-              "NETHERLANDS_PWC_RESIDENCE_2026",
-              "NETHERLANDS_PWC_OTHER_TAXES_2026"
+              "NETHERLANDS_IND_SELF_EMPLOYED_RECHECK_2026"
             ],
             "reviewed_at": "2026-07-15",
-            "notes": "Screening summary for a foreign-contract remote worker/digital nomad. It is not tax advice. Verify official tax, social-security and immigration fee pages before relying on any amount."
+            "notes": "Excluded from eligible set after careful route-profile audit: Freelancer/self-employed route requires Dutch economic interest and Dutch commissions; startup path is founder-oriented."
           }
         },
         "timeline": {
@@ -33363,21 +34069,30 @@
             "url": "https://taxsummaries.pwc.com/netherlands/individual/other-taxes",
             "date_accessed": "2026-07-15",
             "note": "Used as standardized social-security/other-tax verification source for eligible-country tax audit."
+          },
+          {
+            "id": "NETHERLANDS_IND_SELF_EMPLOYED_RECHECK_2026",
+            "title": "Residence permit self-employed person",
+            "publisher": "Immigration and Naturalisation Service (IND), Netherlands",
+            "url": "https://ind.nl/en/residence-permits/work/residence-permit-self-employed-person",
+            "date_accessed": "2026-07-15",
+            "note": "Official IND page requires essential interest to the Dutch economy and says freelancers must have one or more commissions in the Netherlands."
           }
         ],
         "confidence": "medium",
         "research_notes": "Chat/web batch pass; official portal cleanup recommended before filing.",
         "settlement_track": {
-          "classification": "possible_with_conversion",
+          "classification": "not_valid_no_regular_remote_work_route",
           "can_lead_to_citizenship_from_this_route": "uncertain",
           "citizenship_track_strength": "medium",
           "requires_switch_to_another_status": true,
           "nomad_only_warning": null,
           "summary": "Detailed re-check: Netherlands is valid for startup/self-employed applicants with Dutch business basis/facilitator/points. Not valid as simple foreign employee digital nomad route.",
           "source_ids": [
-            "NETHER_UNCERTAIN_DEEP_2026"
+            "NETHERLANDS_IND_SELF_EMPLOYED_RECHECK_2026"
           ],
-          "reviewed_at": "2026-07-15"
+          "reviewed_at": "2026-07-15",
+          "notes": "Freelancer/self-employed route requires Dutch economic interest and Dutch commissions; startup path is founder-oriented."
         },
         "child_citizenship": {
           "birthright_citizenship": {
@@ -33418,7 +34133,7 @@
             "NETHER_UNCERTAIN_DEEP_2026"
           ]
         },
-        "fully_matched": true,
+        "fully_matched": false,
         "full_match_recheck": {
           "reviewed_at": "2026-07-15",
           "status": "checked_required_fields_present",
@@ -33435,6 +34150,23 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": false,
+          "source_ids": [
+            "NETHERLANDS_IND_SELF_EMPLOYED_RECHECK_2026"
+          ],
+          "notes": "Freelancer/self-employed route requires Dutch economic interest and Dutch commissions; startup path is founder-oriented."
+        },
+        "audit": {
+          "regular_remote_worker_recheck_2026_second_pass": {
+            "date": "2026-07-15",
+            "updated_valid_for_selection": false,
+            "reason": "Freelancer/self-employed route requires Dutch economic interest and Dutch commissions; startup path is founder-oriented.",
+            "source_ids": [
+              "NETHERLANDS_IND_SELF_EMPLOYED_RECHECK_2026"
+            ]
+          }
         }
       }
     },
@@ -34378,13 +35110,14 @@
       "data": {
         "country": "Norway",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Detailed re-check: Norway is valid only for genuine self-employed/independent contractor cases, often with Norwegian business relevance/client basis. Not a broad nomad route.",
-        "best_routes": [
+        "valid_for_selection": false,
+        "selection_summary": "Careful re-check 2026: Norway should not be eligible for this regular foreign-contract remote-worker profile. The captured company-abroad/self-employed route requires an assignment/contract with a business in Norway and does not count toward permanent residence; UDI also restricts remote work outside the granted assignment.",
+        "best_routes": [],
+        "rejected_routes": [
           {
             "route_name": "Self-employed / independent contractor residence",
             "route_type": "self_employed_residence",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": false,
@@ -34466,13 +35199,15 @@
             },
             "notes": "Detailed re-check: Norway is valid only for genuine self-employed/independent contractor cases, often with Norwegian business relevance/client basis. Not a broad nomad route.",
             "source_ids": [
-              "NORWAY_UNCERTAIN_DEEP_2026"
-            ]
+              "NORWAY_UNCERTAIN_DEEP_2026",
+              "NORWAY_UDI_SELF_EMPLOYED_RECHECK_2026"
+            ],
+            "rejection_reason": "Requires Norwegian business assignment/contract; not ordinary foreign-client remote work."
           },
           {
             "route_name": "Self-employed person with company abroad / independent contractor pathways",
             "route_type": "self_employed_residence",
-            "valid_for_selection": "uncertain",
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": false,
@@ -34556,11 +35291,12 @@
             },
             "notes": "May fit a contractor with Norwegian clients or a real business basis; not a clean digital nomad visa.",
             "source_ids": [
-              "NO1"
-            ]
+              "NO1",
+              "NORWAY_UDI_SELF_EMPLOYED_RECHECK_2026"
+            ],
+            "rejection_reason": "Requires Norwegian business assignment/contract; not ordinary foreign-client remote work."
           }
         ],
-        "rejected_routes": [],
         "taxes": {
           "income_tax_rate_percent": {
             "value": 38,
@@ -34609,19 +35345,16 @@
           },
           "digital_nomad_taxation": {
             "value": "Norway: freelance_or_self_employed_residence. 38% top/screening PIT rate. 38% top/screening PIT rate. Indicative top/standard personal income-tax rate for screening only; effective tax depends on residence, deductions, self-employment/company setup and treaties.. Residence: Usually day-count/center-of-interests/residence-permit based; confirm before exceeding 183 days or registering a business locally.. Income scope: Foreign-income treatment is not fully captured; verify whether residents are taxed on worldwide income, remittance basis, or source/territorial rules.. Special regimes: No special digital-nomad/freelancer tax regime confirmed in the current dataset.. Social/payroll: Depends on employment/self-employment/company setup and whether route creates local social-insurance obligations. Tax residence: Usually day-count/center-of-interests/residence-permit based; confirm before exceeding 183 days or registering a business locally.. Foreign income: Foreign-income treatment not captured.. Digital-nomad/special regimes: No special digital-nomad regime confirmed in dataset.. Fixed payments: not_confirmed_in_dataset; No fixed tax/social payment amount is confirmed in the current dataset; do not assume zero. Check official tax/social-security pages before planning.",
-            "route_tax_category": "freelance_or_self_employed_residence",
+            "route_tax_category": "not_applicable_no_regular_remote_work_route",
             "top_or_screening_pit_rate_percent": 38,
             "income_tax_display": "38% top/screening PIT rate. Indicative top/standard personal income-tax rate for screening only; effective tax depends on residence, deductions, self-employment/company setup and treaties.. Residence: Usually day-count/center-of-interests/residence-permit based; confirm before exceeding 183 days or registering a business locally.. Income scope: Foreign-income treatment is not fully captured; verify whether residents are taxed on worldwide income, remittance basis, or source/territorial rules.. Special regimes: No special digital-nomad/freelancer tax regime confirmed in the current dataset.. Social/payroll: Depends on employment/self-employment/company setup and whether route creates local social-insurance obligations.",
             "tax_residency_rule": "Usually day-count/center-of-interests/residence-permit based; confirm before exceeding 183 days or registering a business locally.",
-            "foreign_income_treatment": null,
-            "special_digital_nomad_or_inbound_regime": null,
-            "social_security_and_payroll": "Depends on employment/self-employment/company setup and whether route creates local social-insurance obligations.",
+            "foreign_income_treatment": "Not applicable: no confirmed route for ordinary foreign-contract remote work under the selected profile.",
+            "special_digital_nomad_or_inbound_regime": "Not applicable",
+            "social_security_and_payroll": "Not applicable under this profile; depends on a different route if used.",
             "fixed_payments": {
-              "status": "not_confirmed_in_dataset",
-              "social_security_or_payroll": "Depends on employment/self-employment/company setup and whether route creates local social-insurance obligations.",
-              "visa_or_state_fees": "Not captured in tax fields. Visa/application/card fees may still apply and should be checked on the official route page.",
-              "other_fixed_or_transaction_taxes": "No separate fixed/transaction taxes captured in the normalized dataset.",
-              "notes": "No fixed tax/social payment amount is confirmed in the current dataset; do not assume zero. Check official tax/social-security pages before planning."
+              "status": "Not applicable",
+              "notes": "No applicable digital-nomad/regular remote-worker route confirmed."
             },
             "practical_scenarios": {
               "under_tax_residency_threshold": "Often lower risk of residence-based taxation, but local-source income, local work, PE risk, VAT, visa conditions and treaty rules still need review.",
@@ -34630,13 +35363,10 @@
             },
             "confidence": "medium",
             "source_ids": [
-              "NORWAY_UNCERTAIN_DEEP_2026",
-              "NORWAY_PWC_PIT_2026",
-              "NORWAY_PWC_RESIDENCE_2026",
-              "NORWAY_PWC_OTHER_TAXES_2026"
+              "NORWAY_UDI_SELF_EMPLOYED_RECHECK_2026"
             ],
             "reviewed_at": "2026-07-15",
-            "notes": "Screening summary for a foreign-contract remote worker/digital nomad. It is not tax advice. Verify official tax, social-security and immigration fee pages before relying on any amount."
+            "notes": "Excluded from eligible set after careful route-profile audit: Requires Norwegian business assignment/contract; not ordinary foreign-client remote work."
           }
         },
         "timeline": {
@@ -34816,21 +35546,30 @@
             "url": "https://taxsummaries.pwc.com/norway/individual/other-taxes",
             "date_accessed": "2026-07-15",
             "note": "Used as standardized social-security/other-tax verification source for eligible-country tax audit."
+          },
+          {
+            "id": "NORWAY_UDI_SELF_EMPLOYED_RECHECK_2026",
+            "title": "Want to apply: Skilled workers",
+            "publisher": "Norwegian Directorate of Immigration (UDI)",
+            "url": "https://www.udi.no/en/want-to-apply/work-immigration/skilled-workers/?c=usa",
+            "date_accessed": "2026-07-15",
+            "note": "Official UDI page requires a Norwegian business assignment for company-abroad/self-employed route and states remote work is not allowed unless part of the granted job."
           }
         ],
         "confidence": "medium",
         "research_notes": "Chat/web batch pass; official portal cleanup recommended before filing.",
         "settlement_track": {
-          "classification": "possible_with_conversion",
+          "classification": "not_valid_no_regular_remote_work_route",
           "can_lead_to_citizenship_from_this_route": "uncertain",
           "citizenship_track_strength": "medium",
           "requires_switch_to_another_status": true,
           "nomad_only_warning": null,
           "summary": "Detailed re-check: Norway is valid only for genuine self-employed/independent contractor cases, often with Norwegian business relevance/client basis. Not a broad nomad route.",
           "source_ids": [
-            "NORWAY_UNCERTAIN_DEEP_2026"
+            "NORWAY_UDI_SELF_EMPLOYED_RECHECK_2026"
           ],
-          "reviewed_at": "2026-07-15"
+          "reviewed_at": "2026-07-15",
+          "notes": "Requires Norwegian business assignment/contract; not ordinary foreign-client remote work."
         },
         "child_citizenship": {
           "birthright_citizenship": {
@@ -34871,7 +35610,7 @@
             "NORWAY_UNCERTAIN_DEEP_2026"
           ]
         },
-        "fully_matched": true,
+        "fully_matched": false,
         "full_match_recheck": {
           "reviewed_at": "2026-07-15",
           "status": "checked_required_fields_present",
@@ -34888,6 +35627,23 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": false,
+          "source_ids": [
+            "NORWAY_UDI_SELF_EMPLOYED_RECHECK_2026"
+          ],
+          "notes": "Requires Norwegian business assignment/contract; not ordinary foreign-client remote work."
+        },
+        "audit": {
+          "regular_remote_worker_recheck_2026_second_pass": {
+            "date": "2026-07-15",
+            "updated_valid_for_selection": false,
+            "reason": "Requires Norwegian business assignment/contract; not ordinary foreign-client remote work.",
+            "source_ids": [
+              "NORWAY_UDI_SELF_EMPLOYED_RECHECK_2026"
+            ]
+          }
         }
       }
     },
@@ -35854,7 +36610,22 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "PA1",
+            "PA2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -36010,13 +36781,14 @@
       "data": {
         "country": "Paraguay",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Rechecked from false: Paraguay now has a reported 2026 Investor Pass / golden visa giving fast-track permanent residence by investment. This is not a digital-nomad route, but it is independent and does not require a local employer, so it qualifies as an investor/entrepreneur-style route if the applicant has capital.",
-        "best_routes": [
+        "valid_for_selection": false,
+        "selection_summary": "Careful re-check 2026: Paraguay should not be eligible for this regular foreign-contract remote-worker profile. The current route captured is the Investor Pass / golden visa by investment, not a digital-nomad or ordinary foreign-client remote-work route.",
+        "best_routes": [],
+        "rejected_routes": [
           {
             "route_name": "Paraguay Investor Pass / residence by investment",
             "route_type": "investor_residence",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": false,
@@ -36104,11 +36876,12 @@
             },
             "notes": "Rechecked from false: Paraguay now has a reported 2026 Investor Pass / golden visa giving fast-track permanent residence by investment. This is not a digital-nomad route, but it is independent and does not require a local employer, so it qualifies as an investor/entrepreneur-style route if the applicant has capital.",
             "source_ids": [
-              "PARAGU_FALSE_RECHECK_2026"
-            ]
+              "PARAGU_FALSE_RECHECK_2026",
+              "PARAGUAY_INVESTOR_PASS_RECHECK_2026"
+            ],
+            "rejection_reason": "Investor/golden visa route, not ordinary foreign-contract remote work."
           }
         ],
-        "rejected_routes": [],
         "taxes": {
           "income_tax_rate_percent": {
             "value": 10,
@@ -36157,19 +36930,16 @@
           },
           "digital_nomad_taxation": {
             "value": "Paraguay: other_independent_route_not_pure_digital_nomad. 10% top/screening PIT rate. 10% top/screening PIT rate. Indicative top/standard rate for screening; exact treatment depends on tax residence and investment/business structure.. Residence: Tax residence depends on day count, residence status, center of interests and local rules; verify before relocating or investing.. Income scope: Foreign-income treatment is not fully captured; verify whether residents are taxed on worldwide income, remittance basis, or source/territorial rules.. Special regimes: No special digital-nomad/freelancer tax regime confirmed in the current dataset.. Social/payroll: Depends on investment/business/self-employment structure; verify locally. Tax residence: Tax residence depends on day count, residence status, center of interests and local rules; verify before relocating or investing.. Foreign income: Foreign-income treatment not captured.. Digital-nomad/special regimes: No special digital-nomad regime confirmed in dataset.. Fixed payments: not_confirmed_in_dataset; No fixed tax/social payment amount is confirmed in the current dataset; do not assume zero. Check official tax/social-security pages before planning.",
-            "route_tax_category": "other_independent_route_not_pure_digital_nomad",
+            "route_tax_category": "not_applicable_no_regular_remote_work_route",
             "top_or_screening_pit_rate_percent": 10,
             "income_tax_display": "10% top/screening PIT rate. Indicative top/standard rate for screening; exact treatment depends on tax residence and investment/business structure.. Residence: Tax residence depends on day count, residence status, center of interests and local rules; verify before relocating or investing.. Income scope: Foreign-income treatment is not fully captured; verify whether residents are taxed on worldwide income, remittance basis, or source/territorial rules.. Special regimes: No special digital-nomad/freelancer tax regime confirmed in the current dataset.. Social/payroll: Depends on investment/business/self-employment structure; verify locally.",
             "tax_residency_rule": "Tax residence depends on day count, residence status, center of interests and local rules; verify before relocating or investing.",
-            "foreign_income_treatment": null,
-            "special_digital_nomad_or_inbound_regime": null,
-            "social_security_and_payroll": "Depends on investment/business/self-employment structure; verify locally.",
+            "foreign_income_treatment": "Not applicable: no confirmed route for ordinary foreign-contract remote work under the selected profile.",
+            "special_digital_nomad_or_inbound_regime": "Not applicable",
+            "social_security_and_payroll": "Not applicable under this profile; depends on a different route if used.",
             "fixed_payments": {
-              "status": "not_confirmed_in_dataset",
-              "social_security_or_payroll": "Depends on investment/business/self-employment structure; verify locally.",
-              "visa_or_state_fees": "Not captured in tax fields. Visa/application/card fees may still apply and should be checked on the official route page.",
-              "other_fixed_or_transaction_taxes": "No separate fixed/transaction taxes captured in the normalized dataset.",
-              "notes": "No fixed tax/social payment amount is confirmed in the current dataset; do not assume zero. Check official tax/social-security pages before planning."
+              "status": "Not applicable",
+              "notes": "No applicable digital-nomad/regular remote-worker route confirmed."
             },
             "practical_scenarios": {
               "under_tax_residency_threshold": "Often lower risk of residence-based taxation, but local-source income, local work, PE risk, VAT, visa conditions and treaty rules still need review.",
@@ -36178,13 +36948,10 @@
             },
             "confidence": "medium",
             "source_ids": [
-              "PARAGU_FALSE_RECHECK_2026",
-              "PARAGUAY_PWC_PIT_2026",
-              "PARAGUAY_PWC_RESIDENCE_2026",
-              "PARAGUAY_PWC_OTHER_TAXES_2026"
+              "PARAGUAY_INVESTOR_PASS_RECHECK_2026"
             ],
             "reviewed_at": "2026-07-15",
-            "notes": "Screening summary for a foreign-contract remote worker/digital nomad. It is not tax advice. Verify official tax, social-security and immigration fee pages before relying on any amount."
+            "notes": "Excluded from eligible set after careful route-profile audit: Investor/golden visa route, not ordinary foreign-contract remote work."
           }
         },
         "timeline": {
@@ -36358,21 +37125,30 @@
             "url": "https://taxsummaries.pwc.com/paraguay/individual/other-taxes",
             "date_accessed": "2026-07-15",
             "note": "Used as standardized social-security/other-tax verification source for eligible-country tax audit."
+          },
+          {
+            "id": "PARAGUAY_INVESTOR_PASS_RECHECK_2026",
+            "title": "Paraguay Investor Pass / Golden Visa reporting",
+            "publisher": "Current 2026 Paraguay investor-pass reporting",
+            "url": "https://m.economictimes.com/nri/migrate/paraguay-launches-golden-visa-offering-permanent-residency-to-foreign-investors/articleshow/130826883.cms",
+            "date_accessed": "2026-07-15",
+            "note": "Current reporting describes an investor/golden visa route, not a remote-worker route."
           }
         ],
         "confidence": "medium",
         "research_notes": "Chat/web batch pass; no valid route found in current source sweep.",
         "settlement_track": {
-          "classification": "possible_with_conversion",
+          "classification": "not_valid_no_regular_remote_work_route",
           "can_lead_to_citizenship_from_this_route": "uncertain",
           "citizenship_track_strength": "medium",
           "requires_switch_to_another_status": true,
           "nomad_only_warning": null,
           "summary": "Rechecked from false: Paraguay now has a reported 2026 Investor Pass / golden visa giving fast-track permanent residence by investment. This is not a digital-nomad route, but it is independent and does not require a local employer, so it qualifies as an investor/entrepreneur-style route if the applicant has capital.",
           "source_ids": [
-            "PARAGU_FALSE_RECHECK_2026"
+            "PARAGUAY_INVESTOR_PASS_RECHECK_2026"
           ],
-          "reviewed_at": "2026-07-15"
+          "reviewed_at": "2026-07-15",
+          "notes": "Investor/golden visa route, not ordinary foreign-contract remote work."
         },
         "child_citizenship": {
           "birthright_citizenship": {
@@ -36413,7 +37189,7 @@
             "PARAGU_FALSE_RECHECK_2026"
           ]
         },
-        "fully_matched": true,
+        "fully_matched": false,
         "full_match_recheck": {
           "reviewed_at": "2026-07-15",
           "status": "checked_required_fields_present",
@@ -36432,11 +37208,22 @@
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
         },
         "regular_foreign_contract_remote_work_fit": {
-          "value": "needs_manual_review",
+          "value": false,
           "source_ids": [
-            "PARAGU_FALSE_RECHECK_2026"
+            "PARAGUAY_INVESTOR_PASS_RECHECK_2026"
           ],
-          "notes": "Route may be independent but not necessarily a regular foreign-contract remote-work route. Recheck under stricter profile before treating as fully matched."
+          "notes": "Investor/golden visa route, not ordinary foreign-contract remote work."
+        },
+        "audit": {
+          "regular_remote_worker_recheck_2026": {
+            "date": "2026-07-15",
+            "previous_status": "eligible_or_manual_review_route",
+            "updated_valid_for_selection": false,
+            "reason": "Investor/golden visa route, not ordinary foreign-contract remote work.",
+            "source_ids": [
+              "PARAGUAY_INVESTOR_PASS_RECHECK_2026"
+            ]
+          }
         }
       }
     },
@@ -37749,6 +38536,21 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "PT1",
+            "PT2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
         }
       }
     },
@@ -37758,13 +38560,14 @@
       "data": {
         "country": "Qatar",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Rechecked from false: Qatar launched a 10-year golden visa/residency route for entrepreneurs and executives, with investor/property routes also reported. It is independent but not a remote-worker visa and not a realistic citizenship route.",
-        "best_routes": [
+        "valid_for_selection": false,
+        "selection_summary": "Careful re-check 2026: Qatar should not be eligible for this regular foreign-contract remote-worker profile. The captured route is golden/entrepreneur/executive/investor residence, not a digital-nomad or foreign-client remote-work route.",
+        "best_routes": [],
+        "rejected_routes": [
           {
             "route_name": "10-year Golden Visa for entrepreneurs / executives / investor residence",
             "route_type": "golden_residence_entrepreneur_or_investor",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": false,
@@ -37852,11 +38655,12 @@
             },
             "notes": "Rechecked from false: Qatar launched a 10-year golden visa/residency route for entrepreneurs and executives, with investor/property routes also reported. It is independent but not a remote-worker visa and not a realistic citizenship route.",
             "source_ids": [
-              "QATAR_FALSE_RECHECK_2026"
-            ]
+              "QATAR_FALSE_RECHECK_2026",
+              "QATAR_GOLDEN_RESIDENCE_RECHECK_2026"
+            ],
+            "rejection_reason": "Golden/entrepreneur/investor route, not ordinary foreign-contract remote work."
           }
         ],
-        "rejected_routes": [],
         "taxes": {
           "income_tax_rate_percent": {
             "value": 0,
@@ -37905,19 +38709,16 @@
           },
           "digital_nomad_taxation": {
             "value": "Qatar: other_independent_route_not_pure_digital_nomad. 0% top/screening PIT rate. 0% top/screening PIT rate. Indicative top/standard rate for screening; exact treatment depends on tax residence and investment/business structure.. Residence: Tax residence depends on day count, residence status, center of interests and local rules; verify before relocating or investing.. Income scope: Foreign-income treatment is not fully captured; verify whether residents are taxed on worldwide income, remittance basis, or source/territorial rules.. Special regimes: No special digital-nomad/freelancer tax regime confirmed in the current dataset.. Social/payroll: Depends on investment/business/self-employment structure; verify locally. Tax residence: Tax residence depends on day count, residence status, center of interests and local rules; verify before relocating or investing.. Foreign income: Foreign-income treatment not captured.. Digital-nomad/special regimes: No special digital-nomad regime confirmed in dataset.. Fixed payments: not_confirmed_in_dataset; No fixed tax/social payment amount is confirmed in the current dataset; do not assume zero. Check official tax/social-security pages before planning.",
-            "route_tax_category": "other_independent_route_not_pure_digital_nomad",
+            "route_tax_category": "not_applicable_no_regular_remote_work_route",
             "top_or_screening_pit_rate_percent": 0,
             "income_tax_display": "0% top/screening PIT rate. Indicative top/standard rate for screening; exact treatment depends on tax residence and investment/business structure.. Residence: Tax residence depends on day count, residence status, center of interests and local rules; verify before relocating or investing.. Income scope: Foreign-income treatment is not fully captured; verify whether residents are taxed on worldwide income, remittance basis, or source/territorial rules.. Special regimes: No special digital-nomad/freelancer tax regime confirmed in the current dataset.. Social/payroll: Depends on investment/business/self-employment structure; verify locally.",
             "tax_residency_rule": "Tax residence depends on day count, residence status, center of interests and local rules; verify before relocating or investing.",
-            "foreign_income_treatment": null,
-            "special_digital_nomad_or_inbound_regime": null,
-            "social_security_and_payroll": "Depends on investment/business/self-employment structure; verify locally.",
+            "foreign_income_treatment": "Not applicable: no confirmed route for ordinary foreign-contract remote work under the selected profile.",
+            "special_digital_nomad_or_inbound_regime": "Not applicable",
+            "social_security_and_payroll": "Not applicable under this profile; depends on a different route if used.",
             "fixed_payments": {
-              "status": "not_confirmed_in_dataset",
-              "social_security_or_payroll": "Depends on investment/business/self-employment structure; verify locally.",
-              "visa_or_state_fees": "Not captured in tax fields. Visa/application/card fees may still apply and should be checked on the official route page.",
-              "other_fixed_or_transaction_taxes": "No separate fixed/transaction taxes captured in the normalized dataset.",
-              "notes": "No fixed tax/social payment amount is confirmed in the current dataset; do not assume zero. Check official tax/social-security pages before planning."
+              "status": "Not applicable",
+              "notes": "No applicable digital-nomad/regular remote-worker route confirmed."
             },
             "practical_scenarios": {
               "under_tax_residency_threshold": "Often lower risk of residence-based taxation, but local-source income, local work, PE risk, VAT, visa conditions and treaty rules still need review.",
@@ -37926,13 +38727,10 @@
             },
             "confidence": "medium",
             "source_ids": [
-              "QATAR_FALSE_RECHECK_2026",
-              "QATAR_PWC_PIT_2026",
-              "QATAR_PWC_RESIDENCE_2026",
-              "QATAR_PWC_OTHER_TAXES_2026"
+              "QATAR_GOLDEN_RESIDENCE_RECHECK_2026"
             ],
             "reviewed_at": "2026-07-15",
-            "notes": "Screening summary for a foreign-contract remote worker/digital nomad. It is not tax advice. Verify official tax, social-security and immigration fee pages before relying on any amount."
+            "notes": "Excluded from eligible set after careful route-profile audit: Golden/entrepreneur/investor route, not ordinary foreign-contract remote work."
           }
         },
         "timeline": {
@@ -38113,21 +38911,30 @@
             "url": "https://taxsummaries.pwc.com/qatar/individual/other-taxes",
             "date_accessed": "2026-07-15",
             "note": "Used as standardized social-security/other-tax verification source for eligible-country tax audit."
+          },
+          {
+            "id": "QATAR_GOLDEN_RESIDENCE_RECHECK_2026",
+            "title": "Qatar golden/residency route re-check",
+            "publisher": "Current 2026 route audit",
+            "url": "https://taxsummaries.pwc.com/qatar/individual/residence",
+            "date_accessed": "2026-07-15",
+            "note": "Dataset route is golden residence for entrepreneurs/executives/investors, not ordinary foreign-contract remote work."
           }
         ],
         "confidence": "medium",
         "research_notes": "Chat/web batch pass; no valid route found in current source sweep.",
         "settlement_track": {
-          "classification": "weak_or_uncertain_citizenship_track",
+          "classification": "not_valid_no_regular_remote_work_route",
           "can_lead_to_citizenship_from_this_route": false,
           "citizenship_track_strength": "low",
           "requires_switch_to_another_status": true,
           "nomad_only_warning": null,
           "summary": "Rechecked from false: Qatar launched a 10-year golden visa/residency route for entrepreneurs and executives, with investor/property routes also reported. It is independent but not a remote-worker visa and not a realistic citizenship route.",
           "source_ids": [
-            "QATAR_FALSE_RECHECK_2026"
+            "QATAR_GOLDEN_RESIDENCE_RECHECK_2026"
           ],
-          "reviewed_at": "2026-07-15"
+          "reviewed_at": "2026-07-15",
+          "notes": "Golden/entrepreneur/investor route, not ordinary foreign-contract remote work."
         },
         "child_citizenship": {
           "birthright_citizenship": {
@@ -38170,11 +38977,22 @@
         },
         "fully_matched": false,
         "regular_foreign_contract_remote_work_fit": {
-          "value": "needs_manual_review",
+          "value": false,
           "source_ids": [
-            "QATAR_FALSE_RECHECK_2026"
+            "QATAR_GOLDEN_RESIDENCE_RECHECK_2026"
           ],
-          "notes": "Route may be independent but not necessarily a regular foreign-contract remote-work route. Recheck under stricter profile before treating as fully matched."
+          "notes": "Golden/entrepreneur/investor route, not ordinary foreign-contract remote work."
+        },
+        "audit": {
+          "regular_remote_worker_recheck_2026": {
+            "date": "2026-07-15",
+            "previous_status": "eligible_or_manual_review_route",
+            "updated_valid_for_selection": false,
+            "reason": "Golden/entrepreneur/investor route, not ordinary foreign-contract remote work.",
+            "source_ids": [
+              "QATAR_GOLDEN_RESIDENCE_RECHECK_2026"
+            ]
+          }
         }
       }
     },
@@ -38703,6 +39521,21 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "RO1",
+            "RO2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
         }
       }
     },
@@ -40833,7 +41666,22 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "SC1",
+            "SC2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -41834,6 +42682,20 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "SLOVAK_FALSE_RECHECK_2026"
+          ],
+          "notes": "Eligible under current dataset only if used as a genuine self-sponsored/freelance/foreign-income setup without local employer sponsorship; not a founder/investor/golden route."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
         }
       }
     },
@@ -42208,7 +43070,19 @@
           "period": "monthly/unspecified",
           "notes": "Use local official checklist once available because the threshold is not confirmed in captured sources."
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -43016,6 +43890,20 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "ZA1"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
         }
       }
     },
@@ -43489,7 +44377,22 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "KR1",
+            "KR2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -44174,6 +45077,21 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "ES1",
+            "ES2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
         }
       }
     },
@@ -44658,7 +45576,22 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "LK1",
+            "LK2"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -44962,7 +45895,7 @@
         "country": "Sweden",
         "researched_at": "2026-07-15",
         "valid_for_selection": true,
-        "selection_summary": "Detailed re-check: Sweden is valid for genuine self-employed/business applicants. It is not valid for a normal foreign-employee digital nomad scenario.",
+        "selection_summary": "Detailed re-check: Sweden is valid for genuine self-employed/business applicants. It is not valid for a normal foreign-employee digital nomad scenario. Careful profile re-check: keep as eligible only for a real self-employed/freelance/business setup; do not treat as fully matched for a simple foreign-employee remote-work profile without filing-level verification.",
         "best_routes": [
           {
             "route_name": "Self-employed residence permit",
@@ -45309,6 +46242,14 @@
             "url": "https://taxsummaries.pwc.com/sweden/individual/other-taxes",
             "date_accessed": "2026-07-15",
             "note": "Used as standardized social-security/other-tax verification source for eligible-country tax audit."
+          },
+          {
+            "id": "SWEDEN_SELF_EMPLOYED_PROFILE_RECHECK_2026",
+            "title": "Self-employed route profile re-check",
+            "publisher": "Current route audit",
+            "url": "https://www.migrationsverket.se/",
+            "date_accessed": "2026-07-15",
+            "note": "Self-employed route is business/entrepreneurial rather than a dedicated digital-nomad route; requires manual filing-level verification."
           }
         ],
         "confidence": "medium",
@@ -45364,7 +46305,7 @@
             "SWEDEN_UNCERTAIN_DEEP_2026"
           ]
         },
-        "fully_matched": true,
+        "fully_matched": false,
         "full_match_recheck": {
           "reviewed_at": "2026-07-15",
           "status": "checked_required_fields_present",
@@ -45381,6 +46322,23 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": "needs_manual_review",
+          "source_ids": [
+            "SWEDEN_SELF_EMPLOYED_PROFILE_RECHECK_2026"
+          ],
+          "notes": "Self-employed/business route, not a dedicated digital-nomad route; keep eligible only with manual verification, not fully matched."
+        },
+        "audit": {
+          "regular_remote_worker_recheck_2026_second_pass": {
+            "date": "2026-07-15",
+            "updated_fully_matched": false,
+            "reason": "Self-employed/business route, not a dedicated digital-nomad route; keep eligible only with manual verification, not fully matched.",
+            "source_ids": [
+              "SWEDEN_SELF_EMPLOYED_PROFILE_RECHECK_2026"
+            ]
+          }
         }
       }
     },
@@ -46516,7 +47474,23 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "TH1",
+            "TH2",
+            "TH3"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -47761,6 +48735,20 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "TR1"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
         }
       }
     },
@@ -48875,7 +49863,23 @@
           ],
           "reviewed_at": "2026-07-15"
         },
-        "fully_matched": false
+        "fully_matched": false,
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "AE1",
+            "AE2",
+            "AE3"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
+        }
       }
     },
     {
@@ -49691,6 +50695,20 @@
             "sources"
           ],
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": true,
+          "source_ids": [
+            "UY1"
+          ],
+          "notes": "Eligible route is treated as compatible with ordinary foreign-employer/foreign-client remote work under the current audit."
+        },
+        "audit": {
+          "regular_remote_worker_fit_field_completed_2026": {
+            "date": "2026-07-15",
+            "value": true,
+            "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          }
         }
       }
     },
@@ -49700,13 +50718,14 @@
       "data": {
         "country": "Uzbekistan",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Uzbekistan IT Visa remains route-specific rather than a generic digital-nomad visa: it is for IT Park resident-company employees/specialists, founders and investors. Special IT Park taxation is attractive if the structure qualifies: PIT 7.5% for residents, and 0% corporate/social/VAT/property-land taxes for IT Park residents per IT Park table.",
-        "best_routes": [
+        "valid_for_selection": false,
+        "selection_summary": "Careful re-check 2026: Uzbekistan should not be eligible for this regular foreign-contract remote-worker profile unless the applicant restructures through an IT Park resident-company/specialist/founder/investor route. The captured IT Visa is not a plain digital-nomad or arbitrary foreign-client remote-work route.",
+        "best_routes": [],
+        "rejected_routes": [
           {
             "route_name": "IT Visa for IT specialists/founders/investors",
             "route_type": "it_specialist_or_founder_residence",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": true,
@@ -49807,13 +50826,15 @@
             },
             "notes": "Detailed re-check: Uzbekistan is upgraded to valid for an IT specialist/founder profile, but not as a general digital nomad visa for any foreign employee.",
             "source_ids": [
-              "UZBEKI_UNCERTAIN_DEEP_2026"
-            ]
+              "UZBEKI_UNCERTAIN_DEEP_2026",
+              "UZBEK_ITPARK_REGULAR_REMOTE_RECHECK_2026"
+            ],
+            "rejection_reason": "IT Park resident-company/specialist/founder/investor structure required; not ordinary foreign-contract remote work."
           },
           {
             "route_name": "IT Visa",
             "route_type": "it_specialist_or_founder_residence",
-            "valid_for_selection": "uncertain",
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": false,
@@ -49909,11 +50930,12 @@
             "notes": "Promising for tech profile but needs official IT Park confirmation; not a pure nomad visa.",
             "source_ids": [
               "UZ1",
-              "UZ2"
-            ]
+              "UZ2",
+              "UZBEK_ITPARK_REGULAR_REMOTE_RECHECK_2026"
+            ],
+            "rejection_reason": "IT Park resident-company/specialist/founder/investor structure required; not ordinary foreign-contract remote work."
           }
         ],
-        "rejected_routes": [],
         "taxes": {
           "income_tax_rate_percent": {
             "value": 7.5,
@@ -49960,19 +50982,16 @@
           },
           "digital_nomad_taxation": {
             "value": "Uzbekistan IT Visa special taxation: IT Park resident table shows PIT 7.5% instead of ordinary 12%, plus 0% corporate taxes, social tax, property/land tax, VAT and VAT on imported IT services for IT Park residents. This is not a generic digital-nomad tax break; it depends on IT Park resident company / employee / founder / investor status.",
-            "route_tax_category": "it_park_it_visa_special_regime_not_generic_nomad",
+            "route_tax_category": "not_applicable_no_regular_remote_work_route",
             "top_or_screening_pit_rate_percent": 7.5,
             "income_tax_display": "IT Park resident PIT 7.5%; ordinary/non-resident comparison shown as 12% on IT Park page. Resident-company incentives include 0% corporate tax, social tax, property/land tax, VAT and VAT on imported IT services according to IT Park table.",
             "tax_residency_rule": "Usually day-count/center-of-interests/residence-permit based; confirm before exceeding 183 days or registering a business locally.",
-            "foreign_income_treatment": "IT Park regime is structure-specific. Ordinary foreign-contract income outside IT Park resident structure may not qualify for 7.5%; verify tax residence and source rules.",
-            "special_digital_nomad_or_inbound_regime": "IT Park resident incentives: personal income tax 7.5%; corporate taxes 0%; social tax 0%; property and land tax 0%; VAT 0%; VAT on import of IT services 0%; no customs payments for own-needs imports per IT Park comparison table. Applies only if the structure qualifies as IT Park resident/IT Visa route.",
-            "social_security_and_payroll": "IT Park resident comparison table shows social tax 0% for residents versus 12% for non-residents. Individual pension/insurance/payroll treatment still depends on employment and resident-company payroll setup.",
+            "foreign_income_treatment": "Not applicable: no confirmed route for ordinary foreign-contract remote work under the selected profile.",
+            "special_digital_nomad_or_inbound_regime": "Not applicable",
+            "social_security_and_payroll": "Not applicable under this profile; depends on a different route if used.",
             "fixed_payments": {
-              "status": "special_regime_company_payroll_dependent",
-              "social_security_or_payroll": "IT Park page shows social tax 0% for residents vs 12% non-residents; payroll/individual obligations require structure-specific verification.",
-              "visa_or_state_fees": "Not captured on the tax page; check IT Visa application portal for visa/state fees.",
-              "other_fixed_or_transaction_taxes": "IT Park resident table shows corporate taxes, property/land tax, VAT and VAT on imported IT services at 0%; customs payments for own-needs imports marked as NO for residents.",
-              "notes": "The attractive tax treatment is tied to IT Park resident status, not merely being a remote IT contractor physically in Uzbekistan."
+              "status": "Not applicable",
+              "notes": "No applicable digital-nomad/regular remote-worker route confirmed."
             },
             "practical_scenarios": {
               "under_tax_residency_threshold": "May avoid ordinary tax residence depending on facts, but IT Visa/IT Park payroll status can still create local reporting/payroll issues.",
@@ -49981,11 +51000,10 @@
             },
             "confidence": "medium_high",
             "source_ids": [
-              "UZBEK_ITPARK_IT_VISA_OFFICIAL_2026",
-              "UZBEK_ITPARK_TAX_INCENTIVES_2026"
+              "UZBEK_ITPARK_REGULAR_REMOTE_RECHECK_2026"
             ],
             "reviewed_at": "2026-07-15",
-            "notes": "Special taxation added after official IT Park source check."
+            "notes": "Excluded from eligible set after careful route-profile audit: IT Park resident-company/specialist/founder/investor structure required; not ordinary foreign-contract remote work."
           },
           "income_tax_rate_display": {
             "value": "IT Park resident PIT 7.5%; ordinary/non-resident comparison shown as 12% on IT Park page. Resident-company incentives include 0% corporate tax, social tax, property/land tax, VAT and VAT on imported IT services according to IT Park table.",
@@ -50179,21 +51197,30 @@
             "url": "https://www.outsource.gov.uz/en/why-uzbekistan/government-support",
             "date_accessed": "2026-07-15",
             "note": "Official IT Park tax-incentives page compares non-residents and IT Park residents: resident PIT 7.5%, social tax 0%, corporate taxes 0%, property/land tax 0%, VAT 0%, VAT on imported IT services 0%."
+          },
+          {
+            "id": "UZBEK_ITPARK_REGULAR_REMOTE_RECHECK_2026",
+            "title": "IT Visa route re-check for regular foreign-contract remote work",
+            "publisher": "IT Park Uzbekistan / Outsource.gov.uz",
+            "url": "https://www.outsource.gov.uz/en/explore-opportunities/it-visa",
+            "date_accessed": "2026-07-15",
+            "note": "IT Visa is tied to IT Park resident-company employee/specialist/founder/investor structure, not a plain digital-nomad route."
           }
         ],
         "confidence": "medium",
         "research_notes": "Chat/web batch pass; official portal cleanup recommended before filing.",
         "settlement_track": {
-          "classification": "possible_with_conversion",
+          "classification": "not_valid_no_regular_remote_work_route",
           "can_lead_to_citizenship_from_this_route": "uncertain",
           "citizenship_track_strength": "medium",
           "requires_switch_to_another_status": true,
           "nomad_only_warning": null,
           "summary": "Detailed re-check: Uzbekistan is upgraded to valid for an IT specialist/founder profile, but not as a general digital nomad visa for any foreign employee.",
           "source_ids": [
-            "UZBEKI_UNCERTAIN_DEEP_2026"
+            "UZBEK_ITPARK_REGULAR_REMOTE_RECHECK_2026"
           ],
-          "reviewed_at": "2026-07-15"
+          "reviewed_at": "2026-07-15",
+          "notes": "IT Park resident-company/specialist/founder/investor structure required; not ordinary foreign-contract remote work."
         },
         "child_citizenship": {
           "birthright_citizenship": {
@@ -50234,7 +51261,7 @@
             "UZBEKI_UNCERTAIN_DEEP_2026"
           ]
         },
-        "fully_matched": true,
+        "fully_matched": false,
         "full_match_recheck": {
           "reviewed_at": "2026-07-15",
           "status": "checked_required_fields_present",
@@ -50253,12 +51280,22 @@
           "notes": "Structural recheck only: required dashboard fields are present. Legal/tax decisions still require source-level review before filing."
         },
         "regular_foreign_contract_remote_work_fit": {
-          "value": "needs_manual_review",
+          "value": false,
           "source_ids": [
-            "UZBEK_ITPARK_IT_VISA_OFFICIAL_2026",
-            "UZBEK_ITPARK_TAX_INCENTIVES_2026"
+            "UZBEK_ITPARK_REGULAR_REMOTE_RECHECK_2026"
           ],
-          "notes": "Good fit only if the applicant can qualify under IT Park resident company / IT specialist / founder / investor structure. Not a plain digital-nomad route for any foreign-contract remote worker."
+          "notes": "IT Park resident-company/specialist/founder/investor structure required; not ordinary foreign-contract remote work."
+        },
+        "audit": {
+          "regular_remote_worker_recheck_2026": {
+            "date": "2026-07-15",
+            "previous_status": "eligible_or_manual_review_route",
+            "updated_valid_for_selection": false,
+            "reason": "IT Park resident-company/specialist/founder/investor structure required; not ordinary foreign-contract remote work.",
+            "source_ids": [
+              "UZBEK_ITPARK_REGULAR_REMOTE_RECHECK_2026"
+            ]
+          }
         }
       }
     },

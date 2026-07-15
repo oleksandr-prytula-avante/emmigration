@@ -1,15 +1,16 @@
 # Immigration Research Script
 
-Готовый каркас для исследования всех 193 стран-членов ООН через OpenAI API с web search и сохранением результата в JSON.
+A ready-to-use research scaffold for checking all 193 UN member states through the OpenAI API with web search and saving structured results to JSON.
 
-## Что внутри
+## Contents
 
-- `countries.un-members-193.json` - список 193 стран-членов ООН.
-- `research_prompt.md` - расширенный промпт с подстановками `{{COUNTRY}}` и `{{TODAY}}`.
-- `immigration_research.mjs` - скрипт, который вызывает OpenAI API, получает структурированный JSON и сохраняет прогресс.
-- `package.json` - минимальные зависимости.
+- `countries.un-members-193.json` - list of 193 UN member states.
+- `research_prompt.md` - detailed research prompt with `{{COUNTRY}}` and `{{TODAY}}` placeholders.
+- `immigration_research.mjs` - script that calls the OpenAI API, requests structured JSON, and saves progress.
+- `package.json` - minimal project dependencies.
+- `dashboard/` - local one-page dashboard for reviewing the collected JSON.
 
-## Запуск
+## Run
 
 ```bash
 npm install
@@ -17,13 +18,13 @@ export OPENAI_API_KEY="your_api_key"
 npm run research
 ```
 
-Проверка на одной стране:
+Run a single-country test:
 
 ```bash
 npm run research:test-one
 ```
 
-Полезные параметры:
+Useful options:
 
 ```bash
 node immigration_research.mjs --country Portugal
@@ -33,23 +34,22 @@ node immigration_research.mjs --out data/research.json
 node immigration_research.mjs --model gpt-5.6
 ```
 
-Скрипт сохраняет результат после каждой страны, поэтому его можно безопасно перезапускать.
+The script saves results after each country, so it is safe to stop and restart.
 
 ## Dashboard
 
-Одностраничный dashboard лежит в `dashboard/index.html`.
+The one-page dashboard is located at `dashboard/index.html`.
 
-Если открыт локальный preview, перейдите на:
+If the local preview server is running, open:
 
 ```text
 http://localhost:4174/
 ```
 
-Нажмите `Загрузить JSON` и выберите файл результата, например:
+Click `Load JSON` and select the result file, for example:
 
 ```text
 data/immigration-research.json
 ```
 
-Dashboard поддерживает поиск, фильтр по валидности, максимальному доходу, налогу и сроку до гражданства.
-# emmigration
+The dashboard supports search, default eligible filtering, fully matched filtering, income/tax/citizenship-year filters, and sorting by citizenship/passport timeline, country, and taxation.
