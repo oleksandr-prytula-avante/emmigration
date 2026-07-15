@@ -2,7 +2,7 @@ const state = {
   raw: null,
   rows: [],
   selectedCountry: null,
-  sort: { key: "country", direction: "asc" },
+  sort: { key: "citizenship", direction: "asc" },
   pendingUrlState: null,
   isRestoringUrlState: false
 };
@@ -13,6 +13,7 @@ const elements = {
   valid: document.querySelector("#validFilter"),
   language: document.querySelector("#languageFilter"),
   citizenshipTrack: document.querySelector("#citizenshipTrackFilter"),
+  jusSoli: document.querySelector("#jusSoliFilter"),
   fullyMatched: document.querySelector("#fullyMatchedFilter"),
   incomeMax: document.querySelector("#incomeMax"),
   taxMax: document.querySelector("#taxMax"),
@@ -58,6 +59,7 @@ function bindEvents() {
     elements.valid,
     elements.language,
     elements.citizenshipTrack,
+    elements.jusSoli,
     elements.incomeMax,
     elements.taxMax,
     elements.citizenshipMax
@@ -155,7 +157,8 @@ function readUrlState() {
     status: params.get("status"),
     language: params.get("language"),
     citizenshipTrack: params.get("track"),
-    fullyMatched: params.get("fullyMatched"),
+    jusSoli: params.get("jusSoli"),
+    interesting: params.get("interesting") ?? params.get("fullyMatched"),
     incomeMax: params.get("incomeMax"),
     taxMax: params.get("taxMax"),
     citizenshipMax: params.get("citizenshipMax"),
@@ -170,15 +173,16 @@ function applyUrlStateBeforeData() {
   if (!urlState) return;
 
   state.isRestoringUrlState = true;
+  const hasStandardFilters = hasStandardUrlFilters(urlState);
+  const interestingFromUrl = urlState.interesting === "true";
+  elements.fullyMatched.checked = interestingFromUrl || (!hasStandardFilters && urlState.interesting === null);
   setInputValue(elements.search, urlState.search);
   setSelectValue(elements.valid, urlState.status);
   setSelectValue(elements.citizenshipTrack, urlState.citizenshipTrack);
+  setSelectValue(elements.jusSoli, urlState.jusSoli);
   setInputValue(elements.incomeMax, urlState.incomeMax);
   setInputValue(elements.taxMax, urlState.taxMax);
   setInputValue(elements.citizenshipMax, urlState.citizenshipMax);
-  if (urlState.fullyMatched !== null) {
-    elements.fullyMatched.checked = urlState.fullyMatched === "true";
-  }
   if (elements.fullyMatched.checked) {
     resetStandardFilters();
   }
@@ -214,6 +218,7 @@ function resetStandardFilters() {
   elements.valid.value = "all";
   elements.language.value = "all";
   elements.citizenshipTrack.value = "all";
+  elements.jusSoli.value = "all";
   elements.incomeMax.value = "";
   elements.taxMax.value = "";
   elements.citizenshipMax.value = "";
@@ -223,15 +228,19 @@ function updateUrlState() {
   if (state.isRestoringUrlState) return;
 
   const params = new URLSearchParams();
-  setUrlParam(params, "q", elements.search.value.trim());
-  setUrlParam(params, "status", elements.valid.value, "true");
-  setUrlParam(params, "language", elements.language.value, "all");
-  setUrlParam(params, "track", elements.citizenshipTrack.value, "all");
-  setUrlParam(params, "fullyMatched", String(elements.fullyMatched.checked), "true");
-  setUrlParam(params, "incomeMax", elements.incomeMax.value);
-  setUrlParam(params, "taxMax", elements.taxMax.value);
-  setUrlParam(params, "citizenshipMax", elements.citizenshipMax.value);
-  setUrlParam(params, "sort", state.sort.key, "country");
+  if (elements.fullyMatched.checked) {
+    params.set("interesting", "true");
+  } else {
+    setUrlParam(params, "q", elements.search.value.trim());
+    setUrlParam(params, "status", elements.valid.value, "all");
+    setUrlParam(params, "language", elements.language.value, "all");
+    setUrlParam(params, "track", elements.citizenshipTrack.value, "all");
+    setUrlParam(params, "jusSoli", elements.jusSoli.value, "all");
+    setUrlParam(params, "incomeMax", elements.incomeMax.value);
+    setUrlParam(params, "taxMax", elements.taxMax.value);
+    setUrlParam(params, "citizenshipMax", elements.citizenshipMax.value);
+  }
+  setUrlParam(params, "sort", state.sort.key, "citizenship");
   setUrlParam(params, "direction", state.sort.direction, "asc");
   setUrlParam(params, "selected", state.selectedCountry);
 
@@ -245,9 +254,28 @@ function setInputValue(input, value) {
 }
 
 function setSelectValue(select, value) {
-  if (value !== null && Array.from(select.options).some((option) => option.value === value)) {
-    select.value = value;
+  const normalizedValue = select === elements.valid ? normalizeStatusFilterValue(value) : value;
+  if (normalizedValue !== null && Array.from(select.options).some((option) => option.value === normalizedValue)) {
+    select.value = normalizedValue;
   }
+}
+
+function normalizeStatusFilterValue(value) {
+  if (value === "partial" || value === "uncertain") return "review";
+  return value;
+}
+
+function hasStandardUrlFilters(urlState) {
+  return Boolean(
+    urlState.search ||
+    (urlState.status && normalizeStatusFilterValue(urlState.status) !== "all") ||
+    (urlState.language && urlState.language !== "all") ||
+    (urlState.citizenshipTrack && urlState.citizenshipTrack !== "all") ||
+    (urlState.jusSoli && urlState.jusSoli !== "all") ||
+    urlState.incomeMax ||
+    urlState.taxMax ||
+    urlState.citizenshipMax
+  );
 }
 
 function setUrlParam(params, key, value, defaultValue = "") {
@@ -265,6 +293,7 @@ function filteredRows() {
   const valid = elements.valid.value;
   const language = elements.language.value;
   const citizenshipTrack = elements.citizenshipTrack.value;
+  const jusSoli = elements.jusSoli.value;
   const fullyMatched = elements.fullyMatched.checked;
   const incomeMax = parseOptionalNumber(elements.incomeMax.value);
   const taxMax = parseOptionalNumber(elements.taxMax.value);
@@ -285,9 +314,10 @@ function filteredRows() {
     ].join(" ").toLowerCase();
 
     if (query && !haystack.includes(query)) return false;
-    if (valid !== "all" && String(row.valid) !== valid && row.status !== valid) return false;
+    if (valid !== "all" && !matchesStatus(row, valid)) return false;
     if (language !== "all" && !matchesLanguage(row, language)) return false;
     if (citizenshipTrack !== "all" && !matchesCitizenshipTrack(row.citizenshipTrack, citizenshipTrack)) return false;
+    if (jusSoli !== "all" && jusSoliFilterValue(row.jusSoli) !== jusSoli) return false;
     if (fullyMatched && !isInterestingRow(row)) return false;
     if (incomeMax !== null && row.income !== null && row.income > incomeMax) return false;
     if (taxMax !== null && row.tax !== null && row.tax > taxMax) return false;
@@ -539,15 +569,18 @@ function renderDetails(visibleRows) {
 function statusPill(row) {
   if (row.status === "error") return '<span class="pill bad">ERROR</span>';
   if (row.valid === true) return '<span class="pill good">ELIGIBLE</span>';
-  if (row.valid === "partial") return '<span class="pill info">PARTIAL</span>';
-  if (row.valid === "uncertain") return '<span class="pill warn">REVIEW</span>';
+  if (row.valid === "partial" || row.valid === "uncertain") return '<span class="pill warn">REVIEW / PARTIAL</span>';
   return '<span class="pill bad">NOT ELIGIBLE</span>';
+}
+
+function matchesStatus(row, selected) {
+  if (selected === "review") return row.valid === "partial" || row.valid === "uncertain";
+  return String(row.valid) === selected || row.status === selected;
 }
 
 function statusRank(row) {
   if (row.valid === true) return 1;
-  if (row.valid === "partial") return 2;
-  if (row.valid === "uncertain") return 3;
+  if (row.valid === "partial" || row.valid === "uncertain") return 2;
   if (row.valid === false) return 4;
   if (row.status === "error") return 5;
   return 6;
@@ -599,6 +632,7 @@ function hasEligibleCitizenshipPath(row) {
 }
 
 function isInterestingRow(row) {
+  if (row.citizenshipTrack === "weak_or_uncertain_citizenship_track") return false;
   return hasEligibleCitizenshipPath(row) ||
     row.valid === "partial" ||
     row.valid === "uncertain";
@@ -652,6 +686,16 @@ function jusSoliLabel(value) {
   if (normalized.includes("restricted") || normalized.includes("limited")) return "LIMITED";
   if (normalized.includes("sanguinis")) return "NO";
   return "NOT FOUND";
+}
+
+function jusSoliFilterValue(value) {
+  const label = jusSoliLabel(value);
+  if (label === "YES") return "yes";
+  if (label === "YES / EXCEPTIONS") return "yes_exceptions";
+  if (label === "CONDITIONAL") return "conditional";
+  if (label === "LIMITED") return "limited";
+  if (label === "NO") return "no";
+  return "missing";
 }
 
 function jusSoliTone(value) {

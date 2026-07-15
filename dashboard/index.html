@@ -49,8 +49,7 @@
             <option value="all">ALL</option>
             <option value="true" selected>ELIGIBLE</option>
             <option value="false">NOT ELIGIBLE</option>
-            <option value="partial">PARTIAL</option>
-            <option value="uncertain">REVIEW</option>
+            <option value="review">REVIEW / PARTIAL</option>
             <option value="error">ERRORS</option>
           </select>
         </label>
@@ -71,6 +70,18 @@
         <label>
           CITIZENSHIP WITHIN, YRS
           <input id="citizenshipMax" type="number" min="0" step="1" placeholder="E.G. 7">
+        </label>
+        <label>
+          JUS SOLI
+          <select id="jusSoliFilter">
+            <option value="all">ALL</option>
+            <option value="yes">YES</option>
+            <option value="yes_exceptions">YES / EXCEPTIONS</option>
+            <option value="conditional">CONDITIONAL</option>
+            <option value="limited">LIMITED</option>
+            <option value="no">NO</option>
+            <option value="missing">NOT FOUND</option>
+          </select>
         </label>
         <label>
           CITIZENSHIP TRACK

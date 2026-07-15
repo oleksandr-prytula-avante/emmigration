@@ -10,6 +10,8 @@ Applicant context:
 - Treat the profile as ordinary foreign-contract remote work: the applicant works remotely for a foreign client or employer. Do not treat routes as eligible if they require elite talent, founder/startup status, investor/golden visa status, venture funding, local company hiring, prospective local employment, local-client/host-country assignment, exceptional achievements, points-tested/skilled migration invitation, or substantial capital investment, unless there is a separate ordinary remote-worker/freelance/self-employed option.
 - Important: programs requiring a job offer, work permit sponsorship, labor market test, or local-employer visa are not valid for this selection, even if they can fit software engineers.
 - Final selection is citizenship-path oriented. A country is not eligible just because the applicant can live there temporarily, work remotely as a visitor, or use a digital-nomad/workcation status. The chosen route must either be a qualifying residence route itself or have a confirmed conversion path into qualifying residence for permanent residence/citizenship.
+- Independent skilled-worker / points-tested / degree-based migration routes may be marked `valid_for_selection="partial"` when they can be applied for without a local employer and can lead directly to residence/permanent residence/citizenship, but they are not ordinary foreign-contract remote-work routes. Example: Australia subclass 189-style skilled independent PR.
+- Dashboard interpretation: `valid_for_selection="partial"` and `valid_for_selection="uncertain"` are shown together as `REVIEW / PARTIAL`. Partial means "interesting independent skilled/residence route, not a remote-work match"; uncertain means "needs source/manual verification".
 
 What to research:
 1. Whether there is an independent self-application route:
@@ -18,6 +20,7 @@ What to research:
    - If the country only has employer-sponsored routes, clearly set `valid_for_selection=false`.
    - If the country only allows visitor/eVisa/visa-free/standard visitor remote work, clearly set `valid_for_selection=false` even if remote work is tolerated.
 2. Whether there is a separate independent route that truly fits an ordinary foreign-contract remote worker. Points-based migration, skilled migration, talent routes, founder/startup routes, and investor/golden routes may be described only as rejected or alternative routes. Do not set `valid_for_selection=true` for the current profile unless the route is an ordinary remote-worker/freelance/self-employed application.
+   - If a points-based/skilled/degree route is independent, does not require a local employer sponsor, and grants or can lead directly to qualifying residence/permanent residence, set `valid_for_selection="partial"` rather than `false`. Explain that it is useful for an IT/skilled profile but not a remote-work match.
 3. For each potentially suitable route:
    - program name;
    - status type: visa, temporary residence, permanent residence, freelancer status, entrepreneur status, citizenship, or other;
@@ -65,6 +68,7 @@ What to research:
 9. Languages:
    - official national language(s);
    - how realistic it is to live and work remotely in English, Russian, or Ukrainian, if sources support that.
+   - Always fill `languages.official_languages` for every country, even when the country is not eligible. Do not leave it empty and do not use vague values like "other official languages"; list the language names.
 10. Economy:
    - average monthly salary in USD;
    - median salary, if available;
@@ -72,13 +76,15 @@ What to research:
 
 Selection validity criteria:
 - Set `valid_for_selection=true` only if there is at least one route where the applicant can apply independently without a local employer and that route is, or can convert into, a qualifying residence track for permanent residence/citizenship.
+- Set `valid_for_selection="partial"` if the best route is an independent skilled-worker, points-tested, or qualification/degree-based route that does not require a local employer sponsor and can lead to residence/permanent residence/citizenship, but does not fit ordinary foreign-contract remote work. These routes are interesting but not fully matched.
+- Set `valid_for_selection="uncertain"` only when the route may fit but current official/current sources are insufficient, contradictory, pending, or require filing-level/manual verification. Do not use `"uncertain"` for clearly temporary visitor/workcation options; those are `false`.
 - A digital nomad route is valid only if it allows the applicant to live in the country with foreign contract/income and official/current sources confirm that the status can count toward, or convert into, a qualifying residence path. If it is temporary-only, visitor-like, workcation-only, or explicitly excluded from settlement, set `valid_for_selection=false`.
 - A freelance/self-employed route is valid if the applicant can obtain status without a local employer and without a mandatory local client / host-country assignment / proof of substantial local economic interest that is incompatible with ordinary work for a foreign client.
 - Visitor status, eVisa, visa-free stay, standard visitor remote-work permission, tourist extensions, workcation programs, and legacy/closed remote-work programs are not valid for selection. Put them in `rejected_routes` or keep them as contextual notes, but set `valid_for_selection=false`.
 - Employer-sponsored skilled-worker routes are not valid for selection.
 - Founder/startup, investor/golden visa, elite talent/high-achievement, points-tested/skilled migration invitation, ONE Pass/Tech.Pass-style, local employment, local-client assignment, or prospective local-employment routes are not valid for this selection unless they fit an ordinary foreign-contract remote worker without startup, investment, exceptional achievement, local work, or local customer requirements.
 - Planned / announced / authorized-but-not-open programs are not valid for current selection: set `valid_for_selection=false` if there is no active official application channel or stable application rules.
-- If information is contradictory or not confirmed by current official/current sources, set `valid_for_selection="uncertain"` and explain exactly what is missing. Do not use `"partial"` in final output.
+- If information is contradictory or not confirmed by current official/current sources, set `valid_for_selection="uncertain"` and explain exactly what is missing. Use `"partial"` only for independent skilled/points/degree routes that are residence-oriented but not remote-work routes.
 
 Citizenship path classification:
 - For every country, fill `settlement_track.classification` with one of these values:
@@ -95,15 +101,18 @@ Citizenship path classification:
 - Fill `citizenship_track_strength`: `strong`, `possible_with_conversion`, `weak_or_uncertain`, `none_or_separate_route_required`, or `none`.
 - Add `nomad_only_warning` if the chosen route is temporary and does not directly lead to permanent residence/citizenship.
 - Set `regular_foreign_contract_remote_work_fit.value=true` only when the route fits ordinary foreign-client/foreign-employer remote work without local employer, local-client assignment, startup/founder/investor/elite requirements, or hidden local business-substance requirements.
-- Set `valid_for_selection=true` only when `regular_foreign_contract_remote_work_fit.value=true`. If the value is `false` or `"needs_manual_review"`, `valid_for_selection` must be `false` or `"uncertain"`, never `true`.
+- Set `valid_for_selection=true` only when `regular_foreign_contract_remote_work_fit.value=true`. If the value is `false` or `"needs_manual_review"`, `valid_for_selection` must be `false`, `"uncertain"`, or `"partial"` for independent skilled/points/degree routes, never `true`.
 - Set `fully_matched=true` only if `valid_for_selection=true`, `settlement_track.classification` is `strong_citizenship_track` or `possible_with_conversion`, `regular_foreign_contract_remote_work_fit.value=true`, and official/current sources confirm a credible residence-to-citizenship route. In all other cases, set `fully_matched=false`.
 - If `settlement_track.classification="temporary_nomad_only"`, then `valid_for_selection=false`, `fully_matched=false`, and `regular_foreign_contract_remote_work_fit.value` may be true only as a temporary-living fit, with notes saying it is not a citizenship-path fit.
+- Dashboard `INTERESTING` filter includes: fully matched rows, plus `partial`, plus `uncertain`, but excludes `weak_or_uncertain_citizenship_track`. If a country is useful enough to be interesting, avoid `weak_or_uncertain_citizenship_track` unless it truly needs manual review and should be excluded from the default interesting view.
 
 Final country audit before returning JSON:
 - Re-read the chosen route and ask: "Is this only a visitor, visa-free, eVisa, standard visitor, tourist extension, workcation, or temporary digital-nomad stay?" If yes, set `valid_for_selection=false`.
 - Ask: "Can this exact route count toward or convert into permanent residence/citizenship for an ordinary foreign-contract remote worker?" If not confirmed by official/current sources, do not mark it fully matched.
 - Ask: "Does this require a local employer, local client, local assignment, investment, startup/founder role, elite-talent threshold, or points/invitation route?" If yes, set `valid_for_selection=false` unless a separate ordinary remote-worker/freelance route exists.
+- Then ask: "Is this points/skilled/degree route independent, no local employer sponsor, and residence/permanent-residence oriented?" If yes, set `valid_for_selection="partial"` rather than `false`.
 - Use `rejected_routes` for attractive but non-fitting options, including visitor remote-work permission, closed/legacy programs, temporary-only digital nomad visas, passive-income-only routes, investor routes, and employer-sponsored routes.
+- Use `best_routes` for an independent skilled/points/degree route when it is the reason for `valid_for_selection="partial"`. Keep `fully_matched=false` and make `regular_foreign_contract_remote_work_fit.value=false`.
 - Do not keep empty fields as `No data`; use `Not found` or `not_confirmed_in_dataset` consistently with notes and source IDs.
 
 Response requirements:

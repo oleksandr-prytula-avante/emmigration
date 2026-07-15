@@ -355,7 +355,13 @@
           }
         ],
         "confidence": "low",
-        "notes": "Needs official-source recheck if Afghanistan is ever a serious candidate."
+        "notes": "Needs official-source recheck if Afghanistan is ever a serious candidate.",
+        "languages": {
+          "official_languages": [
+            "Pashto",
+            "Dari"
+          ]
+        }
       }
     },
     {
@@ -1009,7 +1015,13 @@
           }
         ],
         "confidence": "low",
-        "notes": "Needs official Algerian immigration/labour-source verification."
+        "notes": "Needs official Algerian immigration/labour-source verification.",
+        "languages": {
+          "official_languages": [
+            "Arabic",
+            "Tamazight"
+          ]
+        }
       }
     },
     {
@@ -2144,7 +2156,12 @@
           }
         ],
         "confidence": "low",
-        "notes": "Needs official Angolan migration-source verification."
+        "notes": "Needs official Angolan migration-source verification.",
+        "languages": {
+          "official_languages": [
+            "Portuguese"
+          ]
+        }
       }
     },
     {
@@ -2153,13 +2170,13 @@
       "data": {
         "country": "Antigua and Barbuda",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Antigua and Barbuda is valid because it has a dedicated Nomad Digital Residence route for people working for employers or clients outside the country. This pass used secondary sources because the official nomad portal could not be opened by the browsing tool.",
+        "valid_for_selection": false,
+        "selection_summary": "Antigua and Barbuda is valid because it has a dedicated Nomad Digital Residence route for people working for employers or clients outside the country. This pass used secondary sources because the official nomad portal could not be opened by the browsing tool. Chat prompt rerun: temporary digital-nomad/workcation/visitor-like status is not eligible for this citizenship-path selection unless official sources confirm it counts toward or converts into qualifying residence.",
         "best_routes": [
           {
             "route_name": "Nomad Digital Residence",
             "route_type": "digital_nomad",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": true,
@@ -2630,6 +2647,11 @@
             "date": "2026-07-15",
             "value": true,
             "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          },
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
           }
         }
       }
@@ -3693,9 +3715,106 @@
       "data": {
         "country": "Australia",
         "researched_at": "2026-07-15",
-        "valid_for_selection": false,
-        "selection_summary": "Careful re-check 2026: Australia should not be eligible for this regular foreign-contract remote-worker profile. Subclass 189 is an independent skilled migration/permanent residence route based on occupation/points/invitation, not a digital-nomad or foreign-client remote-work route.",
-        "best_routes": [],
+        "valid_for_selection": "partial",
+        "selection_summary": "Australia is a partial match for this project: the Skilled Independent visa subclass 189 is an independent, points-tested skilled migration route that can grant permanent residence without a local employer sponsor. It is not a regular foreign-contract remote-work/digital-nomad route, so it is not fully matched, but it is useful for an IT/software profile with a relevant degree and eligible occupation/skills assessment.",
+        "best_routes": [
+          {
+            "route_name": "Skilled Independent visa subclass 189",
+            "route_type": "points_based_or_talent",
+            "valid_for_selection": "partial",
+            "independent_application_possible": true,
+            "local_employer_required": false,
+            "foreign_contract_or_income_required": false,
+            "direct_temporary_residence_possible": false,
+            "direct_permanent_residence_possible": true,
+            "minimum_monthly_income_usd": {
+              "value": null,
+              "source_ids": [
+                "AUSTRA_INCOME_TRACK_2026"
+              ],
+              "notes": "This is not a digital nomad income route; it is a PR skilled migration route."
+            },
+            "minimum_income_local_currency": {
+              "value": "No monthly-income threshold for subclass 189; points, occupation, skills assessment, English, invitation and PR criteria apply.",
+              "source_ids": [
+                "AUSTRA_INCOME_TRACK_2026"
+              ],
+              "notes": "This is not a digital nomad income route; it is a PR skilled migration route."
+            },
+            "income_proof_months": {
+              "value": null,
+              "source_ids": [
+                "AU1"
+              ],
+              "notes": null
+            },
+            "key_requirements": [
+              {
+                "requirement": "Skilled independent permanent visa; applicant must meet skilled migration points/occupation requirements.",
+                "source_ids": [
+                  "AU1"
+                ]
+              },
+              {
+                "requirement": "No local employer sponsorship required for subclass 189.",
+                "source_ids": [
+                  "AU1"
+                ]
+              }
+            ],
+            "initial_validity": {
+              "value": "Permanent residence",
+              "source_ids": [
+                "AU1"
+              ],
+              "notes": null
+            },
+            "extension_rules": {
+              "value": "Permanent residence with travel facility rules; citizenship later if eligible.",
+              "source_ids": [
+                "AU1"
+              ],
+              "notes": "Details not expanded in this batch."
+            },
+            "path_to_temporary_residence": {
+              "value": null,
+              "source_ids": [
+                "AU1"
+              ],
+              "notes": "Direct PR route, not temporary."
+            },
+            "path_to_permanent_residence": {
+              "value": "Direct permanent residence if granted.",
+              "source_ids": [
+                "AU1"
+              ],
+              "notes": "Settlement-track review: The selected route is PR/residence-oriented or can plausibly be converted/maintained as qualifying residence for naturalisation if the applicant actually relocates and satisfies residence, language, tax and continuity rules."
+            },
+            "path_to_citizenship": {
+              "value": "Potentially yes, if this status is maintained/converted as qualifying residence and all ordinary naturalisation requirements are met.",
+              "source_ids": [
+                "AUSTRA_INCOME_TRACK_2026"
+              ],
+              "notes": "The selected route is PR/residence-oriented or can plausibly be converted/maintained as qualifying residence for naturalisation if the applicant actually relocates and satisfies residence, language, tax and continuity rules."
+            },
+            "notes": "Partial match for a skilled software/degree profile: independent and no local employer sponsor, with direct permanent residence if granted; still not a digital-nomad or foreign-client remote-work route.",
+            "source_ids": [
+              "AU1",
+              "AUSTRALIA_HOMEAFFAIRS_189_RECHECK_2026"
+            ],
+            "income_requirement_display": {
+              "value": "No monthly-income threshold for subclass 189; points, occupation, skills assessment, English, invitation and PR criteria apply.",
+              "currency_basis": "local_currency_or_formula",
+              "usd_monthly_value": null,
+              "local_or_formula_value": "No monthly-income threshold for subclass 189; points, occupation, skills assessment, English, invitation and PR criteria apply.",
+              "notes": "This is not a digital nomad income route; it is a PR skilled migration route.",
+              "source_ids": [
+                "AUSTRA_INCOME_TRACK_2026"
+              ]
+            },
+            "rejection_reason": "Partial match: independent skilled/points-tested permanent residence route, not ordinary foreign-contract remote work."
+          }
+        ],
         "taxes": {
           "income_tax_rate_percent": {
             "value": 45,
@@ -3904,104 +4023,7 @@
         ],
         "confidence": "high",
         "notes": "Official page was sparse in captured text but current and official.",
-        "rejected_routes": [
-          {
-            "route_name": "Skilled Independent visa subclass 189",
-            "route_type": "points_based_or_talent",
-            "valid_for_selection": false,
-            "independent_application_possible": true,
-            "local_employer_required": false,
-            "foreign_contract_or_income_required": false,
-            "direct_temporary_residence_possible": false,
-            "direct_permanent_residence_possible": true,
-            "minimum_monthly_income_usd": {
-              "value": null,
-              "source_ids": [
-                "AUSTRA_INCOME_TRACK_2026"
-              ],
-              "notes": "This is not a digital nomad income route; it is a PR skilled migration route."
-            },
-            "minimum_income_local_currency": {
-              "value": "No monthly-income threshold for subclass 189; points, occupation, skills assessment, English, invitation and PR criteria apply.",
-              "source_ids": [
-                "AUSTRA_INCOME_TRACK_2026"
-              ],
-              "notes": "This is not a digital nomad income route; it is a PR skilled migration route."
-            },
-            "income_proof_months": {
-              "value": null,
-              "source_ids": [
-                "AU1"
-              ],
-              "notes": null
-            },
-            "key_requirements": [
-              {
-                "requirement": "Skilled independent permanent visa; applicant must meet skilled migration points/occupation requirements.",
-                "source_ids": [
-                  "AU1"
-                ]
-              },
-              {
-                "requirement": "No local employer sponsorship required for subclass 189.",
-                "source_ids": [
-                  "AU1"
-                ]
-              }
-            ],
-            "initial_validity": {
-              "value": "Permanent residence",
-              "source_ids": [
-                "AU1"
-              ],
-              "notes": null
-            },
-            "extension_rules": {
-              "value": "Permanent residence with travel facility rules; citizenship later if eligible.",
-              "source_ids": [
-                "AU1"
-              ],
-              "notes": "Details not expanded in this batch."
-            },
-            "path_to_temporary_residence": {
-              "value": null,
-              "source_ids": [
-                "AU1"
-              ],
-              "notes": "Direct PR route, not temporary."
-            },
-            "path_to_permanent_residence": {
-              "value": "Direct permanent residence if granted.",
-              "source_ids": [
-                "AU1"
-              ],
-              "notes": "Settlement-track review: The selected route is PR/residence-oriented or can plausibly be converted/maintained as qualifying residence for naturalisation if the applicant actually relocates and satisfies residence, language, tax and continuity rules."
-            },
-            "path_to_citizenship": {
-              "value": "Potentially yes, if this status is maintained/converted as qualifying residence and all ordinary naturalisation requirements are met.",
-              "source_ids": [
-                "AUSTRA_INCOME_TRACK_2026"
-              ],
-              "notes": "The selected route is PR/residence-oriented or can plausibly be converted/maintained as qualifying residence for naturalisation if the applicant actually relocates and satisfies residence, language, tax and continuity rules."
-            },
-            "notes": "Very competitive and occupation/points dependent.",
-            "source_ids": [
-              "AU1",
-              "AUSTRALIA_HOMEAFFAIRS_189_RECHECK_2026"
-            ],
-            "income_requirement_display": {
-              "value": "No monthly-income threshold for subclass 189; points, occupation, skills assessment, English, invitation and PR criteria apply.",
-              "currency_basis": "local_currency_or_formula",
-              "usd_monthly_value": null,
-              "local_or_formula_value": "No monthly-income threshold for subclass 189; points, occupation, skills assessment, English, invitation and PR criteria apply.",
-              "notes": "This is not a digital nomad income route; it is a PR skilled migration route.",
-              "source_ids": [
-                "AUSTRA_INCOME_TRACK_2026"
-              ]
-            },
-            "rejection_reason": "Independent skilled migration, not ordinary foreign-contract remote work."
-          }
-        ],
+        "rejected_routes": [],
         "marriage": {
           "years_to_citizenship_via_marriage": {
             "value": null,
@@ -4157,17 +4179,18 @@
           }
         },
         "settlement_track": {
-          "classification": "not_valid_no_regular_remote_work_route",
+          "classification": "strong_citizenship_track",
           "can_lead_to_citizenship_from_this_route": true,
-          "citizenship_track_strength": "high",
+          "citizenship_track_strength": "strong",
           "requires_switch_to_another_status": false,
           "nomad_only_warning": null,
-          "summary": "The selected route is PR/residence-oriented or can plausibly be converted/maintained as qualifying residence for naturalisation if the applicant actually relocates and satisfies residence, language, tax and continuity rules.",
+          "summary": "Partial profile match but strong citizenship track: subclass 189 is a direct permanent residence skilled route if granted, and can support later citizenship if residence, character, test and other requirements are met.",
           "source_ids": [
-            "AUSTRALIA_HOMEAFFAIRS_189_RECHECK_2026"
+            "AUSTRALIA_HOMEAFFAIRS_189_RECHECK_2026",
+            "AUSTRA_FAM_2026"
           ],
           "reviewed_at": "2026-07-15",
-          "notes": "Independent skilled migration, not ordinary foreign-contract remote work."
+          "notes": "Not a remote-work route; partial because it is independent skilled migration for a suitable occupation/points profile."
         },
         "fully_matched": false,
         "full_match_recheck": {
@@ -4192,7 +4215,7 @@
           "source_ids": [
             "AUSTRALIA_HOMEAFFAIRS_189_RECHECK_2026"
           ],
-          "notes": "Independent skilled migration, not ordinary foreign-contract remote work."
+          "notes": "Subclass 189 is independent skilled migration, not ordinary foreign-contract remote work. Marked partial because it may fit an IT/software skilled-migration profile without local employer sponsorship."
         },
         "audit": {
           "regular_remote_worker_recheck_2026": {
@@ -4200,6 +4223,15 @@
             "previous_status": "eligible_or_manual_review_route",
             "updated_valid_for_selection": false,
             "reason": "Independent skilled migration, not ordinary foreign-contract remote work.",
+            "source_ids": [
+              "AUSTRALIA_HOMEAFFAIRS_189_RECHECK_2026"
+            ]
+          },
+          "independent_skilled_partial_review_2026_07_15": {
+            "reviewed_at": "2026-07-15",
+            "previous_valid_for_selection": false,
+            "updated_valid_for_selection": "partial",
+            "reason": "User requested independent skilled-worker visas like Australia to be surfaced as partial. Subclass 189 is independent/no local employer and direct PR, but not ordinary foreign-contract remote work.",
             "source_ids": [
               "AUSTRALIA_HOMEAFFAIRS_189_RECHECK_2026"
             ]
@@ -4456,7 +4488,9 @@
           "notes": "A citizen child may help family residence, but local birth alone usually does not naturalise the father."
         },
         "languages": {
-          "official_languages": [],
+          "official_languages": [
+            "German"
+          ],
           "practical_remote_work_notes": {
             "value": "For immigration, tax and citizenship, local official language matters. English may work in tech/startup contexts but is not enough for long-term integration in most cases.",
             "source_ids": [
@@ -4623,7 +4657,12 @@
           }
         ],
         "confidence": "low",
-        "notes": "Needs official State Migration Service verification."
+        "notes": "Needs official State Migration Service verification.",
+        "languages": {
+          "official_languages": [
+            "Azerbaijani"
+          ]
+        }
       }
     },
     {
@@ -4632,13 +4671,13 @@
       "data": {
         "country": "Bahamas",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "The Bahamas is valid because the official BEATS programme allows remote work/study from The Bahamas for up to a year.",
+        "valid_for_selection": false,
+        "selection_summary": "The Bahamas is valid because the official BEATS programme allows remote work/study from The Bahamas for up to a year. Chat prompt rerun: temporary digital-nomad/workcation/visitor-like status is not eligible for this citizenship-path selection unless official sources confirm it counts toward or converts into qualifying residence.",
         "best_routes": [
           {
             "route_name": "Bahamas Extended Access Travel Stay (BEATS)",
             "route_type": "digital_nomad",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": true,
@@ -5088,6 +5127,11 @@
             "date": "2026-07-15",
             "value": true,
             "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          },
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
           }
         }
       }
@@ -5637,7 +5681,12 @@
           }
         ],
         "confidence": "low",
-        "notes": "Needs official-source verification in cleanup pass."
+        "notes": "Needs official-source verification in cleanup pass.",
+        "languages": {
+          "official_languages": [
+            "Bengali"
+          ]
+        }
       }
     },
     {
@@ -5646,13 +5695,13 @@
       "data": {
         "country": "Barbados",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Barbados is valid because the official 12-month Welcome Stamp lets location-independent workers work remotely from Barbados for up to 12 months.",
+        "valid_for_selection": false,
+        "selection_summary": "Barbados is valid because the official 12-month Welcome Stamp lets location-independent workers work remotely from Barbados for up to 12 months. Chat prompt rerun: temporary digital-nomad/workcation/visitor-like status is not eligible for this citizenship-path selection unless official sources confirm it counts toward or converts into qualifying residence.",
         "best_routes": [
           {
             "route_name": "12-month Barbados Welcome Stamp",
             "route_type": "digital_nomad",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": true,
@@ -6132,6 +6181,11 @@
             "date": "2026-07-15",
             "value": true,
             "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          },
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
           }
         }
       }
@@ -6254,7 +6308,13 @@
           }
         ],
         "confidence": "low",
-        "notes": "Needs official-source verification in cleanup pass."
+        "notes": "Needs official-source verification in cleanup pass.",
+        "languages": {
+          "official_languages": [
+            "Belarusian",
+            "Russian"
+          ]
+        }
       }
     },
     {
@@ -6263,13 +6323,13 @@
       "data": {
         "country": "Belgium",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Detailed re-check: Belgium is upgraded to valid for self-employed/freelance/business applicants. It is not a digital nomad visa and requires regional professional-card approval, but no local employer is required. Careful profile re-check: keep as eligible only for a real self-employed/freelance/business setup; do not treat as fully matched for a simple foreign-employee remote-work profile without filing-level verification.",
+        "valid_for_selection": "uncertain",
+        "selection_summary": "Detailed re-check: Belgium is upgraded to valid for self-employed/freelance/business applicants. It is not a digital nomad visa and requires regional professional-card approval, but no local employer is required. Careful profile re-check: keep as eligible only for a real self-employed/freelance/business setup; do not treat as fully matched for a simple foreign-employee remote-work profile without filing-level verification. Chat prompt rerun: final prompt does not allow valid_for_selection=true when ordinary foreign-contract remote-work fit needs manual review.",
         "best_routes": [
           {
             "route_name": "Professional card + self-employed residence",
             "route_type": "self_employed_residence",
-            "valid_for_selection": true,
+            "valid_for_selection": "uncertain",
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": false,
@@ -6777,6 +6837,11 @@
             "source_ids": [
               "BELGIUM_SELF_EMPLOYED_PROFILE_RECHECK_2026"
             ]
+          },
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
           }
         }
       }
@@ -7030,7 +7095,9 @@
           "notes": "A citizen child may help family residence, but local birth alone usually does not naturalise the father."
         },
         "languages": {
-          "official_languages": [],
+          "official_languages": [
+            "English"
+          ],
           "practical_remote_work_notes": {
             "value": "For immigration, tax and citizenship, local official language matters. English may work in tech/startup contexts but is not enough for long-term integration in most cases.",
             "source_ids": [
@@ -7197,7 +7264,12 @@
           }
         ],
         "confidence": "low",
-        "notes": "Needs official-source verification in cleanup pass."
+        "notes": "Needs official-source verification in cleanup pass.",
+        "languages": {
+          "official_languages": [
+            "French"
+          ]
+        }
       }
     },
     {
@@ -7314,7 +7386,12 @@
           }
         ],
         "confidence": "low",
-        "notes": "Needs official-source verification in cleanup pass."
+        "notes": "Needs official-source verification in cleanup pass.",
+        "languages": {
+          "official_languages": [
+            "Dzongkha"
+          ]
+        }
       }
     },
     {
@@ -7431,7 +7508,15 @@
           }
         ],
         "confidence": "low",
-        "notes": "Needs official-source verification in cleanup pass."
+        "notes": "Needs official-source verification in cleanup pass.",
+        "languages": {
+          "official_languages": [
+            "Spanish",
+            "Quechua",
+            "Aymara",
+            "Guarani"
+          ]
+        }
       }
     },
     {
@@ -7548,7 +7633,14 @@
           }
         ],
         "confidence": "low",
-        "notes": "Needs official-source verification in cleanup pass."
+        "notes": "Needs official-source verification in cleanup pass.",
+        "languages": {
+          "official_languages": [
+            "Bosnian",
+            "Croatian",
+            "Serbian"
+          ]
+        }
       }
     },
     {
@@ -7665,7 +7757,12 @@
           }
         ],
         "confidence": "low",
-        "notes": "Needs official-source verification in cleanup pass."
+        "notes": "Needs official-source verification in cleanup pass.",
+        "languages": {
+          "official_languages": [
+            "English"
+          ]
+        }
       }
     },
     {
@@ -8294,7 +8391,12 @@
           }
         ],
         "confidence": "low",
-        "notes": "Needs official-source verification in cleanup pass."
+        "notes": "Needs official-source verification in cleanup pass.",
+        "languages": {
+          "official_languages": [
+            "Malay"
+          ]
+        }
       }
     },
     {
@@ -8923,7 +9025,12 @@
           }
         ],
         "confidence": "low",
-        "notes": "Needs official-source verification in cleanup pass."
+        "notes": "Needs official-source verification in cleanup pass.",
+        "languages": {
+          "official_languages": [
+            "French"
+          ]
+        }
       }
     },
     {
@@ -9040,7 +9147,14 @@
           }
         ],
         "confidence": "low",
-        "notes": "Needs official-source verification in cleanup pass."
+        "notes": "Needs official-source verification in cleanup pass.",
+        "languages": {
+          "official_languages": [
+            "Kirundi",
+            "French",
+            "English"
+          ]
+        }
       }
     },
     {
@@ -9652,7 +9766,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Khmer"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -9799,7 +9917,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "French",
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -9824,96 +9947,116 @@
         "country": "Canada",
         "researched_at": "2026-07-15",
         "valid_for_selection": "partial",
-        "selection_summary": "Canada is usable only as a short visitor-status remote-work option, not a dedicated residence/citizenship route. Current reporting and Canadian digital-nomad references say remote work for a foreign employer/client can be allowed without entering the Canadian labour market, generally within visitor status around six months.",
+        "selection_summary": "Canada is a partial match for this project: Express Entry / Federal Skilled Worker is an independent skilled-worker permanent-residence route based on foreign skilled work experience, language, education, points and settlement funds. It is not a digital-nomad or regular foreign-contract remote-work visa, so it is not fully matched, but it is useful for an IT/software profile that can score competitively.",
         "best_routes": [
           {
-            "route_name": "Visitor status remote work / digital nomad information",
-            "route_type": "digital_nomad_like_visitor_status",
+            "route_name": "Express Entry - Federal Skilled Worker Program",
+            "route_type": "points_based_or_skilled_permanent_residence",
             "valid_for_selection": "partial",
             "independent_application_possible": true,
             "local_employer_required": false,
-            "foreign_contract_or_income_required": true,
+            "foreign_contract_or_income_required": false,
             "direct_temporary_residence_possible": false,
-            "direct_permanent_residence_possible": false,
+            "direct_permanent_residence_possible": true,
             "minimum_monthly_income_usd": {
               "value": null,
               "source_ids": [
-                "CA1",
-                "CA2"
+                "CA4"
               ],
-              "notes": "No dedicated digital-nomad income threshold found; ordinary entry/visitor admissibility applies."
+              "notes": "No monthly income threshold; proof of settlement funds may be required unless exempt by Canadian work authorization/job-offer rules."
             },
             "minimum_income_local_currency": {
-              "value": null,
+              "value": "Settlement funds required unless exempt; amount depends on family size and is updated by IRCC.",
               "source_ids": [
-                "CA1",
-                "CA2"
+                "CA4"
               ],
-              "notes": null
+              "notes": "Use current IRCC proof-of-funds table before filing."
+            },
+            "income_requirement_display": {
+              "value": "No monthly income threshold; IRCC settlement funds may be required.",
+              "source_ids": [
+                "CA4"
+              ],
+              "notes": "Not a digital-nomad income route."
             },
             "income_proof_months": {
               "value": null,
               "source_ids": [
-                "CA1"
+                "CA4"
               ],
-              "notes": "Recent reporting says documentation of foreign-source income may be expected."
+              "notes": "Settlement funds and source/availability evidence are route-specific."
             },
             "key_requirements": [
               {
-                "requirement": "Remote work must be for foreign employers/clients and not involve Canadian clients or the Canadian labour market.",
+                "requirement": "At least 1 year continuous paid skilled work experience in TEER 0, 1, 2 or 3 within the last 10 years.",
                 "source_ids": [
-                  "CA1",
-                  "CA2"
+                  "CA4"
                 ]
               },
               {
-                "requirement": "Applicant must qualify for visitor entry/status and satisfy border officer/admissibility requirements.",
+                "requirement": "Approved English/French language test and minimum language level.",
                 "source_ids": [
-                  "CA1"
+                  "CA4"
+                ]
+              },
+              {
+                "requirement": "Education credential or foreign credential with Educational Credential Assessment for immigration purposes.",
+                "source_ids": [
+                  "CA4"
+                ]
+              },
+              {
+                "requirement": "Score at least 67/100 selection-factor points, then compete in the Express Entry pool.",
+                "source_ids": [
+                  "CA4"
+                ]
+              },
+              {
+                "requirement": "Proof of settlement funds unless legally working in Canada with a valid job offer exemption applies.",
+                "source_ids": [
+                  "CA4"
                 ]
               }
             ],
             "initial_validity": {
-              "value": "Typically up to 6 months as a visitor",
+              "value": "Permanent residence if approved after invitation/application.",
               "source_ids": [
-                "CA1",
-                "CA2"
-              ],
-              "notes": "Not a residence permit."
-            },
-            "extension_rules": {
-              "value": "Visitor extension may be possible case-by-case, but no nomad residence path confirmed.",
-              "source_ids": [
-                "CA1"
+                "CA4"
               ],
               "notes": null
+            },
+            "extension_rules": {
+              "value": null,
+              "source_ids": [
+                "CA4"
+              ],
+              "notes": "Not a temporary visa extension route."
             },
             "path_to_temporary_residence": {
               "value": null,
               "source_ids": [
-                "CA1",
-                "CA2"
+                "CA4"
               ],
-              "notes": "Visitor remote work does not itself create temporary residence for immigration-program purposes."
+              "notes": "This route targets PR, not temporary residence."
             },
             "path_to_permanent_residence": {
-              "value": null,
+              "value": "Direct permanent-residence application after Express Entry invitation if eligible and competitive.",
               "source_ids": [
-                "CA2"
+                "CA4"
               ],
-              "notes": "Use separate Canadian immigration programs if eligible; this route alone does not lead to PR."
+              "notes": null
             },
             "path_to_citizenship": {
-              "value": null,
+              "value": "After PR, citizenship generally depends on meeting Canadian physical-presence, filing, language/test and admissibility requirements.",
               "source_ids": [
-                "CA2"
+                "CA5"
               ],
-              "notes": "No citizenship path through visitor remote work alone."
+              "notes": "Use official citizenship rules before planning timeline."
             },
-            "notes": "Good for short stay only; weak fit if the selection requires residence permit or citizenship trajectory.",
+            "notes": "Partial match: independent skilled PR route, not ordinary foreign-contract remote work or a digital-nomad visa.",
             "source_ids": [
-              "CA1",
-              "CA2"
+              "CA4",
+              "CA5"
             ]
           }
         ],
@@ -9943,14 +10086,18 @@
         },
         "timeline": {
           "total_years_to_citizenship": {
-            "value": null,
-            "source_ids": [],
-            "notes": "No reliable route-to-citizenship timeline confirmed in this pass."
+            "value": 3,
+            "source_ids": [
+              "CA5"
+            ],
+            "notes": "Citizenship physical presence is generally 1,095 days in the 5 years before applying after becoming PR; this is not total calendar time from first application."
           },
           "permanent_residence_years": {
-            "value": null,
-            "source_ids": [],
-            "notes": null
+            "value": 0,
+            "source_ids": [
+              "CA4"
+            ],
+            "notes": "Direct PR route if invited and approved; processing/invitation timing varies."
           }
         },
         "marriage": {
@@ -9964,7 +10111,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English",
+            "French"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -9992,10 +10144,58 @@
             "publisher": "Investopedia",
             "date": "updated/current",
             "note": "Secondary tax-residency/non-resident tax overview; needs CRA source cleanup."
+          },
+          {
+            "id": "CA4",
+            "title": "Express Entry: Federal Skilled Worker Program",
+            "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/who-can-apply/federal-skilled-workers.html",
+            "publisher": "Government of Canada / IRCC",
+            "date": "2026-06-22",
+            "note": "Official route page: foreign skilled work experience, education/language factors, 67-point threshold, settlement funds and PR intent."
+          },
+          {
+            "id": "CA5",
+            "title": "Apply for Canadian citizenship: Who can apply",
+            "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-citizenship/become-canadian-citizen/eligibility.html",
+            "publisher": "Government of Canada / IRCC",
+            "date": "current 2026",
+            "note": "Official citizenship eligibility and physical-presence reference."
           }
         ],
         "confidence": "medium",
-        "research_notes": "Needs official IRCC/CRA page capture in cleanup pass; current search surfaced secondary pages more reliably than official pages."
+        "research_notes": "Needs official IRCC/CRA page capture in cleanup pass; current search surfaced secondary pages more reliably than official pages.",
+        "fully_matched": false,
+        "settlement_track": {
+          "classification": "strong_citizenship_track",
+          "can_lead_to_citizenship_from_this_route": true,
+          "requires_switch_to_another_status": false,
+          "notes": "Federal Skilled Worker can lead directly to PR, then citizenship if Canadian citizenship requirements are later met."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": false,
+          "notes": "Partial only: Express Entry/Federal Skilled Worker is independent skilled PR, not a regular foreign-contract remote-work residence route."
+        },
+        "audit": {
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
+          },
+          "independent_skilled_partial_review_2026_07_15": {
+            "reviewed_at": "2026-07-15T00:00:00.000Z",
+            "changed": true,
+            "reason": "User requested Canada and similar Australia-style independent skilled routes. Canada FSW is independent skilled PR and can support citizenship later, but is not a digital-nomad/foreign-contract remote-work route."
+          }
+        },
+        "citizenship": {
+          "years_to_citizenship": {
+            "value": 3,
+            "source_ids": [
+              "CA5"
+            ],
+            "notes": "Approximate minimum post-PR physical-presence requirement, not including Express Entry processing time."
+          }
+        }
       }
     },
     {
@@ -10127,7 +10327,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "French",
+            "Sango"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -10284,7 +10489,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "French",
+            "Arabic"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -10556,7 +10766,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Spanish"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -10785,7 +10999,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Mandarin Chinese"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -11494,7 +11712,13 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Comorian",
+            "French",
+            "Arabic"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -11641,7 +11865,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "French"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -11665,13 +11893,13 @@
       "data": {
         "country": "Costa Rica",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Costa Rica has a dedicated digital-nomad stay for remote workers with foreign income. It is a strong short-to-medium stay fit: one year, renewable, with USD 3,000/month foreign income or higher family threshold commonly cited.",
+        "valid_for_selection": false,
+        "selection_summary": "Costa Rica has a dedicated digital-nomad stay for remote workers with foreign income. It is a strong short-to-medium stay fit: one year, renewable, with USD 3,000/month foreign income or higher family threshold commonly cited. Chat prompt rerun: temporary digital-nomad/workcation/visitor-like status is not eligible for this citizenship-path selection unless official sources confirm it counts toward or converts into qualifying residence.",
         "best_routes": [
           {
             "route_name": "Digital Nomad / Estancia para trabajadores remotos",
             "route_type": "digital_nomad_visa",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": true,
@@ -12183,6 +12411,11 @@
             "date": "2026-07-15",
             "value": true,
             "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          },
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
           }
         }
       }
@@ -12316,7 +12549,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "French"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -12989,7 +13226,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Spanish"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -14223,7 +14464,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "French"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -14380,7 +14625,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Danish"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -14535,7 +14784,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "French",
+            "Arabic"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -14559,13 +14813,13 @@
       "data": {
         "country": "Dominica",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Dominica has a recognized remote-worker program, Work in Nature (WIN), for people who can work remotely for foreign employers/clients. It is a valid one-year Caribbean digital-nomad option with a commonly cited USD 50,000 annual income requirement.",
+        "valid_for_selection": false,
+        "selection_summary": "Dominica has a recognized remote-worker program, Work in Nature (WIN), for people who can work remotely for foreign employers/clients. It is a valid one-year Caribbean digital-nomad option with a commonly cited USD 50,000 annual income requirement. Chat prompt rerun: temporary digital-nomad/workcation/visitor-like status is not eligible for this citizenship-path selection unless official sources confirm it counts toward or converts into qualifying residence.",
         "best_routes": [
           {
             "route_name": "Work in Nature (WIN) Extended Stay Visa",
             "route_type": "digital_nomad_visa",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": true,
@@ -15047,6 +15301,11 @@
             "date": "2026-07-15",
             "value": true,
             "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          },
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
           }
         }
       }
@@ -15180,7 +15439,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Spanish"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -15872,7 +16135,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Arabic"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -16019,7 +16286,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Spanish"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -16166,7 +16437,13 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Spanish",
+            "French",
+            "Portuguese"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -16313,7 +16590,13 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Tigrinya",
+            "Arabic",
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -16460,7 +16743,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Swazi",
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -16607,7 +16895,15 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Afar",
+            "Amharic",
+            "Oromo",
+            "Somali",
+            "Tigrinya"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -16754,7 +17050,13 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English",
+            "Fijian",
+            "Fiji Hindi"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -17239,13 +17541,13 @@
       "data": {
         "country": "France",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Detailed re-check: France is valid for self-employed/liberal-profession or entrepreneur setup. It is not valid for someone who only wants to sit in France on foreign payroll with no French activity basis. Careful profile re-check: keep as eligible only for a real self-employed/freelance/business setup; do not treat as fully matched for a simple foreign-employee remote-work profile without filing-level verification.",
+        "valid_for_selection": "uncertain",
+        "selection_summary": "Detailed re-check: France is valid for self-employed/liberal-profession or entrepreneur setup. It is not valid for someone who only wants to sit in France on foreign payroll with no French activity basis. Careful profile re-check: keep as eligible only for a real self-employed/freelance/business setup; do not treat as fully matched for a simple foreign-employee remote-work profile without filing-level verification. Chat prompt rerun: final prompt does not allow valid_for_selection=true when ordinary foreign-contract remote-work fit needs manual review.",
         "best_routes": [
           {
             "route_name": "Entrepreneur / profession liberale long-stay visa and residence",
             "route_type": "self_employed_or_entrepreneur_residence",
-            "valid_for_selection": true,
+            "valid_for_selection": "uncertain",
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": false,
@@ -17793,6 +18095,11 @@
             "source_ids": [
               "FRANCE_PROFESSION_LIBERALE_PROFILE_RECHECK_2026"
             ]
+          },
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
           }
         }
       }
@@ -17926,7 +18233,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "French"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -18073,7 +18384,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -18244,7 +18559,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Georgian"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -18311,13 +18630,13 @@
       "data": {
         "country": "Germany",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Detailed re-check: Germany is valid for genuine freelancers/self-employed professionals, but not as a pure digital nomad visa. A tangible German business/client/economic connection is usually needed. Careful profile re-check: keep as eligible only for a real self-employed/freelance/business setup; do not treat as fully matched for a simple foreign-employee remote-work profile without filing-level verification.",
+        "valid_for_selection": "uncertain",
+        "selection_summary": "Detailed re-check: Germany is valid for genuine freelancers/self-employed professionals, but not as a pure digital nomad visa. A tangible German business/client/economic connection is usually needed. Careful profile re-check: keep as eligible only for a real self-employed/freelance/business setup; do not treat as fully matched for a simple foreign-employee remote-work profile without filing-level verification. Chat prompt rerun: final prompt does not allow valid_for_selection=true when ordinary foreign-contract remote-work fit needs manual review.",
         "best_routes": [
           {
             "route_name": "Freelance/self-employment residence permit",
             "route_type": "freelance_self_employed_residence",
-            "valid_for_selection": true,
+            "valid_for_selection": "uncertain",
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": false,
@@ -18865,6 +19184,11 @@
             "source_ids": [
               "GERMANY_FREELANCE_PROFILE_RECHECK_2026"
             ]
+          },
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
           }
         }
       }
@@ -18998,7 +19322,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -19688,7 +20016,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -19835,7 +20167,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Spanish"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -19982,7 +20318,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "French"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -20129,7 +20469,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Portuguese"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -20276,7 +20620,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -20423,7 +20771,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Haitian Creole",
+            "French"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -20570,7 +20923,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Spanish"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -21120,13 +21477,13 @@
       "data": {
         "country": "Iceland",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Iceland offers a long-term visa for remote workers/teleworkers. It is valid but short: up to around 180 days, with a high monthly income threshold and no local employment.",
+        "valid_for_selection": false,
+        "selection_summary": "Iceland offers a long-term visa for remote workers/teleworkers. It is valid but short: up to around 180 days, with a high monthly income threshold and no local employment. Chat prompt rerun: temporary digital-nomad/workcation/visitor-like status is not eligible for this citizenship-path selection unless official sources confirm it counts toward or converts into qualifying residence.",
         "best_routes": [
           {
             "route_name": "Long-term visa for remote workers",
             "route_type": "digital_nomad_long_term_visa",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": true,
@@ -21636,6 +21993,11 @@
             "date": "2026-07-15",
             "value": true,
             "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          },
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
           }
         }
       }
@@ -21769,7 +22131,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Hindi",
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -22480,7 +22847,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Persian"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -22627,7 +22998,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Arabic",
+            "Kurdish"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -22774,7 +23150,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Irish",
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -22921,7 +23302,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Hebrew"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -23611,7 +23996,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -23635,13 +24024,13 @@
       "data": {
         "country": "Japan",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Japan has a digital-nomad status under Designated Activities for eligible nationals with high income. It is clean but short: up to six months, no extension, and reapplication only after time outside Japan.",
+        "valid_for_selection": false,
+        "selection_summary": "Japan has a digital-nomad status under Designated Activities for eligible nationals with high income. It is clean but short: up to six months, no extension, and reapplication only after time outside Japan. Chat prompt rerun: temporary digital-nomad/workcation/visitor-like status is not eligible for this citizenship-path selection unless official sources confirm it counts toward or converts into qualifying residence.",
         "best_routes": [
           {
             "route_name": "Designated Activities - Digital Nomad",
             "route_type": "digital_nomad_visa",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": true,
@@ -24145,6 +24534,11 @@
             "date": "2026-07-15",
             "value": true,
             "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          },
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
           }
         }
       }
@@ -24278,7 +24672,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Arabic"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -25410,7 +25808,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English",
+            "Gilbertese"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -25567,7 +25970,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Arabic"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -25599,13 +26006,13 @@
       "data": {
         "country": "Kyrgyzstan",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Detailed re-check: Kyrgyzstan is upgraded to valid for IT/digital specialists, but it is a special status rather than a broad residence-to-citizenship path.",
+        "valid_for_selection": false,
+        "selection_summary": "Detailed re-check: Kyrgyzstan is upgraded to valid for IT/digital specialists, but it is a special status rather than a broad residence-to-citizenship path. Chat prompt rerun: temporary digital-nomad/workcation/visitor-like status is not eligible for this citizenship-path selection unless official sources confirm it counts toward or converts into qualifying residence.",
         "best_routes": [
           {
             "route_name": "Digital Nomad Status for IT/digital specialists",
             "route_type": "it_specialist_digital_nomad_status",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": true,
@@ -25986,6 +26393,11 @@
             "date": "2026-07-15",
             "value": true,
             "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          },
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
           }
         }
       }
@@ -26119,7 +26531,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Lao"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -26809,7 +27225,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Arabic"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -26956,7 +27376,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Sesotho",
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -27103,7 +27528,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -27250,7 +27679,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Arabic"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -27397,7 +27830,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "German"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -28088,7 +28525,13 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Luxembourgish",
+            "French",
+            "German"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -28235,7 +28678,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Malagasy",
+            "French"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -28382,7 +28830,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -28406,13 +28858,13 @@
       "data": {
         "country": "Malaysia",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Malaysia offers the DE Rantau Nomad Pass for digital and selected non-digital professionals working remotely. It is a strong Southeast Asia option, commonly issued for 3 to 12 months and renewable, with different income requirements by professional category.",
+        "valid_for_selection": false,
+        "selection_summary": "Malaysia offers the DE Rantau Nomad Pass for digital and selected non-digital professionals working remotely. It is a strong Southeast Asia option, commonly issued for 3 to 12 months and renewable, with different income requirements by professional category. Chat prompt rerun: temporary digital-nomad/workcation/visitor-like status is not eligible for this citizenship-path selection unless official sources confirm it counts toward or converts into qualifying residence.",
         "best_routes": [
           {
             "route_name": "DE Rantau Nomad Pass",
             "route_type": "digital_nomad_pass",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": true,
@@ -28924,6 +29376,11 @@
             "date": "2026-07-15",
             "value": true,
             "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          },
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
           }
         }
       }
@@ -29057,7 +29514,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Dhivehi"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -29204,7 +29665,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "French"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -29897,7 +30362,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Marshallese",
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -30044,7 +30514,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Arabic"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -30068,13 +30542,13 @@
       "data": {
         "country": "Mauritius",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Mauritius offers the Premium Travel Visa for long-stay visitors including remote workers. It is a strong, low-friction option: up to one year, free application, foreign-source work only, and no entry into the Mauritius labor market.",
+        "valid_for_selection": false,
+        "selection_summary": "Mauritius offers the Premium Travel Visa for long-stay visitors including remote workers. It is a strong, low-friction option: up to one year, free application, foreign-source work only, and no entry into the Mauritius labor market. Chat prompt rerun: temporary digital-nomad/workcation/visitor-like status is not eligible for this citizenship-path selection unless official sources confirm it counts toward or converts into qualifying residence.",
         "best_routes": [
           {
             "route_name": "Premium Travel Visa",
             "route_type": "digital_nomad_or_long_stay_visa",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": true,
@@ -30603,6 +31077,11 @@
             "date": "2026-07-15",
             "value": true,
             "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          },
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
           }
         }
       }
@@ -31279,7 +31758,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -31963,7 +32446,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "French"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -32110,7 +32597,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Mongolian"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -32802,7 +33293,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Arabic",
+            "Tamazight"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -32949,7 +33445,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Portuguese"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -33096,7 +33596,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Burmese"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -33760,7 +34264,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Nauruan",
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -33907,7 +34416,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Nepali"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -34390,13 +34903,13 @@
       "data": {
         "country": "New Zealand",
         "researched_at": "2026-07-15",
-        "valid_for_selection": "partial",
-        "selection_summary": "New Zealand allows remote work for overseas employers/clients while on visitor visas issued under rules effective from January 27, 2025. This is a useful digital-nomad visitor option, but not a residence/citizenship route by itself.",
+        "valid_for_selection": false,
+        "selection_summary": "New Zealand allows remote work for overseas employers/clients while on visitor visas issued under rules effective from January 27, 2025. This is a useful digital-nomad visitor option, but not a residence/citizenship route by itself. Chat prompt rerun: final output should not use partial; visitor/temporary-only remote work permission is not a qualifying citizenship-path route.",
         "best_routes": [
           {
             "route_name": "Visitor visa remote work permission",
             "route_type": "digital_nomad_like_visitor_status",
-            "valid_for_selection": "partial",
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": true,
@@ -34549,7 +35062,13 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English",
+            "Maori",
+            "New Zealand Sign Language"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -34580,7 +35099,24 @@
           }
         ],
         "confidence": "medium",
-        "research_notes": "Chat/web batch pass; official portal cleanup recommended before filing."
+        "research_notes": "Chat/web batch pass; official portal cleanup recommended before filing.",
+        "fully_matched": false,
+        "settlement_track": {
+          "classification": "not_valid_no_regular_remote_work_route",
+          "can_lead_to_citizenship_from_this_route": false,
+          "requires_switch_to_another_status": true
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": false,
+          "notes": "Updated by chat prompt rerun: partial is not a final status; route does not currently meet full citizenship-path criteria."
+        },
+        "audit": {
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
+          }
+        }
       }
     },
     {
@@ -34712,7 +35248,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Spanish"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -34859,7 +35399,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "French"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -35006,7 +35550,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -35153,7 +35701,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Korean"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -35300,7 +35852,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Macedonian",
+            "Albanian"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -35990,7 +36547,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Arabic"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -36137,7 +36698,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Urdu",
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -36161,13 +36727,13 @@
       "data": {
         "country": "Palau",
         "researched_at": "2026-07-15",
-        "valid_for_selection": "partial",
-        "selection_summary": "Palau has a digital residency/tourist extension framework that can support longer physical presence, but it is not a classic remote-worker residence permit. It is potentially useful for temporary stay and tax-residency planning, not a direct immigration route.",
+        "valid_for_selection": false,
+        "selection_summary": "Palau has a digital residency/tourist extension framework that can support longer physical presence, but it is not a classic remote-worker residence permit. It is potentially useful for temporary stay and tax-residency planning, not a direct immigration route. Chat prompt rerun: final output should not use partial; visitor/temporary-only remote work permission is not a qualifying citizenship-path route.",
         "best_routes": [
           {
             "route_name": "Digital Residency tourist visa renewal/extension",
             "route_type": "digital_residency_tourist_extension",
-            "valid_for_selection": "partial",
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": false,
@@ -36296,7 +36862,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Palauan",
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -36311,7 +36882,24 @@
           }
         ],
         "confidence": "medium",
-        "research_notes": "Chat/web batch pass; official portal cleanup recommended before filing."
+        "research_notes": "Chat/web batch pass; official portal cleanup recommended before filing.",
+        "fully_matched": false,
+        "settlement_track": {
+          "classification": "not_valid_no_regular_remote_work_route",
+          "can_lead_to_citizenship_from_this_route": false,
+          "requires_switch_to_another_status": true
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": false,
+          "notes": "Updated by chat prompt rerun: partial is not a final status; route does not currently meet full citizenship-path criteria."
+        },
+        "audit": {
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
+          }
+        }
       }
     },
     {
@@ -36320,13 +36908,13 @@
       "data": {
         "country": "Panama",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Panama has a Short Stay Visa as Remote Worker / digital nomad route. It is a strong Latin American temporary option, commonly nine months with a possible nine-month extension and a USD 36,000 annual foreign-income requirement.",
+        "valid_for_selection": false,
+        "selection_summary": "Panama has a Short Stay Visa as Remote Worker / digital nomad route. It is a strong Latin American temporary option, commonly nine months with a possible nine-month extension and a USD 36,000 annual foreign-income requirement. Chat prompt rerun: temporary digital-nomad/workcation/visitor-like status is not eligible for this citizenship-path selection unless official sources confirm it counts toward or converts into qualifying residence.",
         "best_routes": [
           {
             "route_name": "Short Stay Visa as Remote Worker",
             "route_type": "digital_nomad_visa",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": true,
@@ -36838,6 +37426,11 @@
             "date": "2026-07-15",
             "value": true,
             "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          },
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
           }
         }
       }
@@ -36971,7 +37564,13 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English",
+            "Tok Pisin",
+            "Hiri Motu"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -37801,7 +38400,11 @@
           }
         },
         "languages": {
-          "official_languages": [],
+          "official_languages": [
+            "Spanish",
+            "Quechua",
+            "Aymara"
+          ],
           "practical_remote_work_notes": {
             "value": "For immigration, tax and citizenship, local official language matters. English may work in tech/startup contexts but is not enough for long-term integration in most cases.",
             "source_ids": [
@@ -38102,7 +38705,10 @@
           }
         },
         "languages": {
-          "official_languages": [],
+          "official_languages": [
+            "Filipino",
+            "English"
+          ],
           "practical_remote_work_notes": {
             "value": "For immigration, tax and citizenship, local official language matters. English may work in tech/startup contexts but is not enough for long-term integration in most cases.",
             "source_ids": [
@@ -38357,7 +38963,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Polish"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -40035,7 +40645,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Russian"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -40182,7 +40796,14 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Kinyarwanda",
+            "French",
+            "English",
+            "Swahili"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -40329,7 +40950,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -40353,13 +40978,13 @@
       "data": {
         "country": "Saint Lucia",
         "researched_at": "2026-07-15",
-        "valid_for_selection": "partial",
-        "selection_summary": "Saint Lucia has promoted extended-stay visitor programs such as Live It, useful for temporary remote living but not a full residence/citizenship route. Treat as partial unless a current digital-nomad work-permit page is confirmed.",
+        "valid_for_selection": false,
+        "selection_summary": "Saint Lucia has promoted extended-stay visitor programs such as Live It, useful for temporary remote living but not a full residence/citizenship route. Treat as partial unless a current digital-nomad work-permit page is confirmed. Chat prompt rerun: final output should not use partial; visitor/temporary-only remote work permission is not a qualifying citizenship-path route.",
         "best_routes": [
           {
             "route_name": "Live It / extended stay visitor program",
             "route_type": "remote_work_friendly_extended_stay",
-            "valid_for_selection": "partial",
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": true,
@@ -40488,7 +41113,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -40503,7 +41132,24 @@
           }
         ],
         "confidence": "low",
-        "research_notes": "Chat/web batch pass; official portal cleanup recommended before filing."
+        "research_notes": "Chat/web batch pass; official portal cleanup recommended before filing.",
+        "fully_matched": false,
+        "settlement_track": {
+          "classification": "not_valid_no_regular_remote_work_route",
+          "can_lead_to_citizenship_from_this_route": false,
+          "requires_switch_to_another_status": true
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": false,
+          "notes": "Updated by chat prompt rerun: partial is not a final status; route does not currently meet full citizenship-path criteria."
+        },
+        "audit": {
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
+          }
+        }
       }
     },
     {
@@ -40635,7 +41281,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -40782,7 +41432,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Samoan",
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -40929,7 +41584,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Italian"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -41076,7 +41735,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Portuguese"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -41233,7 +41896,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Arabic"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -41388,7 +42055,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "French"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -41535,7 +42206,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Serbian"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -41559,13 +42234,13 @@
       "data": {
         "country": "Seychelles",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Seychelles offers a remote-work stay marketed as the Workcation Retreat Program. It is a valid temporary option for remote workers, but not a long-term settlement path.",
+        "valid_for_selection": false,
+        "selection_summary": "Seychelles offers a remote-work stay marketed as the Workcation Retreat Program. It is a valid temporary option for remote workers, but not a long-term settlement path. Chat prompt rerun: temporary digital-nomad/workcation/visitor-like status is not eligible for this citizenship-path selection unless official sources confirm it counts toward or converts into qualifying residence.",
         "best_routes": [
           {
             "route_name": "Workcation Retreat Program",
             "route_type": "digital_nomad_or_workcation_visa",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": true,
@@ -42047,6 +42722,11 @@
             "date": "2026-07-15",
             "value": true,
             "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          },
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
           }
         }
       }
@@ -42180,7 +42860,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -43292,7 +43976,9 @@
           }
         },
         "languages": {
-          "official_languages": [],
+          "official_languages": [
+            "Slovenian"
+          ],
           "practical_remote_work_notes": {
             "value": "For immigration, tax and citizenship, local official language matters. English may work in tech/startup contexts but is not enough for long-term integration in most cases.",
             "source_ids": [
@@ -43606,7 +44292,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -43753,7 +44443,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Somali",
+            "Arabic"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -44105,7 +44800,14 @@
             "Xhosa",
             "Afrikaans",
             "English",
-            "and other official languages"
+            "Sepedi",
+            "Tswana",
+            "Southern Sotho",
+            "Tsonga",
+            "Swazi",
+            "Venda",
+            "Ndebele",
+            "South African Sign Language"
           ],
           "practical_remote_work_notes": {
             "value": "English is an official or widely usable business language; remote work logistics are comparatively easy.",
@@ -44305,13 +45007,13 @@
       "data": {
         "country": "South Korea",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "South Korea has officially introduced the F-1-D workation/digital-nomad visa after its pilot. It became available June 30, 2026 and is a strong current route for qualifying remote workers.",
+        "valid_for_selection": false,
+        "selection_summary": "South Korea has officially introduced the F-1-D workation/digital-nomad visa after its pilot. It became available June 30, 2026 and is a strong current route for qualifying remote workers. Chat prompt rerun: temporary digital-nomad/workcation/visitor-like status is not eligible for this citizenship-path selection unless official sources confirm it counts toward or converts into qualifying residence.",
         "best_routes": [
           {
             "route_name": "F-1-D Workation / Digital Nomad Visa",
             "route_type": "digital_nomad_visa",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": true,
@@ -44783,6 +45485,11 @@
             "date": "2026-07-15",
             "value": true,
             "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          },
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
           }
         }
       }
@@ -44916,7 +45623,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -45493,13 +46204,13 @@
       "data": {
         "country": "Sri Lanka",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Sri Lanka launched a dedicated digital-nomad visa in February 2026 for remote workers with foreign employment/clients. It is a strong current option: at least one year, renewable, USD 2,000/month base income.",
+        "valid_for_selection": false,
+        "selection_summary": "Sri Lanka launched a dedicated digital-nomad visa in February 2026 for remote workers with foreign employment/clients. It is a strong current option: at least one year, renewable, USD 2,000/month base income. Chat prompt rerun: temporary digital-nomad/workcation/visitor-like status is not eligible for this citizenship-path selection unless official sources confirm it counts toward or converts into qualifying residence.",
         "best_routes": [
           {
             "route_name": "Digital Nomad Visa",
             "route_type": "digital_nomad_visa",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": true,
@@ -45982,6 +46693,11 @@
             "date": "2026-07-15",
             "value": true,
             "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          },
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
           }
         }
       }
@@ -46115,7 +46831,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Arabic",
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -46262,7 +46983,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Dutch"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -46286,13 +47011,13 @@
       "data": {
         "country": "Sweden",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Detailed re-check: Sweden is valid for genuine self-employed/business applicants. It is not valid for a normal foreign-employee digital nomad scenario. Careful profile re-check: keep as eligible only for a real self-employed/freelance/business setup; do not treat as fully matched for a simple foreign-employee remote-work profile without filing-level verification.",
+        "valid_for_selection": "uncertain",
+        "selection_summary": "Detailed re-check: Sweden is valid for genuine self-employed/business applicants. It is not valid for a normal foreign-employee digital nomad scenario. Careful profile re-check: keep as eligible only for a real self-employed/freelance/business setup; do not treat as fully matched for a simple foreign-employee remote-work profile without filing-level verification. Chat prompt rerun: final prompt does not allow valid_for_selection=true when ordinary foreign-contract remote-work fit needs manual review.",
         "best_routes": [
           {
             "route_name": "Self-employed residence permit",
             "route_type": "self_employed_business_residence",
-            "valid_for_selection": true,
+            "valid_for_selection": "uncertain",
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": false,
@@ -46730,6 +47455,11 @@
             "source_ids": [
               "SWEDEN_SELF_EMPLOYED_PROFILE_RECHECK_2026"
             ]
+          },
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
           }
         }
       }
@@ -46873,7 +47603,14 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "German",
+            "French",
+            "Italian",
+            "Romansh"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -47028,7 +47765,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Arabic"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -47175,7 +47916,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Tajik"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -47322,7 +48067,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Swahili",
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -47346,13 +48096,13 @@
       "data": {
         "country": "Thailand",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "Thailand has the Destination Thailand Visa (DTV), a long-term multiple-entry visa used by digital nomads, freelancers, and other long-stay visitors. It is a strong option: five-year visa, 180 days per entry, with a one-time in-country extension per entry reported.",
+        "valid_for_selection": false,
+        "selection_summary": "Thailand has the Destination Thailand Visa (DTV), a long-term multiple-entry visa used by digital nomads, freelancers, and other long-stay visitors. It is a strong option: five-year visa, 180 days per entry, with a one-time in-country extension per entry reported. Chat prompt rerun: temporary digital-nomad/workcation/visitor-like status is not eligible for this citizenship-path selection unless official sources confirm it counts toward or converts into qualifying residence.",
         "best_routes": [
           {
             "route_name": "Destination Thailand Visa (DTV)",
             "route_type": "digital_nomad_long_stay_visa",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": true,
@@ -47881,6 +48631,11 @@
             "date": "2026-07-15",
             "value": true,
             "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          },
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
           }
         }
       }
@@ -48014,7 +48769,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Portuguese",
+            "Tetum"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -48161,7 +48921,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "French"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -48308,7 +49072,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Tongan",
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -48455,7 +49224,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -48602,7 +49375,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Arabic"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -49273,7 +50050,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Turkmen"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -49420,7 +50201,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Tuvaluan",
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -49567,7 +50353,12 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English",
+            "Swahili"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -49714,7 +50505,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Ukrainian"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -49738,13 +50533,13 @@
       "data": {
         "country": "United Arab Emirates",
         "researched_at": "2026-07-15",
-        "valid_for_selection": true,
-        "selection_summary": "The UAE offers remote-work/virtual-work visa options, especially Dubai/UAE remote work residence, allowing foreign professionals to live in the UAE while working for overseas employers without a local sponsor. It is a strong current remote-worker route.",
+        "valid_for_selection": false,
+        "selection_summary": "The UAE offers remote-work/virtual-work visa options, especially Dubai/UAE remote work residence, allowing foreign professionals to live in the UAE while working for overseas employers without a local sponsor. It is a strong current remote-worker route. Chat prompt rerun: temporary digital-nomad/workcation/visitor-like status is not eligible for this citizenship-path selection unless official sources confirm it counts toward or converts into qualifying residence.",
         "best_routes": [
           {
             "route_name": "Virtual Work / Remote Work Visa",
             "route_type": "digital_nomad_residence",
-            "valid_for_selection": true,
+            "valid_for_selection": false,
             "independent_application_possible": true,
             "local_employer_required": false,
             "foreign_contract_or_income_required": true,
@@ -50270,6 +51065,11 @@
             "date": "2026-07-15",
             "value": true,
             "reason": "Filled missing required profile-fit field for remaining eligible countries after stricter route-profile downgrades."
+          },
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
           }
         }
       }
@@ -50281,96 +51081,112 @@
         "country": "United Kingdom",
         "researched_at": "2026-07-15",
         "valid_for_selection": "partial",
-        "selection_summary": "The UK does not have a digital-nomad residence visa, but standard visitors may work remotely for foreign employers/clients if they do not serve UK clients or enter the UK labour market. This is useful short-term only and does not create a residence path.",
+        "selection_summary": "The United Kingdom is a partial match through Global Talent: it is an independent talent route for leaders or potential leaders, including digital technology, and can lead to settlement after 3 or 5 years. It is not a regular foreign-contract remote-work or digital-nomad route and requires prize/endorsement-level evidence, so it is useful only for a strong specialist profile.",
         "best_routes": [
           {
-            "route_name": "Standard Visitor remote-work permission",
-            "route_type": "digital_nomad_like_visitor_status",
+            "route_name": "Global Talent visa",
+            "route_type": "talent_or_high_skill_settlement_route",
             "valid_for_selection": "partial",
             "independent_application_possible": true,
             "local_employer_required": false,
-            "foreign_contract_or_income_required": true,
-            "direct_temporary_residence_possible": false,
+            "foreign_contract_or_income_required": false,
+            "direct_temporary_residence_possible": true,
             "direct_permanent_residence_possible": false,
             "minimum_monthly_income_usd": {
               "value": null,
               "source_ids": [
-                "GB1"
+                "GB2"
               ],
-              "notes": "No digital-nomad income threshold; ordinary visitor funds requirements apply."
+              "notes": "No monthly income threshold in the route overview; endorsement/prize and fees/surcharge apply."
             },
             "minimum_income_local_currency": {
               "value": null,
               "source_ids": [
-                "GB1"
+                "GB2"
               ],
-              "notes": "No digital-nomad income threshold; ordinary visitor funds requirements apply."
+              "notes": "No monthly income threshold in the route overview; endorsement/prize and fees/surcharge apply."
+            },
+            "income_requirement_display": {
+              "value": "No monthly income threshold; endorsement/prize route with fees and healthcare surcharge.",
+              "source_ids": [
+                "GB2"
+              ],
+              "notes": "Not a digital-nomad income route."
             },
             "income_proof_months": {
               "value": null,
               "source_ids": [
-                "GB1"
+                "GB2"
               ],
               "notes": null
             },
             "key_requirements": [
               {
-                "requirement": "Employer/clients must be outside the UK",
+                "requirement": "Applicant must be a leader or potential leader in academia/research, arts/culture, or digital technology.",
                 "source_ids": [
-                  "GB1"
+                  "GB2"
                 ]
               },
               {
-                "requirement": "Remote work must not access UK jobs market or UK clients",
+                "requirement": "Usually needs endorsement unless applying through an eligible prestigious prize.",
                 "source_ids": [
-                  "GB1"
+                  "GB2"
                 ]
               },
               {
-                "requirement": "Visitor purpose and ordinary admissibility rules must be satisfied",
+                "requirement": "Can live and work in the UK for up to 5 years at a time.",
                 "source_ids": [
-                  "GB1"
+                  "GB2"
+                ]
+              },
+              {
+                "requirement": "May be able to settle through indefinite leave to remain after 3 or 5 years, depending on field/application basis.",
+                "source_ids": [
+                  "GB2",
+                  "GB3"
                 ]
               }
             ],
             "initial_validity": {
-              "value": "Up to 6 months as visitor",
+              "value": "Up to 5 years at a time.",
               "source_ids": [
-                "GB1"
+                "GB2"
               ],
               "notes": null
             },
             "extension_rules": {
-              "value": null,
+              "value": "Can renew/extend; no total limit stated in GOV.UK overview.",
               "source_ids": [
-                "GB1"
+                "GB2"
               ],
               "notes": null
             },
             "path_to_temporary_residence": {
-              "value": null,
+              "value": "Global Talent visa permission to live and work in the UK.",
               "source_ids": [
-                "GB1"
+                "GB2"
               ],
               "notes": null
             },
             "path_to_permanent_residence": {
-              "value": null,
+              "value": "May lead to indefinite leave to remain after 3 or 5 years depending on route facts.",
               "source_ids": [
-                "GB1"
+                "GB2",
+                "GB3"
               ],
-              "notes": "Not confirmed from this route in this pass."
+              "notes": null
             },
             "path_to_citizenship": {
-              "value": null,
+              "value": "ILR can be used to become a British citizen if later citizenship requirements are met.",
               "source_ids": [
-                "GB1"
+                "GB3"
               ],
-              "notes": "Not confirmed from this route in this pass."
+              "notes": null
             },
-            "notes": "Short-term remote work only; no settlement route through visitor status.",
+            "notes": "Partial match: independent talent route with settlement potential, but not ordinary remote work and likely too selective for a regular foreign-contract profile unless evidence is strong.",
             "source_ids": [
-              "GB1"
+              "GB2",
+              "GB3"
             ]
           }
         ],
@@ -50394,14 +51210,20 @@
         },
         "timeline": {
           "total_years_to_citizenship": {
-            "value": null,
-            "source_ids": [],
-            "notes": "No citizenship timeline confirmed in this pass."
+            "value": 4,
+            "source_ids": [
+              "GB2",
+              "GB3"
+            ],
+            "notes": "Indicative minimum: ILR after 3 years for some Global Talent cases plus usually 12 months after ILR before naturalisation unless married to a British citizen. Many cases are 5+1 years."
           },
           "permanent_residence_years": {
-            "value": null,
-            "source_ids": [],
-            "notes": null
+            "value": 3,
+            "source_ids": [
+              "GB2",
+              "GB3"
+            ],
+            "notes": "3 or 5 years to ILR depending on field/application basis."
           }
         },
         "marriage": {
@@ -50415,7 +51237,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -50427,10 +51253,59 @@
             "publisher": "Wikipedia summary of UK visitor rules/GOV.UK sources",
             "date": "crawled 2026",
             "note": "States digital nomad activity is allowed on visitor status if employer/clients are outside the UK and no UK jobs market access."
+          },
+          {
+            "id": "GB2",
+            "title": "Apply for the Global Talent visa",
+            "url": "https://www.gov.uk/global-talent",
+            "publisher": "GOV.UK",
+            "date": "current 2026",
+            "note": "Official Global Talent overview: digital technology field, endorsement/prize, validity and settlement possibility."
+          },
+          {
+            "id": "GB3",
+            "title": "Indefinite leave to remain if you have a business, investor or talent visa",
+            "url": "https://www.gov.uk/indefinite-leave-to-remain-business-investor-global-talent",
+            "publisher": "GOV.UK",
+            "date": "current 2026",
+            "note": "Official ILR page: Global Talent settlement and citizenship bridge."
           }
         ],
         "confidence": "medium",
-        "research_notes": "Chat/web batch pass; official portal cleanup recommended before filing."
+        "research_notes": "Chat/web batch pass; official portal cleanup recommended before filing.",
+        "fully_matched": false,
+        "settlement_track": {
+          "classification": "strong_citizenship_track",
+          "can_lead_to_citizenship_from_this_route": true,
+          "requires_switch_to_another_status": false,
+          "notes": "Global Talent can lead to ILR, and ILR can support British citizenship if citizenship rules are later met."
+        },
+        "regular_foreign_contract_remote_work_fit": {
+          "value": false,
+          "notes": "Partial only: Global Talent is independent/no local employer but it is an endorsement/prize talent route, not ordinary foreign-contract remote work."
+        },
+        "audit": {
+          "chat_prompt_rerun_2026_07_15": {
+            "reviewed_at": "2026-07-15T11:42:31.831Z",
+            "method": "Chat/manual prompt-rule rerun against existing dataset, not a fresh API/web rerun.",
+            "prompt_rule": "valid_for_selection=true requires ordinary foreign-contract remote-work fit plus qualifying residence/citizenship path; partial is no longer final output; temporary_nomad_only is not valid."
+          },
+          "independent_talent_partial_review_2026_07_15": {
+            "reviewed_at": "2026-07-15T00:00:00.000Z",
+            "changed": true,
+            "reason": "User requested Australia-like independent skilled/talent routes to be surfaced as partial. UK Global Talent is independent and settlement-capable but not ordinary remote work."
+          }
+        },
+        "citizenship": {
+          "years_to_citizenship": {
+            "value": 4,
+            "source_ids": [
+              "GB2",
+              "GB3"
+            ],
+            "notes": "Best-case indicative path; verify exact naturalisation timing and absences."
+          }
+        }
       }
     },
     {
@@ -50562,7 +51437,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -51840,7 +52719,13 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Bislama",
+            "English",
+            "French"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -51987,7 +52872,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Spanish"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -52144,7 +53033,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Vietnamese"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -52299,7 +53192,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "Arabic"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -52446,7 +53343,11 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -52593,7 +53494,13 @@
         "passport": {
           "strength_notes": null
         },
-        "languages": [],
+        "languages": {
+          "official_languages": [
+            "English",
+            "Shona",
+            "Ndebele"
+          ]
+        },
         "labor_market": {
           "software_engineer_notes": null
         },
@@ -52611,5 +53518,9 @@
         "research_notes": "Chat/web batch pass; no valid route found in current source sweep."
       }
     }
-  ]
+  ],
+  "metadata": {
+    "last_manual_update": "2026-07-15",
+    "last_manual_update_note": "Marked Canada FSW and UK Global Talent as partial Australia-like independent skilled/talent settlement routes; visitor-only/job-offer-only routes remain not eligible."
+  }
 }

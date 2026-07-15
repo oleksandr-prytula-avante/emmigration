@@ -341,7 +341,7 @@ const routeSchema = {
         "other"
       ]
     },
-    valid_for_selection: { type: ["boolean", "string"], enum: [true, false, "uncertain"] },
+    valid_for_selection: { type: ["boolean", "string"], enum: [true, false, "uncertain", "partial"] },
     independent_application_possible: nullableBoolean,
     local_employer_required: nullableBoolean,
     foreign_contract_or_income_required: nullableBoolean,
@@ -399,7 +399,7 @@ const countryResearchSchema = {
   properties: {
     country: { type: "string" },
     researched_at: { type: "string" },
-    valid_for_selection: { type: ["boolean", "string"], enum: [true, false, "uncertain"] },
+    valid_for_selection: { type: ["boolean", "string"], enum: [true, false, "uncertain", "partial"] },
     selection_summary: nullableString,
     best_routes: { type: "array", items: routeSchema },
     rejected_routes: { type: "array", items: routeSchema },
