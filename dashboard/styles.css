@@ -330,9 +330,11 @@ tbody tr.active {
   position: sticky;
   top: 18px;
   max-height: calc(100vh - 36px);
+  overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
   padding: 18px;
+  min-width: 0;
 }
 
 .details h2 {
@@ -345,6 +347,10 @@ tbody tr.active {
   margin: 0 0 16px;
   color: var(--muted);
   line-height: 1.5;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .explain {
@@ -355,6 +361,10 @@ tbody tr.active {
   background: #f3f7f4;
   color: var(--muted);
   line-height: 1.45;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .detail-block {
@@ -374,6 +384,10 @@ tbody tr.active {
 .detail-block p,
 .detail-block li {
   line-height: 1.45;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .detail-block p {
