@@ -280,11 +280,11 @@ tbody tr.active {
 
 .language-chip-row {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 4px;
   margin-top: 5px;
   max-width: 100%;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .language-chip {
@@ -303,8 +303,12 @@ tbody tr.active {
   text-overflow: ellipsis;
 }
 
+.language-chip:first-child {
+  flex-shrink: 0;
+}
+
 .language-chip.more {
-  flex: 0 0 auto;
+  flex: 0 1 auto;
   background: #ecefeb;
   color: var(--muted);
 }
