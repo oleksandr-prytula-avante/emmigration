@@ -649,7 +649,7 @@ function statusPill(row) {
   if (row.status === "error") return '<span class="pill bad">ERROR</span>';
   if (row.valid === true) return '<span class="pill good">ELIGIBLE</span>';
   if (value.startsWith("partial") || row.valid === "uncertain") return '<span class="pill warn">REVIEW</span>';
-  return '<span class="pill bad">NO</span>';
+  return '<span class="pill bad">NOT ELIGIBLE</span>';
 }
 
 function matchesStatus(row, selected) {
