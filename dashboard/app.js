@@ -121,7 +121,7 @@ function normalizeResults(json) {
       citizenshipTrack: data.settlement_track?.classification ?? "missing",
       nomadTransition,
       languages: Array.isArray(data.languages?.official_languages) ? data.languages.official_languages : [],
-      jusSoli: data.child_citizenship?.birthright_citizenship?.value ?? null,
+      jusSoli: data.child_citizenship?.jus_soli?.value === true,
       income: numberValue(bestRoute?.minimum_monthly_income_usd),
       incomeText: bestRoute?.income_requirement_display?.value ?? null,
       tax: firstNumberValue(
@@ -697,18 +697,9 @@ function matchesLanguage(row, selected) {
 }
 
 function isMatchesRow(row) {
-  const value = String(row.valid);
-  const classification = String(row.citizenshipTrack ?? "").toLowerCase();
-  const isTemporaryOnly = classification === "temporary_nomad_only" || row.nomadTransition.status === "temporary_only";
-  if (isTemporaryOnly) return false;
-
-  const hasMatchingStatus = row.status === "ok" && (
-    row.valid === true ||
-    value === "partial" ||
-    value === "uncertain"
-  );
-  const hasMatchingPrCit = ["direct", "switch_needed", "possible", "unclear"].includes(row.nomadTransition.status);
-  return hasMatchingStatus && hasMatchingPrCit;
+  const hasMatchingStatus = row.status === "ok" && row.valid === true;
+  const hasMatchingNomadStatus = ["direct", "switch_needed", "possible_unclear"].includes(row.nomadTransition.status);
+  return hasMatchingStatus && hasMatchingNomadStatus;
 }
 
 function citizenshipTrackRank(value) {
@@ -746,7 +737,7 @@ function buildNomadTransition(data, route) {
   if (!isNomadEquivalentRoute(data, route)) {
     return {
       status: "no_nomad_route",
-      label: "NO DNV",
+      label: "NO",
       tone: "neutral",
       description: "No digital-nomad or equivalent remote-work residence route is captured for the selected route."
     };
@@ -777,8 +768,8 @@ function buildNomadTransition(data, route) {
 
   if (classification.includes("temporary_nomad_only") || String(route?.route_type ?? "").includes("temporary_only") || canLead === false) {
     return {
-      status: "temporary_only",
-      label: "TEMP ONLY",
+      status: "no_nomad_route",
+      label: "NO",
       tone: "bad",
       description: "Captured nomad or equivalent status is temporary-only, with no confirmed onward switch or conversion path."
     };
@@ -795,25 +786,25 @@ function buildNomadTransition(data, route) {
 
   if (String(canLead).toLowerCase().includes("possible") || classification.includes("possible")) {
     return {
-      status: "possible",
-      label: "POSSIBLE",
-      tone: "info",
+      status: "possible_unclear",
+      label: "POSSIBLE / UNCLEAR",
+      tone: "warn",
       description: "Dataset suggests the nomad or equivalent status may have an onward path, but it needs manual confirmation."
     };
   }
 
   if (canLead === "uncertain" || requiresSwitch === "uncertain" || classification.includes("uncertain")) {
     return {
-      status: "unclear",
-      label: "UNCLEAR",
+      status: "possible_unclear",
+      label: "POSSIBLE / UNCLEAR",
       tone: "warn",
       description: "The onward effect of time on this nomad or equivalent status is not confirmed."
     };
   }
 
   return {
-    status: "unclear",
-    label: "UNCLEAR",
+    status: "possible_unclear",
+    label: "POSSIBLE / UNCLEAR",
     tone: "warn",
     description: "The dataset does not clearly answer whether this nomad or equivalent status can lead onward."
   };
@@ -822,10 +813,16 @@ function buildNomadTransition(data, route) {
 function normalizeNomadStatus(status) {
   if (!status || typeof status !== "object" || !status.status) return null;
 
+  const normalizedStatus =
+    status.status === "direct" ? "direct" :
+    status.status === "switch_needed" ? "switch_needed" :
+    ["possible", "unclear", "possible_unclear"].includes(status.status) ? "possible_unclear" :
+    "no_nomad_route";
+
   return {
-    status: status.status,
-    label: status.label ?? nomadStatusLabel(status.status),
-    tone: status.tone ?? nomadStatusTone(status.status),
+    status: normalizedStatus,
+    label: nomadStatusLabel(normalizedStatus),
+    tone: nomadStatusTone(normalizedStatus),
     description: status.description ?? "Nomad status description was not captured in the normalized dataset."
   };
 }
@@ -833,18 +830,16 @@ function normalizeNomadStatus(status) {
 function nomadStatusLabel(status) {
   if (status === "direct") return "YES";
   if (status === "switch_needed") return "SWITCH";
-  if (status === "possible") return "POSSIBLE";
-  if (status === "unclear") return "UNCLEAR";
-  if (status === "temporary_only") return "TEMP ONLY";
-  if (status === "no_nomad_route") return "NO DNV";
+  if (status === "possible_unclear") return "POSSIBLE / UNCLEAR";
+  if (status === "no_nomad_route") return "NO";
   return "UNKNOWN";
 }
 
 function nomadStatusTone(status) {
   if (status === "direct") return "good";
-  if (status === "switch_needed" || status === "possible") return "info";
-  if (status === "unclear") return "warn";
-  if (status === "temporary_only") return "bad";
+  if (status === "switch_needed") return "info";
+  if (status === "possible_unclear") return "warn";
+  if (status === "no_nomad_route") return "bad";
   return "neutral";
 }
 
@@ -898,11 +893,9 @@ function isNomadEquivalentRoute(data, route) {
 function nomadTransitionRank(value) {
   if (value === "direct") return 1;
   if (value === "switch_needed") return 2;
-  if (value === "possible") return 3;
-  if (value === "unclear") return 4;
-  if (value === "temporary_only") return 5;
-  if (value === "no_nomad_route") return 6;
-  return 7;
+  if (value === "possible_unclear") return 3;
+  if (value === "no_nomad_route") return 4;
+  return 5;
 }
 
 function nomadTransitionPill(transition) {
@@ -910,40 +903,19 @@ function nomadTransitionPill(transition) {
 }
 
 function jusSoliRank(value) {
-  const normalized = String(value || "").toLowerCase();
-  if (normalized.includes("unconditional")) return 1;
-  if (normalized.includes("birthright") || normalized.includes("jus_soli")) return 2;
-  if (normalized.includes("conditional") || normalized.includes("restricted") || normalized.includes("limited")) return 3;
-  if (normalized.includes("sanguinis")) return 4;
-  return 5;
+  return value === true ? 1 : 2;
 }
 
 function jusSoliLabel(value) {
-  const normalized = String(value || "").toLowerCase();
-  if (normalized.includes("unconditional")) return "YES";
-  if (normalized.includes("birthright")) return "YES / EXCEPTIONS";
-  if (normalized.includes("conditional")) return "CONDITIONAL";
-  if (normalized.includes("restricted") || normalized.includes("limited")) return "LIMITED";
-  if (normalized.includes("sanguinis")) return "NO";
-  return "NOT FOUND";
+  return value === true ? "YES" : "NO";
 }
 
 function jusSoliFilterValue(value) {
-  const label = jusSoliLabel(value);
-  if (label === "YES") return "yes";
-  if (label === "YES / EXCEPTIONS") return "yes_exceptions";
-  if (label === "CONDITIONAL") return "conditional";
-  if (label === "LIMITED") return "limited";
-  if (label === "NO") return "no";
-  return "missing";
+  return value === true ? "yes" : "no";
 }
 
 function jusSoliTone(value) {
-  const rank = jusSoliRank(value);
-  if (rank === 1 || rank === 2) return "good";
-  if (rank === 3) return "warn";
-  if (rank === 4) return "neutral";
-  return "neutral";
+  return value === true ? "good" : "bad";
 }
 
 function jusSoliPill(value) {
