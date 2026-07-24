@@ -405,7 +405,7 @@ function sortValue(row, key) {
 function renderMetrics() {
   const okRows = state.rows.filter((row) => row.status === "ok");
   const validRows = okRows.filter((row) => row.valid === true);
-  const matchRows = okRows.filter(isMatchesRow);
+  const matchRows = state.rows.filter(isMatchesRow);
   const incomes = validRows.map((row) => row.income).filter((value) => value !== null);
   const avgIncome = incomes.length
     ? Math.round(incomes.reduce((sum, value) => sum + value, 0) / incomes.length)
@@ -696,9 +696,7 @@ function matchesLanguage(row, selected) {
 }
 
 function isMatchesRow(row) {
-  const hasMatchingStatus = row.status === "ok" && row.valid === true;
-  const hasMatchingNomadStatus = ["direct", "switch_needed"].includes(row.nomadTransition.status);
-  return hasMatchingStatus && hasMatchingNomadStatus;
+  return row.valid === true && row.nomadTransition.status !== "no_nomad_route";
 }
 
 function citizenshipTrackRank(value) {
