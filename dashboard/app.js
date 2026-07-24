@@ -176,7 +176,7 @@ function applyUrlStateBeforeData() {
   state.isRestoringUrlState = true;
   const hasStandardFilters = hasStandardUrlFilters(urlState);
   const matchesFromUrl = urlState.matches === "true";
-  elements.matches.checked = matchesFromUrl || (!hasStandardFilters && urlState.matches === null);
+  elements.matches.checked = matchesFromUrl;
   setInputValue(elements.search, urlState.search);
   setSelectValue(elements.valid, urlState.status);
   setSelectValue(elements.prCit, urlState.prCit);
@@ -497,7 +497,7 @@ function renderDetails(visibleRows) {
         <li>VALID FOR SELECTION: ${escapeHtml(formatBooleanish(data.valid_for_selection))}</li>
         <li>FULLY MATCHED: ${escapeHtml(formatBooleanish(data.fully_matched))}</li>
         <li>REMOTE WORK FIT: ${formatRemoteWorkFit(data.regular_foreign_contract_remote_work_fit)}</li>
-        <li>NOMAD STATUS: ${nomadTransitionPill(row.nomadTransition)}<span class="subtext">${escapeHtml(row.nomadTransition.description)}</span></li>
+        <li>CITIZENSHIP: ${nomadTransitionPill(row.nomadTransition)}<span class="subtext">${escapeHtml(row.nomadTransition.description)}</span></li>
         <li>CONFIDENCE: ${escapeHtml((data.confidence ?? "NOT FOUND").toUpperCase())}</li>
         <li>RESEARCHED AT: ${escapeHtml(data.researched_at ?? "NOT FOUND")}</li>
         <li>SOURCE COUNT: ${escapeHtml(String(row.sourceCount ?? sources.length ?? 0))}</li>
@@ -568,7 +568,7 @@ function renderDetails(visibleRows) {
         <li>RAW TRACK: ${escapeHtml(data.settlement_track?.classification ?? "NOT FOUND")}</li>
         <li>TRACK STRENGTH: ${escapeHtml(data.settlement_track?.citizenship_track_strength ?? data.citizenship_track_strength ?? "NOT FOUND")}</li>
         <li>CITIZENSHIP FROM THIS ROUTE: ${escapeHtml(formatCitizenshipTrack(data.settlement_track?.can_lead_to_citizenship_from_this_route))}</li>
-        <li>NOMAD STATUS SWITCH NEEDED: ${escapeHtml(formatBooleanish(data.settlement_track?.requires_switch_to_another_status))}</li>
+        <li>CITIZENSHIP STATUS SWITCH NEEDED: ${escapeHtml(formatBooleanish(data.settlement_track?.requires_switch_to_another_status))}</li>
         <li>NOMAD WARNING: ${escapeHtml(data.settlement_track?.nomad_only_warning ?? "NOT FOUND")}</li>
       </ul>
       <p>${escapeHtml(data.timeline?.key_conditions?.value ?? "NOT FOUND.")}</p>
@@ -645,13 +645,12 @@ function renderDetails(visibleRows) {
 }
 
 function statusPill(row) {
-  if (row.status === "error") return '<span class="pill bad">ERROR</span>';
   if (row.valid === true) return '<span class="pill good">ELIGIBLE</span>';
   return '<span class="pill bad">NOT ELIGIBLE</span>';
 }
 
 function matchesStatus(row, selected) {
-  return String(row.valid) === selected || row.status === selected;
+  return String(row.valid) === selected;
 }
 
 function statusRank(row) {
@@ -698,7 +697,7 @@ function matchesLanguage(row, selected) {
 
 function isMatchesRow(row) {
   const hasMatchingStatus = row.status === "ok" && row.valid === true;
-  const hasMatchingNomadStatus = ["direct", "switch_needed", "possible_unclear"].includes(row.nomadTransition.status);
+  const hasMatchingNomadStatus = ["direct", "switch_needed"].includes(row.nomadTransition.status);
   return hasMatchingStatus && hasMatchingNomadStatus;
 }
 
@@ -786,26 +785,26 @@ function buildNomadTransition(data, route) {
 
   if (String(canLead).toLowerCase().includes("possible") || classification.includes("possible")) {
     return {
-      status: "possible_unclear",
-      label: "POSSIBLE / UNCLEAR",
-      tone: "warn",
+      status: "no_nomad_route",
+      label: "NO",
+      tone: "bad",
       description: "Dataset suggests the nomad or equivalent status may have an onward path, but it needs manual confirmation."
     };
   }
 
   if (canLead === "uncertain" || requiresSwitch === "uncertain" || classification.includes("uncertain")) {
     return {
-      status: "possible_unclear",
-      label: "POSSIBLE / UNCLEAR",
-      tone: "warn",
+      status: "no_nomad_route",
+      label: "NO",
+      tone: "bad",
       description: "The onward effect of time on this nomad or equivalent status is not confirmed."
     };
   }
 
   return {
-    status: "possible_unclear",
-    label: "POSSIBLE / UNCLEAR",
-    tone: "warn",
+    status: "no_nomad_route",
+    label: "NO",
+    tone: "bad",
     description: "The dataset does not clearly answer whether this nomad or equivalent status can lead onward."
   };
 }
@@ -816,21 +815,19 @@ function normalizeNomadStatus(status) {
   const normalizedStatus =
     status.status === "direct" ? "direct" :
     status.status === "switch_needed" ? "switch_needed" :
-    ["possible", "unclear", "possible_unclear"].includes(status.status) ? "possible_unclear" :
     "no_nomad_route";
 
   return {
     status: normalizedStatus,
     label: nomadStatusLabel(normalizedStatus),
     tone: nomadStatusTone(normalizedStatus),
-    description: status.description ?? "Nomad status description was not captured in the normalized dataset."
+    description: status.description ?? "Citizenship-path status was not captured in the normalized dataset."
   };
 }
 
 function nomadStatusLabel(status) {
   if (status === "direct") return "YES";
   if (status === "switch_needed") return "SWITCH";
-  if (status === "possible_unclear") return "POSSIBLE / UNCLEAR";
   if (status === "no_nomad_route") return "NO";
   return "UNKNOWN";
 }
@@ -838,7 +835,6 @@ function nomadStatusLabel(status) {
 function nomadStatusTone(status) {
   if (status === "direct") return "good";
   if (status === "switch_needed") return "info";
-  if (status === "possible_unclear") return "warn";
   if (status === "no_nomad_route") return "bad";
   return "neutral";
 }
@@ -893,9 +889,8 @@ function isNomadEquivalentRoute(data, route) {
 function nomadTransitionRank(value) {
   if (value === "direct") return 1;
   if (value === "switch_needed") return 2;
-  if (value === "possible_unclear") return 3;
-  if (value === "no_nomad_route") return 4;
-  return 5;
+  if (value === "no_nomad_route") return 3;
+  return 4;
 }
 
 function nomadTransitionPill(transition) {
